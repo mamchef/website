@@ -1,0 +1,1688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LKLTGNYPRH"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LKLTGNYPRH');
+</script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MamChef - Fresh homemade meals from neighbours</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #15392f;
+            overflow-x: hidden;
+            background-color: #f5f5f5;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Language Switcher */
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10001;
+            display: flex;
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .lang-btn {
+            padding: 8px 16px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-weight: 600;
+            color: #527c70;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            background: #eba743;
+            color: white;
+        }
+
+        .lang-btn:hover:not(.active) {
+            background: rgba(235, 167, 67, 0.1);
+        }
+
+        /* Coming Soon Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 1;
+        }
+
+        .coming-soon-modal {
+            background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            max-width: 600px;
+            width: 90%;
+            position: relative;
+            animation: slideUp 0.4s ease;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #527c70;
+            transition: all 0.3s ease;
+        }
+
+        .close-modal:hover {
+            background: #b93d22;
+            color: white;
+            transform: rotate(90deg);
+        }
+
+        .coming-soon-content {
+            text-align: center;
+        }
+
+        .coming-soon-icon {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, #eba743, #b93d22);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .coming-soon-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #15392f;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .coming-soon-subtitle {
+            font-size: 1.2rem;
+            color: #527c70;
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .notify-form {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .notify-input {
+            flex: 1;
+            min-width: 250px;
+            padding: 1rem 1.5rem;
+            border: 2px solid #c2e1d7;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .notify-input:focus {
+            outline: none;
+            border-color: #eba743;
+            box-shadow: 0 0 0 3px rgba(235, 167, 67, 0.1);
+        }
+
+        .notify-btn {
+            padding: 1rem 2rem;
+            background: #eba743;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .notify-btn:hover {
+            background: #b93d22;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(185, 61, 34, 0.3);
+        }
+
+        .launch-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #c2e1d7;
+        }
+
+        .launch-feature {
+            text-align: center;
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 0.5rem;
+            background: rgba(235, 167, 67, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .feature-text {
+            font-size: 0.9rem;
+            color: #527c70;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(245, 245, 245, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(21, 57, 47, 0.05);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #b93d22;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 3rem;
+            margin-right: 120px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #15392f;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s ease;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #b93d22;
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #527c70;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 120px 2rem 0;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-content {
+            position: relative;
+        }
+
+        .hero-content h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            line-height: 0.9;
+            margin-bottom: 2rem;
+            color: #15392f;
+            letter-spacing: -0.04em;
+        }
+
+        .hero-content .highlight {
+            color: #b93d22;
+            position: relative;
+        }
+
+        .subhead {
+            font-size: 1.25rem;
+            color: #527c70;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
+        }
+
+        .btn-primary {
+            background: #eba743;
+            color: #15392f;
+            padding: 1.2rem 2.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-radius: 4px;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 1px 5px rgba(235, 167, 67, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(235, 167, 67, 0.4);
+        }
+
+        .btn-secondary {
+            background: #eeee;
+            color: #527c70;
+            padding: 0.9rem 1.5rem;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            position: relative;
+            transition: all 0.3s ease;
+            box-shadow: 0 1px 5px rgb(214 210 210);
+            border-radius: 4px;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-2px);
+        }
+
+        .hero-visual {
+            position: relative;
+            height: 600px;
+        }
+
+        .hero-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(21, 57, 47, 0.15);
+        }
+
+        /* Benefits */
+        .benefits-container {
+            max-width: 1400px;
+            margin: 8rem auto;
+            padding: 0 2rem;
+        }
+
+        .benefits-intro {
+            text-align: center;
+            margin-bottom: 6rem;
+        }
+
+        .benefits-intro h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: #15392f;
+            letter-spacing: -0.02em;
+        }
+
+        .benefits-intro p {
+            font-size: 1.2rem;
+            color: #527c70;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .benefit-item {
+            padding: 3rem 2.5rem;
+            background: white;
+            border: 1px solid #c2e1d7;
+            position: relative;
+            transition: all 0.4s ease;
+            border-radius: 8px;
+        }
+
+        .benefit-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 0;
+            background: #b93d22;
+            transition: height 0.4s ease;
+            border-radius: 8px 0 0 8px;
+        }
+
+        .benefit-item:hover::before {
+            height: 100%;
+        }
+
+        .benefit-item:hover {
+            transform: translateX(8px);
+            box-shadow: 0 15px 50px rgba(21, 57, 47, 0.1);
+            border-color: #527c70;
+        }
+
+        .benefit-item h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #15392f;
+        }
+
+        .benefit-item p {
+            color: #527c70;
+            line-height: 1.6;
+        }
+
+        /* About Section */
+        .about-section {
+            max-width: 1400px;
+            margin: 8rem auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 6rem;
+            align-items: center;
+        }
+
+        .about-content h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 2rem;
+            color: #15392f;
+            letter-spacing: -0.02em;
+        }
+
+        .about-story {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: #527c70;
+            margin-bottom: 2rem;
+        }
+
+        .about-story em {
+            color: #b93d22;
+            font-weight: 600;
+            font-style: normal;
+        }
+
+        .about-visual {
+            position: relative;
+            height: 500px;
+        }
+
+        .about-visual img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(21, 57, 47, 0.15);
+        }
+
+        /* Target Audience */
+        .audience-section {
+            max-width: 1400px;
+            margin: 8rem auto;
+            padding: 0 2rem;
+        }
+
+        .audience-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .audience-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: #15392f;
+            letter-spacing: -0.02em;
+        }
+
+        .audience-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 3rem;
+        }
+
+        .audience-card {
+            background: white;
+            border: 1px solid #c2e1d7;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+            border-radius: 8px;
+        }
+
+        .audience-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(21, 57, 47, 0.15);
+        }
+
+        .audience-header-card {
+            padding: 3rem 2.5rem 2rem;
+            background: linear-gradient(135deg, #b93d22, #d14832);
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .audience-header-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .audience-header-card p {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
+
+        .audience-content {
+            padding: 2.5rem;
+        }
+
+        .audience-benefits {
+            list-style: none;
+        }
+
+        .audience-benefits li {
+            padding: 1rem 0;
+            border-bottom: 1px solid #c2e1d7;
+            position: relative;
+            padding-left: 2rem;
+            color: #527c70;
+            line-height: 1.6;
+        }
+
+        .audience-benefits li:last-child {
+            border-bottom: none;
+        }
+
+        .audience-benefits li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: #b93d22;
+            font-weight: bold;
+        }
+
+        /* How it Works */
+        .how-it-works {
+            max-width: 1400px;
+            margin: 8rem auto;
+            padding: 0 2rem;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: #15392f;
+            letter-spacing: -0.02em;
+        }
+
+        .process-switcher {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            margin-bottom: 4rem;
+            background: white;
+            border-radius: 50px;
+            padding: 0.5rem;
+            box-shadow: 0 4px 20px rgba(21, 57, 47, 0.1);
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .process-tab {
+            flex: 1;
+            padding: 1.2rem 2.5rem;
+            background: transparent;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            color: #527c70;
+            border-radius: 45px;
+            position: relative;
+        }
+
+        .process-tab.active {
+            background: #eba743;
+            color: #15392f;
+            box-shadow: 0 2px 10px rgba(235, 167, 67, 0.3);
+        }
+
+        .process-tab:not(.active):hover {
+            color: #15392f;
+            background: rgba(194, 225, 215, 0.3);
+        }
+
+        .process-timeline {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            position: relative;
+        }
+
+        .process-timeline::before {
+            content: '';
+            position: absolute;
+            top: 60px;
+            left: 16.66%;
+            right: 16.66%;
+            height: 2px;
+            background: #c2e1d7;
+            z-index: 1;
+        }
+
+        .timeline-step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step-indicator {
+            width: 120px;
+            height: 120px;
+            background: white;
+            border: 3px solid #527c70;
+            margin: 0 auto 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 900;
+            color: #527c70;
+            border-radius: 50%;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .timeline-step h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #15392f;
+        }
+
+        .timeline-step p {
+            color: #527c70;
+            line-height: 1.6;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            max-width: 1000px;
+            margin: 8rem auto;
+            padding: 0 2rem;
+        }
+
+        .faq-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .faq-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            color: #15392f;
+            letter-spacing: -0.02em;
+        }
+
+        .faq-category {
+            margin-bottom: 3rem;
+        }
+
+        .faq-category h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #15392f;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #c2e1d7;
+            margin-bottom: 0;
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 2rem 0;
+            background: none;
+            border: none;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #15392f;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: #b93d22;
+        }
+
+        .faq-toggle {
+            font-size: 1.5rem;
+            transition: transform 0.3s ease;
+            color: #527c70;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+            color: #b93d22;
+        }
+
+        .faq-answer {
+            padding: 0 0 2rem 0;
+            color: #527c70;
+            line-height: 1.7;
+            display: none;
+        }
+
+        .faq-answer.active {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        /* Support Section */
+        .support-section {
+            max-width: 1100px;
+            margin: 8rem auto;
+            padding: 0 2rem;
+        }
+
+        .support-card {
+            background: linear-gradient(135deg, #ffffff 0%, #f7fbf9 100%);
+            border: 1px solid #c2e1d7;
+            border-radius: 20px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(21, 57, 47, 0.08);
+        }
+
+        .support-eyebrow {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #b93d22;
+            margin-bottom: 1rem;
+        }
+
+        .support-card h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: clamp(2.2rem, 4vw, 3.4rem);
+            font-weight: 800;
+            color: #15392f;
+            margin-bottom: 1rem;
+        }
+
+        .support-intro {
+            max-width: 700px;
+            color: #527c70;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+        }
+
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .support-item {
+            background: white;
+            border: 1px solid #d7ebe3;
+            border-radius: 14px;
+            padding: 1.5rem;
+        }
+
+        .support-label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            color: #527c70;
+            margin-bottom: 0.65rem;
+        }
+
+        .support-value,
+        .support-value a {
+            color: #15392f;
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .support-value a:hover {
+            color: #b93d22;
+        }
+
+        .support-note {
+            color: #527c70;
+            line-height: 1.7;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 8rem;
+            border-top: 1px solid #c2e1d7;
+            padding: 4rem 0 2rem;
+            background: white;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .footer-brand{
+            text-align: center;
+        }
+        .footer-brand h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            color: #b93d22;
+        }
+
+        .footer-brand p {
+            color: #527c70;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .footer-legal {
+            grid-column: 1 / -1;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #c2e1d7;
+            color: #527c70;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        .footer-legal strong {
+            color: #15392f;
+        }
+
+        .footer-legal a {
+            color: #15392f;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .footer-legal a:hover {
+            color: #b93d22;
+        }
+
+        .footer-section {
+            display: block;
+        }
+        .footer-section h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #15392f;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #527c70;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-links a:hover {
+            color: #b93d22;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .social-link {
+            width: 44px;
+            height: 44px;
+            background: #c2e1d7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-radius: 50%;
+            color: #15392f;
+        }
+
+        .social-link:hover {
+            background: #b93d22;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+            border-top: 1px solid #c2e1d7;
+            text-align: center;
+            color: #527c70;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 3rem;
+            }
+
+            .about-section {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .audience-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .process-timeline {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .process-timeline::before {
+                display: none;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+
+            .support-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero {
+                padding: 100px 1rem 0;
+            }
+
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .audience-cards {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-group {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: stretch;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+
+            .support-card {
+                padding: 2rem;
+            }
+
+            .process-switcher {
+                flex-direction: column;
+                border-radius: 12px;
+            }
+
+            .process-tab {
+                border-radius: 8px;
+            }
+
+            .language-switcher {
+                top: auto;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading animation */
+        @keyframes slideUpAnim {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: slideUpAnim 0.8s ease-out;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 44px;
+            height: 44px;
+            background: #c2e1d7;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-radius: 50%;
+            color: #15392f;
+        }
+
+        .social-link:hover {
+            background: #b93d22;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .social-link svg {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
+</head>
+<body>
+<!-- Language Switcher -->
+<div class="language-switcher">
+    <button class="lang-btn active" onclick="changeLanguage('en')">EN</button>
+    <button class="lang-btn" onclick="changeLanguage('lt')">LT</button>
+</div>
+
+<!-- Coming Soon Modal -->
+<div class="modal-overlay" id="comingSoonModal">
+    <div class="coming-soon-modal">
+        <button class="close-modal" onclick="closeModal()">×</button>
+        <div class="coming-soon-content">
+            <div class="coming-soon-icon">🍽️</div>
+            <h2 class="coming-soon-title" data-en="Coming Soon!" data-lt="Jau greitai!">Coming Soon!</h2>
+            <p class="coming-soon-subtitle" data-en="We're preparing something delicious for you!" data-lt="Ruošiame jums kažką skanaus. Būkite pirmi!">
+                We're preparing something delicious for you!
+            </p>
+            <div class="launch-features">
+                <div class="launch-feature">
+                    <div class="feature-icon">📍</div>
+                    <div class="feature-text" data-en="Local chefs" data-lt="Vietiniai virėjai">Local chefs</div>
+                </div>
+                <div class="launch-feature">
+                    <div class="feature-icon">🏠</div>
+                    <div class="feature-text" data-en="Homemade quality" data-lt="Namų kokybė">Homemade quality</div>
+                </div>
+                <div class="launch-feature">
+                    <div class="feature-icon">💰</div>
+                    <div class="feature-text" data-en="Fair prices" data-lt="Sąžiningos kainos">Fair prices</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Header -->
+<header>
+    <nav>
+        <img width="170px" src="https://api.mamchef.com/logo.png" class="logo" alt="MamChef">
+        <ul class="nav-links">
+            <li><a href="#about" data-en="About" data-lt="Apie">About</a></li>
+            <li><a href="#target" data-en="Who we serve" data-lt="Kam skirta">Who we serve</a></li>
+            <li><a href="#how-it-works" data-en="How it works" data-lt="Kaip veikia">How it works</a></li>
+            <li><a href="#faq" data-en="FAQ" data-lt="DUK">FAQ</a></li>
+            <li><a href="#support" data-en="Support" data-lt="Pagalba">Support</a></li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Hero Section -->
+<section class="hero" id="home">
+    <div class="hero-content">
+        <h1 data-en="Fresh <span class='highlight'>Homemade</span> Meals from Neighbours" data-lt="Švieži <span class='highlight'>Namų Gamybos</span> Patiekalai iš Kaimynų">Fresh <span class="highlight">Homemade</span> Meals from Neighbours</h1>
+        <p class="subhead" data-en="Real home cooks. Real taste. Order for pickup or chef delivery — no subscriptions, no hidden fees." data-lt="Tikri namų virėjai. Tikras skonis. Užsisakykite atsiėmimui arba pristatymui — jokių prenumeratų, jokių paslėptų mokesčių.">Real home cooks. Real taste. Order for pickup or chef delivery — no subscriptions, no hidden fees.</p>
+        <div class="cta-group">
+            <button class="btn-secondary" onclick="openModal()" data-en="Browse today's meals" data-lt="Peržiūrėti šiandienos patiekalus">Browse today's meals</button>
+            <a href="https://chef.mamchef.com" class="btn-primary" data-en="I'm a cook — join MamChef →" data-lt="Esu virėjas — prisijungti prie MamChef →">I'm a cook — join MamChef →</a>
+        </div>
+    </div>
+    <div class="hero-visual">
+        <img src="https://api.mamchef.com/assets/mamchefhome.png" alt="Fresh homemade meal"/>
+    </div>
+</section>
+
+<!-- Benefits Section -->
+<section class="benefits-container" id="benefits">
+    <div class="benefits-intro">
+        <h2 data-en="Why choose MamChef" data-lt="Kodėl rinktis MamChef">Why choose MamChef</h2>
+        <p data-en="We've reimagined how you discover and enjoy authentic homemade meals from talented cooks in your neighbourhood." data-lt="Mes iš naujo sugalvojome, kaip atrasti ir mėgautis autentiškais namų gamybos patiekalais iš talentingų jūsų kaimynystės virėjų.">We've reimagined how you discover and enjoy authentic homemade meals from talented cooks in your neighbourhood.</p>
+    </div>
+
+    <div class="benefits-grid">
+        <div class="benefit-item">
+            <h3 data-en="Safety" data-lt="Saugumas">Safety</h3>
+            <p data-en="A trusted marketplace for home-cooked food. Chefs must register with VMVT and VMI and complete our onboarding checks. KYC for payouts is handled via Stripe." data-lt="Patikima namų gamybos maisto prekyvietė. Virėjai privalo registruotis VMVT ir VMI bei praeiti mūsų patikrinimus. Tapatybės patvirtinimas išmokoms vykdomas per Stripe.">A trusted marketplace for home-cooked food. Chefs must register with VMVT and VMI and complete our onboarding checks. KYC for payouts is handled via Stripe.</p>
+        </div>
+        <div class="benefit-item">
+            <h3 data-en="No upfront fees" data-lt="Jokių išankstinių mokesčių">No upfront fees</h3>
+            <p data-en="Chefs pay nothing to join. We only make money when they do — no listing or subscription fees, only commission on completed orders." data-lt="Virėjai nemoka už prisijungimą. Mes uždirbame tik tada, kai uždirba jie — jokių skelbimų ar prenumeratos mokesčių, tik komisija nuo įvykdytų užsakymų.">Chefs pay nothing to join. We only make money when they do — no listing or subscription fees, only commission on completed orders.</p>
+        </div>
+        <div class="benefit-item">
+            <h3 data-en="Easy chef search" data-lt="Paprasta virėjų paieška">Easy chef search</h3>
+            <p data-en="Find food fast. Filter by cuisine, price, pickup time, chef rating, and dietary requirements — order in minutes." data-lt="Greitai raskite maistą. Filtruokite pagal virtuvę, kainą, atsiėmimo laiką, virėjo reitingą ir mitybos reikalavimus — užsisakykite per kelias minutes.">Find food fast. Filter by cuisine, price, pickup time, chef rating, and dietary requirements — order in minutes.</p>
+        </div>
+        <div class="benefit-item">
+            <h3 data-en="Modern" data-lt="Šiuolaikiška">Modern</h3>
+            <p data-en="Fast checkout & scheduling. Apple Pay, Google Pay, credit card — and real-time availability for last-minute pickup." data-lt="Greitas atsiskaitymas ir planavimas. Apple Pay, Google Pay, kreditinė kortelė — ir realaus laiko prieinamumas paskutinės minutės atsiėmimui.">Fast checkout & scheduling. Apple Pay, Google Pay, credit card — and real-time availability for last-minute pickup.</p>
+        </div>
+        <div class="benefit-item">
+            <h3 data-en="Time-saving" data-lt="Taupo laiką">Time-saving</h3>
+            <p data-en="Quick order flow. Browse, select pickup or chef delivery, pay — done in under 90 seconds." data-lt="Greitas užsakymo procesas. Naršykite, pasirinkite atsiėmimą ar pristatymą, apmokėkite — atlikta per 90 sekundžių.">Quick order flow. Browse, select pickup or chef delivery, pay — done in under 90 seconds.</p>
+        </div>
+        <div class="benefit-item">
+            <h3 data-en="Less stress" data-lt="Mažiau streso">Less stress</h3>
+            <p data-en="Trust the food you order. Chef profiles, reviews and clear allergen info so you know exactly what you're getting." data-lt="Pasitikėkite užsakomu maistu. Virėjų profiliai, atsiliepimai ir aiški informacija apie alergenus — žinote tiksliai, ką gaunate.">Trust the food you order. Chef profiles, reviews and clear allergen info so you know exactly what you're getting.</p>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="about-section" id="about">
+    <div class="about-content">
+        <h2 data-en="About MamChef" data-lt="Apie MamChef">About MamChef</h2>
+        <div class="about-story">
+            <p data-en="One evening a home-cooked dinner saved the day — and we realised how many great cooks in our neighbourhood had no easy way to sell their food. MamChef started with a simple question: <em>what if finding fresh, homemade meals was as easy as calling a taxi?</em>" data-lt="Vieną vakarą namų gamybos vakarienė išgelbėjo dieną — ir mes supratome, kiek daug puikių virėjų mūsų kaimynystėje neturi paprasto būdo parduoti savo maistą. MamChef prasidėjo nuo paprasto klausimo: <em>o jei rasti šviežius, namų gamybos patiekalus būtų taip pat paprasta, kaip iškviesti taksi?</em>">One evening a home-cooked dinner saved the day — and we realised how many great cooks in our neighbourhood had no easy way to sell their food. MamChef started with a simple question: <em>what if finding fresh, homemade meals was as easy as calling a taxi?</em></p>
+            <p data-en="Today MamChef helps home cooks earn reliably and gives customers a better, affordable alternative to takeout." data-lt="Šiandien MamChef padeda namų virėjams patikimai užsidirbti ir suteikia klientams geresnę, įperkamą alternatyvą išsinešamam maistui.">Today MamChef helps home cooks earn reliably and gives customers a better, affordable alternative to takeout.</p>
+        </div>
+    </div>
+    <div class="about-visual">
+        <img src="https://api.mamchef.com/assets/mamchefabout.png" alt="Home cooking"/>
+    </div>
+</section>
+
+<!-- Target Audience -->
+<section class="audience-section" id="target">
+    <div class="audience-header">
+        <h2 data-en="Who is MamChef for?" data-lt="Kam skirtas MamChef?">Who is MamChef for?</h2>
+    </div>
+    <div class="audience-cards">
+        <div class="audience-card">
+            <div class="audience-header-card">
+                <h3 data-en="For Home Cooks" data-lt="Namų virėjams">For Home Cooks</h3>
+                <p data-en="Turn your passion into profit" data-lt="Paverskite savo aistrą pelnu">Turn your passion into profit</p>
+            </div>
+            <div class="audience-content">
+                <ul class="audience-benefits">
+                    <li data-en="Earn from your talent — turn your cooking skills into income with no upfront fees" data-lt="Uždirbkite iš savo talento — paverskite kulinarijos įgūdžius pajamomis be išankstinių mokesčių">Earn from your talent — turn your cooking skills into income with no upfront fees</li>
+                    <li data-en="Flexible schedule — cook when you want, choose pickup or chef delivery" data-lt="Lankstus grafikas — gaminkite kada norite, pasirinkite atsiėmimą ar pristatymą">Flexible schedule — cook when you want, choose pickup or chef delivery</li>
+                    <li data-en="Local recognition — build a profile, gain reviews, and grow your own micro-brand" data-lt="Vietinis pripažinimas — kurkite profilį, gaukite atsiliepimų ir auginkite savo mikro prekės ženklą">Local recognition — build a profile, gain reviews, and grow your own micro-brand</li>
+                    <li data-en="Simple payouts — bi-weekly transfers directly to your bank via Stripe" data-lt="Paprastos išmokos — kas dvi savaites pervedimai tiesiai į jūsų banką per Stripe">Simple payouts — bi-weekly transfers directly to your bank via Stripe</li>
+                </ul>
+            </div>
+        </div>
+        <div class="audience-card">
+            <div class="audience-header-card">
+                <h3 data-en="For Food Lovers" data-lt="Maisto gurmanams">For Food Lovers</h3>
+                <p data-en="Discover authentic homemade meals" data-lt="Atraskite autentiškus namų gamybos patiekalus">Discover authentic homemade meals</p>
+            </div>
+            <div class="audience-content">
+                <ul class="audience-benefits">
+                    <li data-en="Affordable meals — real homemade food at prices lower than many restaurants" data-lt="Įperkami patiekalai — tikras namų gamybos maistas už mažesnes nei daugelio restoranų kainas">Affordable meals — real homemade food at prices lower than many restaurants</li>
+                    <li data-en="Support local — every order helps a neighbour earn and grow" data-lt="Palaikykite vietinius — kiekvienas užsakymas padeda kaimynui užsidirbti ir augti">Support local — every order helps a neighbour earn and grow</li>
+                    <li data-en="Healthier choices — authentic recipes, clear allergens, no industrial kitchens" data-lt="Sveikesni pasirinkimai — autentiški receptai, aiškūs alergenai, jokių pramoninių virtuvių">Healthier choices — authentic recipes, clear allergens, no industrial kitchens</li>
+                    <li data-en="Convenience — order in under 90 seconds, pickup nearby or get chef delivery" data-lt="Patogumas — užsisakykite per 90 sekundžių, atsiimkite netoliese arba gaukite pristatymą">Convenience — order in under 90 seconds, pickup nearby or get chef delivery</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How it Works -->
+<section class="how-it-works" id="how-it-works">
+    <div class="section-header">
+        <h2 data-en="How it works" data-lt="Kaip tai veikia">How it works</h2>
+    </div>
+    <div class="process-switcher">
+        <button class="process-tab active" onclick="showProcess('customers')" data-en="For Customers" data-lt="Klientams">For Customers</button>
+        <button class="process-tab" onclick="showProcess('chefs')" data-en="For Chefs" data-lt="Virėjams">For Chefs</button>
+    </div>
+
+    <div id="customers-process" class="process-timeline">
+        <div class="timeline-step">
+            <div class="step-indicator">1</div>
+            <h4 data-en="Find a meal" data-lt="Raskite patiekalą">Find a meal</h4>
+            <p data-en="Browse menus, filter by cuisine, price, or pickup/delivery options to find the perfect homemade meal." data-lt="Naršykite meniu, filtruokite pagal virtuvę, kainą ar atsiėmimo/pristatymo galimybes, kad rastumėte tobulą namų gamybos patiekalą.">Browse menus, filter by cuisine, price, or pickup/delivery options to find the perfect homemade meal.</p>
+        </div>
+        <div class="timeline-step">
+            <div class="step-indicator">2</div>
+            <h4 data-en="Order & pay" data-lt="Užsisakykite ir apmokėkite">Order & pay</h4>
+            <p data-en="Secure checkout with card, Apple Pay, or Google Pay. No hidden fees, just transparent pricing." data-lt="Saugus atsiskaitymas kortele, Apple Pay ar Google Pay. Jokių paslėptų mokesčių, tik skaidri kainodara.">Secure checkout with card, Apple Pay, or Google Pay. No hidden fees, just transparent pricing.</p>
+        </div>
+        <div class="timeline-step">
+            <div class="step-indicator">3</div>
+            <h4 data-en="Enjoy & review" data-lt="Mėgaukitės ir įvertinkite">Enjoy & review</h4>
+            <p data-en="Pick up your order or get it delivered, then leave feedback to help the chef grow their business." data-lt="Atsiimkite užsakymą arba gaukite pristatymą, tada palikite atsiliepimą, kad padėtumėte virėjui auginti verslą.">Pick up your order or get it delivered, then leave feedback to help the chef grow their business.</p>
+        </div>
+    </div>
+
+    <div id="chefs-process" class="process-timeline" style="display: none;">
+        <div class="timeline-step">
+            <div class="step-indicator">1</div>
+            <h4 data-en="Join MamChef" data-lt="Prisijunkite prie MamChef">Join MamChef</h4>
+            <p data-en="Sign up, complete VMVT/VMI registration, and create your chef profile with photos and specialties." data-lt="Užsiregistruokite, užbaikite VMVT/VMI registraciją ir sukurkite virėjo profilį su nuotraukomis ir specialybėmis.">Sign up, complete VMVT/VMI registration, and create your chef profile with photos and specialties.</p>
+        </div>
+        <div class="timeline-step">
+            <div class="step-indicator">2</div>
+            <h4 data-en="List your meals" data-lt="Įkelkite patiekalus">List your meals</h4>
+            <p data-en="Upload dishes with photos, set prices, and choose pickup/delivery times that work for you." data-lt="Įkelkite patiekalus su nuotraukomis, nustatykite kainas ir pasirinkite jums tinkantį atsiėmimo/pristatymo laiką.">Upload dishes with photos, set prices, and choose pickup/delivery times that work for you.</p>
+        </div>
+        <div class="timeline-step">
+            <div class="step-indicator">3</div>
+            <h4 data-en="Cook & earn" data-lt="Gaminkite ir uždirbkite">Cook & earn</h4>
+            <p data-en="Receive orders, prepare meals with love, and get paid bi-weekly directly to your bank account." data-lt="Gaukite užsakymus, ruoškite patiekalus su meile ir gaukite išmokas kas dvi savaites tiesiai į banko sąskaitą.">Receive orders, prepare meals with love, and get paid bi-weekly directly to your bank account.</p>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="faq-section" id="faq">
+    <div class="faq-header">
+        <h2 data-en="Frequently asked questions" data-lt="Dažniausiai užduodami klausimai">Frequently asked questions</h2>
+    </div>
+
+    <div class="faq-category">
+        <h3 data-en="For Customers" data-lt="Klientams">For Customers</h3>
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                <span data-en="Where does the food come from?" data-lt="Iš kur yra maistas?">Where does the food come from?</span>
+                <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-answer" data-en="All meals are prepared by independent home cooks (chefs) in Vilnius, who are registered with the State Food and Veterinary Service (VMVT) and meet hygiene regulations." data-lt="Visus patiekalus ruošia nepriklausomi namų virėjai Vilniuje, kurie yra registruoti Valstybinėje maisto ir veterinarijos tarnyboje (VMVT) ir atitinka higienos reikalavimus.">
+                All meals are prepared by independent home cooks (chefs) in Vilnius, who are registered with the State Food and Veterinary Service (VMVT) and meet hygiene regulations.
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                <span data-en="How do I pay for my order?" data-lt="Kaip apmokėti užsakymą?">How do I pay for my order?</span>
+                <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-answer" data-en="Payments are made securely through MamChef using card, Apple Pay, or Google Pay. All transactions are processed through our secure payment system." data-lt="Mokėjimai saugiai atliekami per MamChef naudojant kortelę, Apple Pay ar Google Pay. Visos transakcijos apdorojamos per mūsų saugią mokėjimo sistemą.">
+                Payments are made securely through MamChef using card, Apple Pay, or Google Pay. All transactions are processed through our secure payment system.
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                <span data-en="Can I get my food delivered?" data-lt="Ar galiu gauti maisto pristatymą?">Can I get my food delivered?</span>
+                <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-answer" data-en="Yes — some chefs offer delivery ('chef delivery'), while others provide pickup. You can choose your preferred option during checkout." data-lt="Taip — kai kurie virėjai siūlo pristatymą ('virėjo pristatymas'), kiti siūlo atsiėmimą. Galite pasirinkti norimą variantą atsiskaitydami.">
+                Yes — some chefs offer delivery ("chef delivery"), while others provide pickup. You can choose your preferred option during checkout.
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                <span data-en="What if I have allergies or dietary restrictions?" data-lt="Ką daryti, jei turiu alergijų ar mitybos apribojimų?">What if I have allergies or dietary restrictions?</span>
+                <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-answer" data-en="Each meal listing includes detailed ingredient information and allergen warnings. You can also filter meals by dietary preferences like vegetarian, vegan, gluten-free, and more." data-lt="Kiekviename patiekalo apraše yra detali informacija apie ingredientus ir įspėjimai apie alergenus. Taip pat galite filtruoti patiekalus pagal mitybos prioritetus: vegetariški, veganiški, be glitimo ir kt.">
+                Each meal listing includes detailed ingredient information and allergen warnings. You can also filter meals by dietary preferences like vegetarian, vegan, gluten-free, and more.
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                <span data-en="What if something goes wrong with my order?" data-lt="Ką daryti, jei su užsakymu kažkas negerai?">What if something goes wrong with my order?</span>
+                <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-answer" data-en="You can request support directly via the app or website. Refunds and disputes are handled fairly between you and the chef, with MamChef support team helping when needed." data-lt="Galite kreiptis pagalbos tiesiai per programėlę ar svetainę. Grąžinimai ir ginčai sprendžiami sąžiningai tarp jūsų ir virėjo, MamChef palaikymo komandai padedant esant poreikiui.">
+                You can request support directly via the app or website. Refunds and disputes are handled fairly between you and the chef, with MamChef support team helping when needed.
+            </div>
+        </div>
+    </div>
+
+    <div class="faq-category">
+        <h3 data-en="For Home Cooks (Chefs)" data-lt="Namų virėjams">For Home Cooks (Chefs)</h3>
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                <span data-en="Do I need a license to sell food on MamChef?" data-lt="Ar reikia licencijos parduoti maistą MamChef?">Do I need a license to sell food on MamChef?</span>
+                <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-answer" data-en="Yes — all chefs must register their activity with VMI (for taxes) and VMVT (for food safety approval). MamChef provides a step-by-step guide to help you." data-lt="Taip — visi virėjai privalo registruoti savo veiklą VMI (mokesčiams) ir VMVT (maisto saugos patvirtinimui). MamChef pateikia žingsnis po žingsnio vadovą jums padėti.">
+                Yes — all chefs must register their activity with VMI (for taxes) and VMVT (for food safety approval). MamChef provides a step-by-step guide to help you.
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                <span data-en="How much does it cost to join MamChef?" data-lt="Kiek kainuoja prisijungti prie MamChef?">How much does it cost to join MamChef?</span>
+                <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-answer" data-en="There are no upfront fees. MamChef charges a small commission only when you sell a meal." data-lt="Nėra jokių išankstinių mokesčių. MamChef ima nedidelį komisinius tik kai parduodate patiekalą.">
+                There are no upfront fees. MamChef charges a small commission only when you sell a meal.
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                <span data-en="How do payouts work?" data-lt="Kaip veikia išmokos?">How do payouts work?</span>
+                <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-answer" data-en="Payouts are handled through Stripe Connect. Chefs receive their earnings every two weeks, directly to their bank account, minus MamChef's commission." data-lt="Išmokos tvarkomos per Stripe Connect. Virėjai gauna pajamas kas dvi savaites tiesiai į banko sąskaitą, atėmus MamChef komisinius.">
+                Payouts are handled through Stripe Connect. Chefs receive their earnings every two weeks, directly to their bank account, minus MamChef's commission.
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                <span data-en="How do I set my menu and prices?" data-lt="Kaip nustatyti meniu ir kainas?">How do I set my menu and prices?</span>
+                <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-answer" data-en="Once approved, you can upload meals, set portion sizes, add photos, and choose your own pricing and pickup/delivery times." data-lt="Kai būsite patvirtinti, galėsite įkelti patiekalus, nustatyti porcijų dydžius, pridėti nuotraukas ir pasirinkti savo kainodarą bei atsiėmimo/pristatymo laikus.">
+                Once approved, you can upload meals, set portion sizes, add photos, and choose your own pricing and pickup/delivery times.
+            </div>
+        </div>
+        <div class="faq-item">
+            <button class="faq-question" onclick="toggleFaq(this)">
+                <span data-en="What support does MamChef provide?" data-lt="Kokią pagalbą teikia MamChef?">What support does MamChef provide?</span>
+                <span class="faq-toggle">+</span>
+            </button>
+            <div class="faq-answer" data-en="We provide onboarding guidance (VMVT & VMI), marketing exposure on our platform, and secure payment processing." data-lt="Mes teikiame pradžios konsultacijas (VMVT ir VMI), rinkodaros matomumą mūsų platformoje ir saugų mokėjimų apdorojimą.">
+                We provide onboarding guidance (VMVT & VMI), marketing exposure on our platform, and secure payment processing.
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Support Section -->
+<section class="support-section" id="support">
+    <div class="support-card">
+        <span class="support-eyebrow" data-en="Support & Company Information" data-lt="Pagalba ir įmonės informacija">Support & Company Information</span>
+        <h2 data-en="Need help with MamChef?" data-lt="Reikia pagalbos su MamChef?">Need help with MamChef?</h2>
+        <p class="support-intro" data-en="MamChef customer and chef support is available by email and phone. If you have a question about orders, onboarding, payments, or your account, contact us directly and our team will help you." data-lt="MamChef klientų ir virėjų pagalba teikiama el. paštu ir telefonu. Jei turite klausimų apie užsakymus, registraciją, mokėjimus ar paskyrą, susisiekite su mumis tiesiogiai ir mūsų komanda padės.">MamChef customer and chef support is available by email and phone. If you have a question about orders, onboarding, payments, or your account, contact us directly and our team will help you.</p>
+        <div class="support-grid">
+            <div class="support-item">
+                <span class="support-label" data-en="Company" data-lt="Įmonė">Company</span>
+                <div class="support-value">MB MamChef</div>
+            </div>
+            <div class="support-item">
+                <span class="support-label" data-en="Support Email" data-lt="Pagalbos el. paštas">Support Email</span>
+                <div class="support-value"><a href="mailto:support@mamchef.com">support@mamchef.com</a></div>
+            </div>
+            <div class="support-item">
+                <span class="support-label" data-en="Phone" data-lt="Telefonas">Phone</span>
+                <div class="support-value"><a href="tel:+37063909449">+370 639 09449</a></div>
+            </div>
+            <div class="support-item">
+                <span class="support-label" data-en="Address" data-lt="Adresas">Address</span>
+                <div class="support-value" data-en="Kriviu St. 5, LT-01204 Vilnius, Lithuania" data-lt="Krivių g. 5, LT-01204 Vilnius, Lietuva">Kriviu St. 5, LT-01204 Vilnius, Lithuania</div>
+            </div>
+        </div>
+        <p class="support-note">
+            <span data-en="For App Store users, this page and our dedicated support page are public contact points for customer questions and assistance. You can also visit " data-lt="App Store naudotojams šis puslapis ir mūsų atskiras pagalbos puslapis yra vieši kontaktiniai taškai klausimams ir pagalbai. Taip pat galite apsilankyti ">For App Store users, this page and our dedicated support page are public contact points for customer questions and assistance. You can also visit </span><a href="support/">mamchef.com/support</a><span data-en=" once this file is published at that route." data-lt=", kai šis failas bus paskelbtas tuo adresu."> once this file is published at that route.</span>
+        </p>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-content">
+        <div class="footer-brand">
+            <h4>MamChef</h4>
+            <p data-en="Connecting food lovers with talented home cooks in their neighbourhood." data-lt="Sujungiame maisto gurmanams su talentingais namų virėjais jų kaimynystėje.">Connecting food lovers with talented home cooks in their neighbourhood.</p>
+            <div class="social-links">
+                <a href="https://www.facebook.com/people/Mamchefofficial/61579213977609/" class="social-link" aria-label="Facebook">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                </a>
+                <a href="https://www.instagram.com/mamchefofficial/" class="social-link" aria-label="Instagram">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.405a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z"/>
+                    </svg>
+                </a>
+                <a href="https://x.com/MamChefOfficial" class="social-link" aria-label="X (Twitter)">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div class="footer-section">
+            <h4 data-en="For Customers" data-lt="Klientams">For Customers</h4>
+            <ul class="footer-links">
+                <li><a href="https://app.mamchef.com" data-en="Browse Meals" data-lt="Peržiūrėti patiekalus">Browse Meals</a></li>
+                <li><a href="https://app.mamchef.com/privacy.html" data-en="Customer Privacy" data-lt="Klientų privatumas">Customer Privacy</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h4 data-en="For Chefs" data-lt="Virėjams">For Chefs</h4>
+            <ul class="footer-links">
+                <li><a href="https://chef.mamchef.com" data-en="Become a Chef" data-lt="Tapti virėju">Become a Chef</a></li>
+                <li><a href="https://chef.mamchef.com/privacy.html" data-en="Chef Privacy" data-lt="Virėjų privatumas">Chef Privacy</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h4 data-en="Company" data-lt="Įmonė">Company</h4>
+            <ul class="footer-links">
+                <li><a href="#about" data-en="About Us" data-lt="Apie mus">About Us</a></li>
+                <li><a href="#support" data-en="Support" data-lt="Pagalba">Support</a></li>
+                <li><a href="mailto:support@mamchef.com" data-en="Contact" data-lt="Kontaktai">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-legal">
+            <div><strong>MB MamChef</strong></div>
+            <div data-en="Address: Kriviu St. 5, LT-01204 Vilnius, Lithuania" data-lt="Adresas: Krivių g. 5, LT-01204 Vilnius, Lietuva">Address: Kriviu St. 5, LT-01204 Vilnius, Lithuania</div>
+            <div><a href="mailto:support@mamchef.com">support@mamchef.com</a> | <a href="tel:+37063909449">+370 639 09449</a></div>
+            <div><a href="support/" data-en="Support Page" data-lt="Pagalbos puslapis">Support Page</a></div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p data-en="&copy; 2025 MamChef. All rights reserved." data-lt="&copy; 2025 MamChef. Visos teisės saugomos.">&copy; 2025 MamChef. All rights reserved.</p>
+    </div>
+</footer>
+
+<script>
+    // Language switching functionality
+    let currentLang = 'en';
+    
+    function changeLanguage(lang) {
+        currentLang = lang;
+        
+        // Update language buttons
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        event.target.classList.add('active');
+        
+        // Update all elements with data attributes
+        document.querySelectorAll('[data-en]').forEach(element => {
+            if (element.hasAttribute('data-' + lang)) {
+                element.innerHTML = element.getAttribute('data-' + lang);
+            }
+        });
+        
+        // Update placeholders
+        document.querySelectorAll('[data-placeholder-en]').forEach(element => {
+            if (element.hasAttribute('data-placeholder-' + lang)) {
+                element.placeholder = element.getAttribute('data-placeholder-' + lang);
+            }
+        });
+        
+        // Update document title
+        document.title = lang === 'lt' ? 
+            'MamChef - Švieži namų gamybos patiekalai iš kaimynų' : 
+            'MamChef - Fresh homemade meals from neighbours';
+    }
+    
+    // Modal functions
+    function openModal() {
+        const modal = document.getElementById('comingSoonModal');
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+    
+    function closeModal() {
+        const modal = document.getElementById('comingSoonModal');
+        modal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+    
+    // Close modal when clicking outside
+    document.getElementById('comingSoonModal').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeModal();
+        }
+    });
+    
+    // Handle notify form submission
+    function handleNotifySubmit(event) {
+        event.preventDefault();
+        const email = event.target.querySelector('input[type="email"]').value;
+        
+        // Here you would normally send the email to your backend
+        console.log('Email submitted:', email);
+        
+        // Show success message
+        const form = event.target;
+        const originalHTML = form.innerHTML;
+        form.innerHTML = currentLang === 'lt' ? 
+            '<p style="color: #527c70; font-size: 1.1rem;">Ačiū! Pranešime jums, kai startuosime!</p>' :
+            '<p style="color: #527c70; font-size: 1.1rem;">Thank you! We\'ll notify you when we launch!</p>';
+        
+        // Reset form after 3 seconds
+
+    }
+    
+    // Process switching functionality
+    function showProcess(type) {
+        const customerProcess = document.getElementById('customers-process');
+        const chefProcess = document.getElementById('chefs-process');
+        const tabs = document.querySelectorAll('.process-tab');
+
+        tabs.forEach(tab => tab.classList.remove('active'));
+
+        if (type === 'customers') {
+            customerProcess.style.display = 'grid';
+            chefProcess.style.display = 'none';
+            tabs[0].classList.add('active');
+        } else {
+            customerProcess.style.display = 'none';
+            chefProcess.style.display = 'grid';
+            tabs[1].classList.add('active');
+        }
+    }
+
+    // FAQ toggle functionality
+    function toggleFaq(button) {
+        const faqItem = button.parentElement;
+        const answer = faqItem.querySelector('.faq-answer');
+
+        faqItem.classList.toggle('active');
+        answer.classList.toggle('active');
+    }
+    
+    // Smooth scroll behavior for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+    
+    // Add scroll effect to header
+    window.addEventListener('scroll', function() {
+        const header = document.querySelector('header');
+        if (window.scrollY > 50) {
+            header.style.background = 'rgba(245, 245, 245, 0.98)';
+            header.style.boxShadow = '0 2px 20px rgba(21, 57, 47, 0.1)';
+        } else {
+            header.style.background = 'rgba(245, 245, 245, 0.95)';
+            header.style.boxShadow = '0 2px 10px rgba(21, 57, 47, 0.05)';
+        }
+    });
+    
+    // Escape key to close modal
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeModal();
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MamChef Support</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #15392f;
+            overflow-x: hidden;
+            background: linear-gradient(180deg, #f5f5f5 0%, #ffffff 100%);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10001;
+            display: flex;
+            background: white;
+            border-radius: 25px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .lang-btn {
+            padding: 8px 16px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-weight: 600;
+            color: #527c70;
+            transition: all 0.3s ease;
+        }
+
+        .lang-btn.active {
+            background: #eba743;
+            color: white;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            width: 100%;
+            background: rgba(245, 245, 245, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            padding: 1.5rem 0;
+            box-shadow: 0 2px 10px rgba(21, 57, 47, 0.05);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            width: 170px;
+            display: block;
+        }
+
+        .nav-link {
+            color: #15392f;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .nav-link:hover {
+            color: #b93d22;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 4rem 2rem 5rem;
+        }
+
+        .support-hero {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: #b93d22;
+            margin-bottom: 1rem;
+        }
+
+        .support-hero h1 {
+            font-size: clamp(2.6rem, 6vw, 4.8rem);
+            font-weight: 900;
+            line-height: 0.95;
+            margin-bottom: 1rem;
+        }
+
+        .support-hero p {
+            max-width: 760px;
+            margin: 0 auto;
+            color: #527c70;
+            font-size: 1.15rem;
+        }
+
+        .support-card {
+            background: white;
+            border: 1px solid #c2e1d7;
+            border-radius: 24px;
+            padding: 3rem;
+            box-shadow: 0 20px 60px rgba(21, 57, 47, 0.08);
+        }
+
+        .support-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .support-item {
+            background: #f7fbf9;
+            border: 1px solid #d7ebe3;
+            border-radius: 16px;
+            padding: 1.5rem;
+        }
+
+        .support-label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #527c70;
+            margin-bottom: 0.65rem;
+        }
+
+        .support-value,
+        .support-value a {
+            color: #15392f;
+            font-size: 1.05rem;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .support-value a:hover,
+        .back-link:hover {
+            color: #b93d22;
+        }
+
+        .section + .section {
+            margin-top: 2rem;
+        }
+
+        .section h2 {
+            font-size: 1.4rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .section p,
+        .section li {
+            color: #527c70;
+        }
+
+        .section ul {
+            padding-left: 1.25rem;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 2rem;
+            color: #15392f;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        footer {
+            border-top: 1px solid #c2e1d7;
+            padding: 2rem;
+            text-align: center;
+            color: #527c70;
+        }
+
+        @media (max-width: 768px) {
+            .support-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .support-card {
+                padding: 2rem;
+            }
+
+            .language-switcher {
+                top: auto;
+                bottom: 20px;
+                right: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="language-switcher">
+    <button class="lang-btn active" type="button" onclick="changeLanguage('en', this)">EN</button>
+    <button class="lang-btn" type="button" onclick="changeLanguage('lt', this)">LT</button>
+</div>
+
+<header>
+    <nav>
+        <a href="index.html" aria-label="MamChef home">
+            <img src="https://api.mamchef.com/logo.png" class="logo" alt="MamChef">
+        </a>
+    </nav>
+</header>
+
+<main>
+    <section class="support-hero">
+        <span class="eyebrow" data-en="Public Support" data-lt="Vieša pagalba">Public Support</span>
+        <h1 data-en="MamChef customer and chef support" data-lt="MamChef klientų ir virėjų pagalba">MamChef customer and chef support</h1>
+        <p data-en="This page is publicly available for customers, chefs, and App Store reviewers who need to contact MamChef about the service, accounts, onboarding, orders, or payments." data-lt="Šis puslapis yra viešai prieinamas klientams, virėjams ir App Store peržiūros komandai, kuriems reikia susisiekti su MamChef dėl paslaugos, paskyrų, registracijos, užsakymų ar mokėjimų.">This page is publicly available for customers, chefs, and App Store reviewers who need to contact MamChef about the service, accounts, onboarding, orders, or payments.</p>
+    </section>
+
+    <section class="support-card">
+        <div class="support-grid">
+            <div class="support-item">
+                <span class="support-label" data-en="Company" data-lt="Įmonė">Company</span>
+                <div class="support-value">MB MamChef</div>
+            </div>
+            <div class="support-item">
+                <span class="support-label" data-en="Support Email" data-lt="Pagalbos el. paštas">Support Email</span>
+                <div class="support-value"><a href="mailto:support@mamchef.com">support@mamchef.com</a></div>
+            </div>
+            <div class="support-item">
+                <span class="support-label" data-en="Phone" data-lt="Telefonas">Phone</span>
+                <div class="support-value"><a href="tel:+37063909449">+370 639 09449</a></div>
+            </div>
+            <div class="support-item">
+                <span class="support-label" data-en="Address" data-lt="Adresas">Address</span>
+                <div class="support-value" data-en="Kriviu St. 5, LT-01204 Vilnius, Lithuania" data-lt="Krivių g. 5, LT-01204 Vilnius, Lietuva">Kriviu St. 5, LT-01204 Vilnius, Lithuania</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 data-en="What we can help with" data-lt="Kuo galime padėti">What we can help with</h2>
+            <ul>
+                <li data-en="Customer questions about orders, pickup, delivery, refunds, or payments" data-lt="Klientų klausimai apie užsakymus, atsiėmimą, pristatymą, grąžinimus ar mokėjimus">Customer questions about orders, pickup, delivery, refunds, or payments</li>
+                <li data-en="Chef questions about onboarding, payouts, profile access, or account issues" data-lt="Virėjų klausimai apie registraciją, išmokas, profilio prieigą ar paskyros problemas">Chef questions about onboarding, payouts, profile access, or account issues</li>
+                <li data-en="General support requests and product issue reports" data-lt="Bendros pagalbos užklausos ir produkto problemų pranešimai">General support requests and product issue reports</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2 data-en="How to contact us" data-lt="Kaip su mumis susisiekti">How to contact us</h2>
+            <p data-en="Email is the fastest way to reach the MamChef team. Please include your name, the email used in your account, and a short description of the issue so we can respond efficiently." data-lt="El. paštas yra greičiausias būdas susisiekti su MamChef komanda. Nurodykite savo vardą, paskyroje naudojamą el. paštą ir trumpą problemos aprašymą, kad galėtume greičiau atsakyti.">Email is the fastest way to reach the MamChef team. Please include your name, the email used in your account, and a short description of the issue so we can respond efficiently.</p>
+        </div>
+
+        <a class="back-link" href="index.html" data-en="← Back to MamChef" data-lt="← Grįžti į MamChef">← Back to MamChef</a>
+    </section>
+</main>
+
+<footer>
+    <p data-en="&copy; 2025 MamChef. All rights reserved." data-lt="&copy; 2025 MamChef. Visos teisės saugomos.">&copy; 2025 MamChef. All rights reserved.</p>
+</footer>
+
+<script>
+    let currentLang = 'en';
+
+    function changeLanguage(lang, button) {
+        currentLang = lang;
+
+        document.querySelectorAll('.lang-btn').forEach(function(btn) {
+            btn.classList.remove('active');
+        });
+        if (button) {
+            button.classList.add('active');
+        }
+
+        document.querySelectorAll('[data-en]').forEach(function(element) {
+            if (element.hasAttribute('data-' + lang)) {
+                element.innerHTML = element.getAttribute('data-' + lang);
+            }
+        });
+
+        document.title = lang === 'lt' ? 'MamChef Pagalba' : 'MamChef Support';
+        document.documentElement.lang = lang;
+    }
+</script>
+</body>
+</html>
