@@ -155,7 +155,7 @@
 .ch-kname { flex: 1; min-width: 0; display: grid; gap: 3px; }
 .ch-kname b { font-family: var(--display); font-weight: 800; font-size: 1.125rem; line-height: 1.2; color: var(--forest); }
 .ch-kname small { display: inline-flex; align-items: center; gap: 5px; color: var(--deep); font-family: var(--display); font-weight: 700; font-size: .875rem; }
-.ch-kname svg { width: 15px; height: 15px; color: var(--rust); fill: var(--gold); }
+.ch-kname .ch-knew { justify-self: start; padding: 2px 10px; border-radius: 999px; background: var(--mint); color: var(--forest); font-size: .8125rem; } /* a new kitchen has no rating yet */
 .ch-kchips { display: flex; flex-wrap: wrap; gap: 8px; }
 .ch-kchips > span { display: inline-flex; align-items: center; gap: 6px; padding: 5px 12px 5px 9px; border-radius: 999px; background: var(--mint); color: var(--forest); font-family: var(--display); font-weight: 700; font-size: .8125rem; }
 .ch-kchips > span + span { background: var(--paper); }
@@ -288,18 +288,16 @@
 .ch-tip > span { display: grid; gap: .2em; }
 .ch-tip b { font-family: var(--display); font-weight: 800; }
 .ch-tip small { color: var(--deep); font-size: .9em; line-height: 1.3; }
-/* scr-4: Kitchen Analytics (the app's labels + its "Weekly" badge), sample week: 1,1,2,2,3,4,5 orders = 18, bars match */
-.ch-app-sec-row { display: flex; align-items: center; justify-content: space-between; gap: .6em; margin-right: 1.4em; }
-.ch-wk { padding: .2em .7em; border-radius: 999px; background: var(--forest); color: var(--white); font-size: .85em; }
-.ch-atiles { display: grid; grid-template-columns: 1fr 1fr; gap: .5em; margin: .6em 1.4em 0; }
-.ch-atiles > div { display: grid; gap: .3em; padding: .85em .85em .9em; border-radius: .8em; background: var(--mint); color: var(--forest); }
+/* scr-4: the chef app's Kitchen Analytics card (ChefStore.vue: chart icon + title, four all-time totals, value above label); fills the rest of the screen */
+.ch-an { flex: 1 0 auto; display: flex; flex-direction: column; margin: .8em 1.4em 2.2em; padding: 1em; border-radius: 1.2em; background: var(--white); box-shadow: 0 .3em 1em rgba(15, 42, 34, .08); }
+.ch-an-h { display: flex; align-items: center; gap: .55em; color: var(--forest); font-family: var(--display); font-weight: 700; font-size: 1.05em; }
+.scr .ch-an-h svg { width: 1.3em; height: 1.3em; color: var(--sage); }
+.ch-atiles { flex: 1; display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr; gap: .6em; margin-top: .9em; }
+.ch-atiles > div { display: grid; align-content: center; gap: .35em; padding: .9em; border-radius: .9em; background: var(--mint); color: var(--forest); }
 .ch-atiles > .g { background: rgba(235, 167, 67, .32); }
-.ch-atiles small { color: var(--deep); font-size: .85em; line-height: 1.2; }
-.ch-atiles b { display: flex; align-items: center; gap: .25em; font-size: 1.45em; line-height: 1.1; }
-.scr .ch-atiles svg { width: 1.1em; height: 1.1em; color: var(--rust); fill: var(--gold); }
-.ch-spark { display: flex; align-items: flex-end; gap: .45em; height: 15.5em; margin: .6em 1.4em 0; padding: .9em .9em .8em; border-radius: .8em; background: var(--white); box-shadow: 0 .3em 1em rgba(15, 42, 34, .08); }
-.ch-spark i { flex: 1; height: var(--h); border-radius: .3em .3em .1em .1em; background: var(--forest); }
-.ch-spark i.hi { background: var(--gold); }
+.ch-atiles b { display: flex; align-items: center; gap: .25em; font-size: 1.9em; line-height: 1.05; }
+.ch-atiles small { color: var(--deep); font-size: .9em; line-height: 1.2; }
+.scr .ch-atiles svg { width: .8em; height: .8em; color: var(--gold); fill: var(--gold); }
 .ch-phone-cap { position: relative; margin-top: 18px; color: var(--deep); font-family: var(--display); font-weight: 600; font-size: .8125rem; letter-spacing: .02em; }
 
 /* 5 honest money + planner */

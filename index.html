@@ -126,13 +126,13 @@
     <div class="hero-copy">
       <p class="kicker rv"><span class="kicker-dot" aria-hidden="true"></span><span data-en="Home cooking in Vilnius" data-lt="Namų maistas Vilniuje">Home cooking in Vilnius</span></p>
       <h1 id="hero-title" class="rv" style="--d:80ms" data-en="Dinner, made by a <em class='hl'>neighbour.</em>" data-lt="Vakarienė iš <em class='hl'>kaimyno</em> virtuvės.">Dinner, made by a <em class="hl">neighbour.</em></h1>
-      <p class="hero-sub rv" style="--d:160ms" data-en="MamChef connects you with licensed home cooks nearby. Pick up or get it delivered. See who cooks, what is inside, and pay safely." data-lt="MamChef jus sujungia su registruotais namų virėjais netoliese. Atsiimkite patys arba gaukite pristatymą. Matykite, kas gamina, kas sudėta į patiekalą, ir mokėkite saugiai.">MamChef connects you with licensed home cooks nearby. Pick up or get it delivered. See who cooks, what is inside, and pay safely.</p>
+      <p class="hero-sub rv" style="--d:160ms" data-en="MamChef connects you with registered home cooks nearby. Pick up or get it delivered. See who cooks, what is inside, and pay safely." data-lt="MamChef jus sujungia su registruotais namų virėjais netoliese. Atsiimkite patys arba gaukite pristatymą. Matykite, kas gamina, kas sudėta į patiekalą, ir mokėkite saugiai.">MamChef connects you with registered home cooks nearby. Pick up or get it delivered. See who cooks, what is inside, and pay safely.</p>
       <div class="hero-ctas rv" style="--d:240ms">
         <a class="btn btn-gold" href="https://app.mamchef.com"><span data-en="Browse today's meals" data-lt="Peržiūrėti šiandienos patiekalus">Browse today's meals</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
         <a class="btn btn-chef" href="chefs/"><svg class="hat" viewBox="0 0 508 512" aria-hidden="true" focusable="false"><use href="#hat"/></svg><span data-en="Become a chef" data-lt="Tapti virėju">Become a chef</span></a>
       </div>
       <ul class="chips rv" style="--d:320ms" role="list">
-        <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-en="Licensed home cooks" data-lt="Registruoti namų virėjai">Licensed home cooks</span></li>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-en="Registered &amp; approved cooks" data-lt="Registruoti ir patvirtinti virėjai">Registered &amp; approved cooks</span></li>
         <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-en="Pickup or delivery" data-lt="Atsiėmimas arba pristatymas">Pickup or delivery</span></li>
         <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-en="Ingredients shown" data-lt="Ingredientai nurodyti">Ingredients shown</span></li>
       </ul>
@@ -200,14 +200,14 @@
       <ul class="trust-list" role="list">
         <li><svg aria-hidden="true"><use href="#i-shield"/></svg><span data-en="VMVT-registered kitchens" data-lt="VMVT registruotos virtuvės">VMVT-registered kitchens</span></li>
         <li><svg aria-hidden="true"><use href="#i-card"/></svg><span data-en="Stripe payments" data-lt="Mokėjimai per Stripe">Stripe payments</span></li>
-        <li><svg aria-hidden="true"><use href="#i-user-check"/></svg><span data-en="Hand-approved cooks" data-lt="Kiekvieną virėją patvirtiname patys">Hand-approved cooks</span></li>
+        <li><svg aria-hidden="true"><use href="#i-user-check"/></svg><span data-en="VMVT-registered cooks" data-lt="VMVT registruoti virėjai">VMVT-registered cooks</span></li>
         <li><svg aria-hidden="true"><use href="#i-star"/></svg><span data-en="Reviews after every order" data-lt="Atsiliepimai po kiekvieno užsakymo">Reviews after every order</span></li>
         <li><svg aria-hidden="true"><use href="#i-leaf"/></svg><span data-en="Main ingredients on every dish" data-lt="Pagrindiniai ingredientai prie kiekvieno patiekalo">Main ingredients on every dish</span></li>
       </ul>
       <ul class="trust-list trust-clone" role="list" aria-hidden="true">
         <li><svg aria-hidden="true"><use href="#i-shield"/></svg><span data-en="VMVT-registered kitchens" data-lt="VMVT registruotos virtuvės">VMVT-registered kitchens</span></li>
         <li><svg aria-hidden="true"><use href="#i-card"/></svg><span data-en="Stripe payments" data-lt="Mokėjimai per Stripe">Stripe payments</span></li>
-        <li><svg aria-hidden="true"><use href="#i-user-check"/></svg><span data-en="Hand-approved cooks" data-lt="Kiekvieną virėją patvirtiname patys">Hand-approved cooks</span></li>
+        <li><svg aria-hidden="true"><use href="#i-user-check"/></svg><span data-en="VMVT-registered cooks" data-lt="VMVT registruoti virėjai">VMVT-registered cooks</span></li>
         <li><svg aria-hidden="true"><use href="#i-star"/></svg><span data-en="Reviews after every order" data-lt="Atsiliepimai po kiekvieno užsakymo">Reviews after every order</span></li>
         <li><svg aria-hidden="true"><use href="#i-leaf"/></svg><span data-en="Main ingredients on every dish" data-lt="Pagrindiniai ingredientai prie kiekvieno patiekalo">Main ingredients on every dish</span></li>
       </ul>
@@ -256,29 +256,49 @@
                 </div>
               </div>
               <div class="scr scr-2">
-                <div class="app-title" data-en="Cart" data-lt="Krepšelis">Cart</div>
+                <div class="app-title" data-en="Your cart" data-lt="Jūsų krepšelis">Your cart</div>
                 <div class="app-seg"><span data-en="Delivery" data-lt="Pristatymas">Delivery</span><span class="on" data-en="Pickup" data-lt="Atsiėmimas">Pickup</span></div>
                 <div class="app-item">
-                  <img src="assets/img/market-360.webp" width="360" height="201" alt="" loading="lazy" decoding="async">
-                  <span class="app-lines"><i></i><i class="short"></i></span>
-                  <span class="app-qty"><i>&minus;</i><i>+</i></span>
+                  <img src="assets/img/food-pasta.webp" width="256" height="256" alt="" loading="lazy" decoding="async">
+                  <span class="app-it"><b data-en="Pasta" data-lt="Makaronai">Pasta</b><small data-en="€12.00" data-lt="12,00&nbsp;€">€12.00</small></span>
+                  <span class="app-qty"><i>&minus;</i><b>2</b><i>+</i></span>
+                </div>
+                <div class="app-item">
+                  <img src="assets/img/food-salad.webp" width="256" height="256" alt="" loading="lazy" decoding="async">
+                  <span class="app-it"><b data-en="Salad" data-lt="Salotos">Salad</b><small data-en="€8.50" data-lt="8,50&nbsp;€">€8.50</small></span>
+                  <span class="app-qty"><i>&minus;</i><b>1</b><i>+</i></span>
                 </div>
                 <div class="app-allergen"><svg><use href="#i-leaf"/></svg><span data-en="Ingredients shown" data-lt="Ingredientai nurodyti">Ingredients shown</span></div>
-                <div class="app-sum"><span class="app-lines"><i></i><i></i></span></div>
+                <div class="app-sum">
+                  <b class="app-sum-h" data-en="Order summary" data-lt="Užsakymo santrauka">Order summary</b>
+                  <span class="app-kv"><span data-en="Subtotal" data-lt="Tarpinė suma">Subtotal</span><b data-en="€32.50" data-lt="32,50&nbsp;€">€32.50</b></span>
+                  <span class="app-kv app-tot"><span data-en="Total" data-lt="Iš viso">Total</span><b data-en="€32.50" data-lt="32,50&nbsp;€">€32.50</b></span>
+                </div>
                 <div class="app-note"><svg><use href="#i-shield"/></svg><span data-en="Your card is only held now. It is charged when the cook accepts." data-lt="Suma kortelėje tik rezervuojama. Ji nuskaitoma, kai virėjas priima užsakymą.">Your card is only held now. It is charged when the cook accepts.</span></div>
                 <div class="app-pay"><svg><use href="#i-card"/></svg><span data-en="Pay with Card" data-lt="Mokėti kortele">Pay with Card</span></div>
               </div>
               <div class="scr scr-3">
-                <div class="app-title" data-en="Orders" data-lt="Užsakymai">Orders</div>
-                <ol class="app-steps">
-                  <li class="done"><i><svg><use href="#i-check"/></svg></i><span data-en="Order Placed" data-lt="Užsakymas pateiktas">Order Placed</span></li>
-                  <li class="done"><i><svg><use href="#i-check"/></svg></i><span data-en="Accepted" data-lt="Priimtas">Accepted</span></li>
-                  <li class="now"><i><svg><use href="#i-bag"/></svg></i><span data-en="Ready for Pickup" data-lt="Paruoštas atsiėmimui">Ready for Pickup</span></li>
-                </ol>
-                <div class="app-rate">
-                  <b data-en="How was it?" data-lt="Kaip skanavo?">How was it?</b>
-                  <span class="app-stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span>
-                  <span class="app-lines"><i></i><i class="short"></i></span>
+                <div class="app-title" data-en="My Orders" data-lt="Mano užsakymai">My Orders</div>
+                <p class="app-sec" data-en="Active Orders" data-lt="Aktyvūs užsakymai">Active Orders</p>
+                <div class="app-oc">
+                  <div class="app-oc-h"><img src="assets/img/kitchen-360.webp" width="360" height="202" alt="" loading="lazy" decoding="async" class="app-oc-logo"><span class="app-oc-t"><b data-en="Home kitchen nearby" data-lt="Namų virtuvė netoliese">Home kitchen nearby</b><span class="app-badge" data-en="Ready for Pickup" data-lt="Paruoštas atsiėmimui">Ready for Pickup</span></span></div>
+                  <div class="app-trk"><span class="d"><i><svg><use href="#i-orders"/></svg></i><small data-en="Placed" data-lt="Pateiktas">Placed</small></span><span class="d"><i><svg><use href="#i-cloche"/></svg></i><small data-en="Accepted" data-lt="Priimtas">Accepted</small></span><span class="now"><i><svg><use href="#i-bag"/></svg></i><small data-en="Ready" data-lt="Paruošta">Ready</small></span><span><i><svg><use href="#i-check"/></svg></i><small data-en="Completed" data-lt="Užbaigta">Completed</small></span></div>
+                  <div class="app-oc-m"><span><svg><use href="#i-bag"/></svg><span data-en="Pickup · Ready at: 12:15" data-lt="Atsiėmimas · Paruošta: 12:15">Pickup · Ready at: 12:15</span></span><b data-en="€32.50" data-lt="32,50&nbsp;€">€32.50</b></div>
+                  <div class="app-oc-f"><span data-en="View details" data-lt="Peržiūrėti">View details</span></div>
+                </div>
+                <p class="app-sec" data-en="Recent Orders" data-lt="Paskutiniai užsakymai">Recent Orders</p>
+                <div class="app-oc">
+                  <div class="app-oc-h"><img src="assets/img/market-360.webp" width="360" height="201" alt="" loading="lazy" decoding="async" class="app-oc-logo"><span class="app-oc-t"><b data-en="Home kitchen nearby" data-lt="Namų virtuvė netoliese">Home kitchen nearby</b><span class="app-badge" data-en="Completed" data-lt="Užbaigtas">Completed</span></span></div>
+                  <div class="app-oc-m"><span><svg><use href="#i-bag"/></svg><span data-en="Burger · Pickup" data-lt="Mėsainis · Atsiėmimas">Burger · Pickup</span></span><b data-en="€11.50" data-lt="11,50&nbsp;€">€11.50</b></div>
+                  <div class="app-oc-rate"><span data-en="Rate Your Order" data-lt="Įvertinkite savo užsakymą">Rate Your Order</span><span class="app-stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span></div>
+                  <div class="app-oc-f"><span data-en="View details" data-lt="Peržiūrėti">View details</span></div>
+                </div>
+                <div class="app-nav">
+                  <span><svg><use href="#i-home"/></svg><small data-en="Home" data-lt="Pagrindinis">Home</small></span>
+                  <span class="on"><svg><use href="#i-orders"/></svg><small data-en="Orders" data-lt="Užsakymai">Orders</small></span>
+                  <span class="app-fab"><svg><use href="#i-cloche"/></svg></span>
+                  <span><svg><use href="#i-cart"/></svg><small data-en="Cart" data-lt="Krepšelis">Cart</small></span>
+                  <span><svg><use href="#i-user"/></svg><small data-en="Profile" data-lt="Profilis">Profile</small></span>
                 </div>
               </div>
             </div>
@@ -332,8 +352,8 @@
       </article>
       <article class="tile tile-b rv" style="--d:60ms">
         <span class="tile-ic" aria-hidden="true"><svg><use href="#i-shield"/></svg></span>
-        <h3 data-en="Registered kitchens, approved by people" data-lt="Registruotos virtuvės, patvirtintos žmonių">Registered kitchens, approved by people</h3>
-        <p data-en="Cooks register with VMVT and VMI. Our team checks and approves every kitchen by hand." data-lt="Virėjai registruojasi VMVT ir VMI. Mūsų komanda kiekvieną virtuvę patikrina ir patvirtina pati.">Cooks register with VMVT and VMI. Our team checks and approves every kitchen by hand.</p>
+        <h3 data-en="Registered kitchens" data-lt="Registruotos virtuvės">Registered kitchens</h3>
+        <p data-en="Cooks register with VMVT and VMI." data-lt="Virėjai registruojasi VMVT ir VMI.">Cooks register with VMVT and VMI.</p>
       </article>
       <article class="tile tile-c rv" style="--d:120ms">
         <span class="tile-ic" aria-hidden="true"><svg><use href="#i-bike"/></svg></span>
@@ -403,7 +423,7 @@
       </div>
       <div class="order-card">
         <span class="oc-top"><span class="oc-dot"></span><b data-en="New order" data-lt="Naujas užsakymas">New order</b></span>
-        <span class="app-lines"><i></i><i class="short"></i></span>
+        <span class="oc-dish"><img src="assets/img/food-pasta.webp" width="256" height="256" alt="" loading="lazy" decoding="async"><span class="oc-dish-t"><b data-en="2x Pasta" data-lt="2x Makaronai">2x Pasta</b><span class="oc-price" data-en="€24.00" data-lt="24,00&nbsp;€">€24.00</span></span></span>
         <span class="oc-btns"><i data-en="Decline" data-lt="Atmesti">Decline</i><i class="ok" data-en="Accept" data-lt="Priimti">Accept</i></span>
       </div>
       <div class="payout-card"><svg class="hat"><use href="#hat"/></svg><span><b data-en="Payout via Stripe" data-lt="Išmoka per Stripe">Payout via Stripe</b><small data-en="Straight to your bank" data-lt="Tiesiai į jūsų banką">Straight to your bank</small></span></div>
@@ -518,7 +538,7 @@
       <div class="faq-group rv">
         <h3 data-en="For customers" data-lt="Klientams">For customers</h3>
         <details><summary><span data-en="Where does the food come from?" data-lt="Iš kur atkeliauja maistas?">Where does the food come from?</span></summary><p data-en="Every meal is cooked by an independent home cook in Vilnius who is registered with the State Food and Veterinary Service (VMVT) and follows its hygiene rules." data-lt="Kiekvieną patiekalą gamina nepriklausomas namų virėjas Vilniuje, užsiregistravęs Valstybinėje maisto ir veterinarijos tarnyboje (VMVT) ir laikantis jos higienos reikalavimų.">Every meal is cooked by an independent home cook in Vilnius who is registered with the State Food and Veterinary Service (VMVT) and follows its hygiene rules.</p></details>
-        <details><summary><span data-en="How do I know the cook is licensed?" data-lt="Kaip žinoti, ar virėjas registruotas?">How do I know the cook is licensed?</span></summary><p data-en="Cooks must be registered with VMVT (food safety) and VMI (tax). Before anyone can sell, they give us their VMVT number and documents, and our team checks and approves each kitchen by hand." data-lt="Virėjai privalo būti registruoti VMVT (maisto sauga) ir VMI (mokesčiai). Prieš pradėdami prekiauti, jie pateikia mums VMVT numerį ir dokumentus, o mūsų komanda kiekvieną virtuvę patikrina ir patvirtina pati.">Cooks must be registered with VMVT (food safety) and VMI (tax). Before anyone can sell, they give us their VMVT number and documents, and our team checks and approves each kitchen by hand.</p></details>
+        <details><summary><span data-en="How do I know the cook is registered?" data-lt="Kaip žinoti, ar virėjas registruotas?">How do I know the cook is registered?</span></summary><p data-en="Cooks must be registered with VMVT (food safety) and VMI (tax), and give us their VMVT number before they can sell." data-lt="Virėjai privalo būti registruoti VMVT (maisto sauga) ir VMI (mokesčiai) ir, prieš pradėdami prekiauti, pateikti mums savo VMVT numerį.">Cooks must be registered with VMVT (food safety) and VMI (tax), and give us their VMVT number before they can sell.</p></details>
         <details><summary><span data-en="How do I pay?" data-lt="Kaip sumokėti?">How do I pay?</span></summary><p data-en="By card, through Stripe's secure checkout. Your card is only held when you order and charged when the cook accepts. If the cook declines, the hold is released. You can also use MamChef credit in your account." data-lt="Kortele, per saugų Stripe atsiskaitymą. Užsakant suma kortelėje tik rezervuojama ir nuskaitoma, kai virėjas priima užsakymą. Jei virėjas atsisako, rezervacija panaikinama. Taip pat galite naudoti MamChef kreditą savo paskyroje.">By card, through Stripe's secure checkout. Your card is only held when you order and charged when the cook accepts. If the cook declines, the hold is released. You can also use MamChef credit in your account.</p></details>
         <details><summary><span data-en="Can I get my food delivered?" data-lt="Ar galima užsisakyti pristatymą?">Can I get my food delivered?</span></summary><p data-en="Yes, where the cook offers it. Each cook chooses pickup, delivery or both, and you see the option and any delivery fee before you pay." data-lt="Taip, jei virėjas jį siūlo. Kiekvienas virėjas pasirenka atsiėmimą, pristatymą arba abu, o pasirinkimą ir pristatymo mokestį matote prieš mokėdami.">Yes, where the cook offers it. Each cook chooses pickup, delivery or both, and you see the option and any delivery fee before you pay.</p></details>
         <details><summary><span data-en="What if I have allergies or dietary needs?" data-lt="Ką daryti, jei turiu alergijų ar mitybos apribojimų?">What if I have allergies or dietary needs?</span></summary><p data-en="Each dish lists its main ingredients and a description, and cooks can add diet tags such as vegetarian, vegan or gluten-free. You can filter meals by these tags. If you have an allergy, ask us at support@mamchef.com before you order." data-lt="Prie kiekvieno patiekalo nurodyti pagrindiniai ingredientai ir aprašymas, o virėjai gali pridėti mitybos žymas, pavyzdžiui, vegetariška, veganiška ar be glitimo. Pagal šias žymas galite filtruoti patiekalus. Jei turite alergiją, prieš užsakydami parašykite mums support@mamchef.com.">Each dish lists its main ingredients and a description, and cooks can add diet tags such as vegetarian, vegan or gluten-free. You can filter meals by these tags. If you have an allergy, ask us at support@mamchef.com before you order.</p></details>
@@ -545,7 +565,7 @@
       <div>
         <p class="eyebrow" data-en="Support and company information" data-lt="Pagalba ir įmonės informacija">Support and company information</p>
         <h2 class="h2" id="support-title" data-en="Need help with MamChef?" data-lt="Reikia pagalbos su MamChef?">Need help with MamChef?</h2>
-        <p class="support-intro" data-en="MamChef customer and chef support is available by email. If you have a question about orders, onboarding, payments or your account, contact us and our team will help you." data-lt="MamChef klientų ir virėjų pagalba teikiama el. paštu. Jei turite klausimų apie užsakymus, registraciją, mokėjimus ar paskyrą, susisiekite su mumis ir mūsų komanda padės.">MamChef customer and chef support is available by email. If you have a question about orders, onboarding, payments or your account, contact us and our team will help you.</p>
+        <p class="support-intro" data-en="MamChef customer and chef support is available by email. If you have a question about orders, onboarding, payments or your account, contact us and we will help you." data-lt="MamChef klientų ir virėjų pagalba teikiama el. paštu. Jei turite klausimų apie užsakymus, registraciją, mokėjimus ar paskyrą, susisiekite su mumis ir mes padėsime.">MamChef customer and chef support is available by email. If you have a question about orders, onboarding, payments or your account, contact us and we will help you.</p>
         <p class="support-note"><span data-en="This page and our " data-lt="Šis puslapis ir mūsų ">This page and our </span><a href="support/" data-en="support page" data-lt="pagalbos puslapis">support page</a><span data-en=" are public contact points for customers, cooks and App Store users." data-lt=" yra vieši kontaktiniai taškai klientams, virėjams ir App Store naudotojams."> are public contact points for customers, cooks and App Store users.</span></p>
       </div>
       <dl class="support-grid">
