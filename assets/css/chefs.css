@@ -1,15 +1,13 @@
-/* MamChef /chefs page (cook side of the pass). Loads after site.css + home.css; every new selector is ch- prefixed.
-   Palette tokens + rgba() of palette triplets only (see site.css header). transform/opacity motion only;
-   html.motion-off (OS reduced motion) = final static state. No translateZ stacking: plain z-index siblings. */
+/* MamChef /chefs page. Loads after site.css + home.css; new selectors are ch- prefixed. Palette tokens / palette rgba only;
+   transform+opacity motion; html.motion-off = final static state; layering = z-index siblings (no 3D depth sorting). */
 
-/* ---------- Chapters: stack like the home page, each tops the previous one ---------- */
+/* chapters + ticket-tear perforation */
 .ch-sec { position: relative; margin-top: calc(var(--chap) * -1); border-radius: var(--chap) var(--chap) 0 0; padding: var(--sec-top) 0 calc(var(--chap) + var(--sec-bot)); }
-/* ticket tear: a short dashed perforation under each chapter's rounded edge */
 .ch-sec::after { content: ""; position: absolute; left: 50%; top: 12px; width: min(220px, 36%); translate: -50% 0; border-top: 2px dashed rgba(194, 225, 215, .45); pointer-events: none; }
 .ch-proof::after { display: none; }
 .ch-page .site-footer { z-index: 9; box-shadow: 0 -1px 0 var(--hair-dark); }
 
-/* ======================= 1. HERO ======================= */
+/* 1 hero: night kitchen, order rail, live ticket */
 .ch-hero {
   position: relative; isolation: isolate; overflow: hidden; z-index: 0;
   padding: calc(var(--hdr-h) + clamp(44px, 6vw, 80px)) 0 calc(var(--chap) + clamp(36px, 5vw, 64px));
@@ -40,7 +38,6 @@
 .ch-ghost svg { width: 18px; height: 18px; transform: rotate(90deg); transition: transform .4s var(--ease); }
 .ch-ghost:hover svg { transform: rotate(90deg) translateX(3px); }
 
-/* Stage: kitchen picture (z1) < order rail + tickets (z2) < floats (z3), plain siblings */
 .ch-stage { position: relative; }
 .ch-scene { --mx: 0; --my: 0; position: relative; z-index: 1; }
 .ch-art {
@@ -67,8 +64,7 @@
 .ch-embers i:nth-child(6) { left: 87%; animation-duration: 10s; animation-delay: -7.5s; --dx: -24px; }
 @keyframes ch-ember { 0% { transform: translate(0, 0); opacity: 0; } 12% { opacity: 1; } 100% { transform: translate(var(--dx, 8px), -120px); opacity: 0; } }
 
-/* Order rail + ticket deck: the rail crosses the lower half of the picture, tickets hang below it */
-.ch-deck { position: relative; z-index: 2; margin-top: -27%; padding: 16px 0 0 4%; }
+.ch-deck { position: relative; z-index: 2; margin-top: -27%; padding: 16px 0 0 4%; container-type: inline-size; }
 .ch-rail { position: absolute; left: 0; right: 8%; top: 0; height: 4px; border-radius: 4px; background: linear-gradient(90deg, rgba(235, 167, 67, 0), var(--gold) 10%, var(--gold) 90%, rgba(235, 167, 67, 0)); box-shadow: 0 0 16px rgba(235, 167, 67, .6); }
 .ch-hang, .ch-ghost-t { --tw: 292px; }
 .ch-hang { position: relative; z-index: 2; width: var(--tw); max-width: 100%; transform-origin: 50% -16px; filter: drop-shadow(0 26px 30px rgba(15, 42, 34, .6)); animation: ch-sway 6s ease-in-out infinite; transition: translate .6s var(--ease); }
@@ -119,27 +115,26 @@
 .ch-try::before { content: ""; width: 8px; height: 8px; border-left: 2.5px solid currentColor; border-bottom: 2.5px solid currentColor; rotate: 45deg; }
 .ch-used .ch-try { opacity: 0; }
 
-/* Ghost tickets in the chef app's own words ("Preparing", "Ready") */
 .ch-ghost-t { position: absolute; top: 16px; z-index: 1; width: calc(var(--tw) * .72); padding-bottom: 16px; border-radius: 14px 14px 4px 4px; background: var(--white); box-shadow: 0 18px 30px rgba(15, 42, 34, .45); transform-origin: 50% 0; transition: opacity .5s, translate .6s var(--ease); }
 .ch-gh { display: block; padding: 10px 14px; text-align: right; border-radius: 14px 14px 0 0; background: var(--forest); color: var(--white); font-family: var(--display); font-weight: 700; font-size: .875rem; }
 .ch-g2 .ch-gh { background: var(--deep); }
 .ch-ghost-t i { display: block; height: 9px; margin: 12px 14px 0; border-radius: 9px; background: var(--mint); }
 .ch-ghost-t i.s { width: 52%; }
 .ch-g1 { left: calc(4% + var(--tw) * .86); transform: translateY(14px) scale(.94); opacity: .95; }
-.ch-g2 { left: calc(4% + var(--tw) * 1.42); transform: translateY(28px) scale(.88); opacity: .85; }
+.ch-g2 { left: min(calc(4% + var(--tw) * 1.42), calc(100% - var(--tw) * .68)); transform: translateY(28px) scale(.88); opacity: .85; }
 .ch-deck.is-acc .ch-g1 { opacity: 0; translate: 40px 0; }
+@container (max-width: 620px) { .ch-g2 { display: none; } }
 
-/* Floats (home .float look) */
 .ch-stage .float { z-index: 3; }
 .ch-f1 { right: 3%; top: 3%; }
 .ch-f2 { left: 2%; top: 9%; animation-delay: -3s; animation-duration: 9.5s; }
 .ch-f3 { right: 0; bottom: 0; animation-delay: -5s; animation-duration: 10s; }
 
-/* ======================= 2. PROOF STRIP ======================= */
+/* 2 proof strip */
 .ch-proof { z-index: 1; padding: 4px 0 var(--chap); background: var(--night-card); }
 .ch-proof .trust { margin-top: 0; border: 0; background: transparent; }
 
-/* ======================= 3. YOU RUN THE KITCHEN ======================= */
+/* 3 you run the kitchen */
 .ch-kitchen { z-index: 2; overflow: hidden; background: var(--forest); }
 .ch-kitchen::before { content: ""; position: absolute; left: -25%; top: -20%; width: 75%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(closest-side, rgba(44, 83, 70, .95), rgba(44, 83, 70, 0)); pointer-events: none; }
 .ch-kitchen .wrap { position: relative; }
@@ -179,7 +174,7 @@
 .ch-tile h3 { margin-top: 18px; color: var(--white); font-size: clamp(1.125rem, 1.05rem + .3vw, 1.3125rem); font-weight: 750; line-height: 1.15; }
 .ch-tile p { margin-top: 8px; color: var(--mint); font-size: .96875rem; line-height: 1.5; }
 
-/* ======================= 4. A DAY IN YOUR KITCHEN ======================= */
+/* 4 a day in your kitchen (tabs + chef-app phone) */
 .ch-day { z-index: 3; background: var(--paper); }
 .ch-day-grid {
   display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); grid-template-rows: 1fr auto auto 1fr;
@@ -209,9 +204,10 @@
 .ch-phone .phone-body::before { display: none; }
 .ch-phone.is-swap { animation: ch-tilt .6s var(--ease); }
 @keyframes ch-tilt { from { transform: perspective(1200px) rotateY(-15deg) rotateZ(1.5deg); } }
+.ch-phone .scr { transition-duration: .4s; }
 .ch-day[data-step="1"] .ch-scr-1, .ch-day[data-step="2"] .ch-scr-2, .ch-day[data-step="3"] .ch-scr-3, .ch-day[data-step="4"] .ch-scr-4 { opacity: 1; }
-/* chef-app screens (en/lt strings from chef-app src/i18n/locales), sized in em like the home phone */
-.ch-app-top { padding: 4.3em 1.4em 1.3em; border-radius: 0 0 1.8em 1.8em; background: var(--forest); color: var(--white); }
+.ch-app-top { display: flex; align-items: center; gap: .8em; padding: 4.3em 1.4em 1.3em; border-radius: 0 0 1.8em 1.8em; background: var(--forest); color: var(--white); }
+.ch-app-top::before { content: ""; flex: none; width: 1.3em; height: 1em; background: linear-gradient(currentColor, currentColor) top / 100% 2px no-repeat, linear-gradient(currentColor, currentColor) center / 100% 2px no-repeat, linear-gradient(currentColor, currentColor) bottom / 100% 2px no-repeat; }
 .ch-app-top b { font-family: var(--display); font-weight: 800; font-size: 1.5em; }
 .ch-seg3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .ch-seg3 span { padding: .65em .2em; font-size: .9em; line-height: 1.15; }
@@ -234,7 +230,7 @@
 .ch-pay { display: flex; align-items: center; justify-content: space-between; color: var(--deep); }
 .ch-pay b { font-family: var(--display); font-weight: 700; }
 
-/* ======================= 5. HONEST MONEY ======================= */
+/* 5 honest money + planner */
 .ch-money { z-index: 4; overflow: hidden; background: radial-gradient(60% 55% at 88% 22%, rgba(235, 167, 67, .13), rgba(235, 167, 67, 0) 70%), radial-gradient(70% 60% at 0% 100%, rgba(44, 83, 70, .6), rgba(44, 83, 70, 0) 70%), var(--night); }
 .ch-money-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 5vw, 80px); align-items: start; margin-top: clamp(32px, 4vw, 52px); }
 .ch-flow { position: relative; display: grid; gap: 22px; list-style: none; }
@@ -259,7 +255,6 @@
 .ch-anat-t { margin-top: 14px; color: var(--mint); font-size: .9375rem; }
 .ch-fine { margin-top: 18px; }
 
-/* Planner: native inputs on a glass till, a white receipt that "prints" its lines */
 .ch-plan { position: relative; padding: clamp(20px, 3vw, 34px); border-radius: 28px; background: rgba(22, 58, 48, .9); border: 1px solid var(--hair-dark); box-shadow: 0 50px 100px rgba(15, 42, 34, .55); }
 @supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
   .ch-plan { background: rgba(22, 58, 48, .62); -webkit-backdrop-filter: blur(18px) saturate(1.2); backdrop-filter: blur(18px) saturate(1.2); }
@@ -307,13 +302,13 @@
 .ch-receipt.is-print .ch-rc-sum { animation-delay: .12s; }
 @keyframes ch-print { from { opacity: 0; transform: translateY(-10px); } }
 
-/* Mini CTAs (after money and after the journey) */
+/* mini CTAs */
 .ch-mini { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 28px; margin-top: clamp(36px, 5vw, 60px); padding: 18px 18px 18px 26px; border-radius: 24px; background: rgba(194, 225, 215, .05); border: 1px solid var(--hair-dark); }
 .ch-mini p { color: var(--white); font-family: var(--display); font-weight: 750; font-size: clamp(1.25rem, 1.1rem + .6vw, 1.625rem); line-height: 1.2; }
 .ch-mini-light { background: var(--white); border-color: var(--mint); box-shadow: var(--shadow-1); }
 .ch-mini-light p { color: var(--forest); }
 
-/* ======================= 6. JOURNEY ======================= */
+/* 6 sign-up journey (scroll-drawn line) */
 .ch-journey { z-index: 5; background: var(--paper); }
 .ch-jr-grid { display: grid; grid-template-columns: minmax(0, 4.4fr) minmax(0, 7.6fr); gap: clamp(32px, 5vw, 88px); align-items: start; }
 .ch-jr-head { position: sticky; top: calc(var(--hdr-h) + 40px); }
@@ -334,19 +329,18 @@
 .ch-st-c { padding: 16px 20px 18px; border-radius: 18px; background: var(--white); box-shadow: var(--shadow-1); transition: transform .6s var(--ease), box-shadow .6s; }
 .ch-st h3 { font-size: clamp(1.1875rem, 1.1rem + .35vw, 1.375rem); font-weight: 750; line-height: 1.2; }
 .ch-st p { margin-top: 5px; color: var(--deep); font-size: 1rem; line-height: 1.5; }
-/* scroll-drawn state (JS adds .is-scrub; no JS / reduced motion = fully drawn, all nodes on) */
 .ch-tl-box.is-scrub .ch-st:not(.is-on) .ch-node { background: var(--white); border-color: var(--mint); color: var(--forest); }
 .ch-tl-box.is-scrub .ch-st:not(.is-on) .ch-node::after { transform: scale(0); }
 .ch-tl-box.is-scrub .ch-st:not(.is-on) .ch-st-c { transform: translateY(6px); box-shadow: none; }
 .ch-tl-box.is-done .ch-st:last-child .ch-node { box-shadow: 0 0 0 6px rgba(235, 167, 67, .35); }
 .ch-journey .ch-mini { margin-left: 62px; }
 
-/* ======================= 7. FAQ ======================= */
+/* 7 faq */
 .ch-faq.faq { z-index: 6; }
 .ch-faq details p a { color: var(--forest); font-family: var(--display); font-weight: 650; text-underline-offset: 3px; }
 
-/* ======================= 8. JOIN ======================= */
-.ch-join { z-index: 7; overflow: hidden; padding-bottom: calc(var(--chap) + clamp(48px, 6vw, 88px)); background: radial-gradient(55% 70% at 72% 40%, rgba(235, 167, 67, .2), rgba(235, 167, 67, 0) 65%), radial-gradient(80% 90% at 8% 0%, var(--deep), var(--night) 62%); }
+/* 8 join */
+.ch-join { z-index: 7; overflow: hidden; padding-bottom: calc(var(--chap) + clamp(48px, 6vw, 88px)); background: radial-gradient(55% 70% at 72% 40%, rgba(235, 167, 67, .2), rgba(235, 167, 67, 0) 65%), radial-gradient(80% 90% at 8% 0%, var(--deep), var(--night) 62%), var(--night); }
 .ch-join-art { position: absolute; right: 0; top: 0; bottom: 0; width: min(64%, 980px); opacity: .25; pointer-events: none; -webkit-mask-image: linear-gradient(90deg, transparent, var(--forest) 45%); mask-image: linear-gradient(90deg, transparent, var(--forest) 45%); }
 .ch-join-art picture { height: 100%; }
 .ch-join-art img { width: 100%; height: 100%; object-fit: cover; object-position: 40% 50%; }
@@ -358,10 +352,10 @@
 .ch-q { color: var(--mint); }
 .ch-q a { color: var(--gold); font-family: var(--display); font-weight: 600; text-underline-offset: 3px; }
 
-/* ======================= Sticky phone CTA ======================= */
+/* sticky phone CTA (< 768) */
 .ch-bar { display: none; }
 
-/* ======================= RESPONSIVE ======================= */
+/* responsive */
 @media (max-width: 1199px) {
   .ch-tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
@@ -386,6 +380,7 @@
   .ch-join-art { width: 100%; opacity: .18; }
 }
 @media (max-width: 767px) {
+    html { scroll-padding-bottom: calc(84px + env(safe-area-inset-bottom)); }
   .ch-bar {
     position: fixed; z-index: 80; left: 8px; right: 8px; bottom: calc(8px + env(safe-area-inset-bottom)); display: flex; align-items: center; justify-content: space-between; gap: 10px;
     padding: 8px 8px 8px 14px; border-radius: 20px; background: var(--night-card); border: 1px solid var(--hair-dark); color: var(--white); box-shadow: 0 18px 40px rgba(15, 42, 34, .5);
@@ -450,7 +445,7 @@
   .ch-hang, .ch-ghost-t { --tw: 310px; }
 }
 
-/* ---------- Motion off (OS reduced motion): final static states ---------- */
+/* reduced motion */
 .motion-off .ch-hang, .motion-off .ch-glow, .motion-off .ch-acc, .motion-off .ch-dot::after { animation: none; }
 .motion-off .ch-embers, .motion-off .ch-video { display: none; }
 .motion-off .ch-glow { opacity: .85; }

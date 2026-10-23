@@ -184,7 +184,7 @@
           var v = es[0].isIntersecting;
           if (v && !on) { on = true; measure(); w.addEventListener('scroll', onScroll, { passive: true }); onScroll(); }
           else if (!v && on) { on = false; w.removeEventListener('scroll', onScroll); frame(); }
-        }, { rootMargin: '20% 0px' }).observe(tl);
+        }, { rootMargin: '200px 0px' }).observe(tl);
       } else { w.addEventListener('scroll', onScroll, { passive: true }); }
       w.addEventListener('resize', function () { measure(); onScroll(); }, { passive: true });
     };
