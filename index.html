@@ -1,1364 +1,544 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-ga="G-LKLTGNYPRH">
 <head>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-LKLTGNYPRH"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-LKLTGNYPRH');
-</script>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MamChef - Fresh homemade meals from neighbours</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Lato', -apple-system, BlinkMacSystemFont, sans-serif;
-            line-height: 1.6;
-            color: #15392f;
-            overflow-x: hidden;
-            background-color: #f5f5f5;
-        }
-
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        /* Language Switcher */
-        .language-switcher {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 10001;
-            display: flex;
-            background: white;
-            border-radius: 25px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            overflow: hidden;
-        }
-
-        .lang-btn {
-            padding: 8px 16px;
-            border: none;
-            background: transparent;
-            cursor: pointer;
-            font-weight: 600;
-            color: #527c70;
-            transition: all 0.3s ease;
-        }
-
-        .lang-btn.active {
-            background: #eba743;
-            color: white;
-        }
-
-        .lang-btn:hover:not(.active) {
-            background: rgba(235, 167, 67, 0.1);
-        }
-
-        /* Header */
-        header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(245, 245, 245, 0.95);
-            backdrop-filter: blur(20px);
-            z-index: 1000;
-            padding: 1.5rem 0;
-            box-shadow: 0 2px 10px rgba(21, 57, 47, 0.05);
-        }
-
-        nav {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: #b93d22;
-            letter-spacing: -0.02em;
-        }
-
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 3rem;
-            margin-right: 120px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: #15392f;
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: color 0.2s ease;
-            position: relative;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: #b93d22;
-            transition: width 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #527c70;
-        }
-
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 120px 2rem 0;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .hero-content {
-            position: relative;
-        }
-
-        .hero-content h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 900;
-            line-height: 0.9;
-            margin-bottom: 2rem;
-            color: #15392f;
-            letter-spacing: -0.04em;
-        }
-
-        .hero-content .highlight {
-            color: #b93d22;
-            position: relative;
-        }
-
-        .subhead {
-            font-size: 1.25rem;
-            color: #527c70;
-            margin-bottom: 3rem;
-            line-height: 1.6;
-            font-weight: 400;
-        }
-
-        .cta-group {
-            display: flex;
-            gap: 1.5rem;
-            align-items: center;
-        }
-
-        .btn-primary {
-            background: #eba743;
-            color: #15392f;
-            padding: 1.2rem 2.5rem;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            border-radius: 4px;
-            cursor: pointer;
-            border: none;
-            box-shadow: 0 1px 5px rgba(235, 167, 67, 0.3);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(235, 167, 67, 0.4);
-        }
-
-        .btn-secondary {
-            background: #eeee;
-            color: #527c70;
-            padding: 0.9rem 1.5rem;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1rem;
-            position: relative;
-            transition: all 0.3s ease;
-            box-shadow: 0 1px 5px rgb(214 210 210);
-            border-radius: 4px;
-        }
-
-        .btn-secondary:hover {
-            transform: translateY(-2px);
-        }
-
-        .hero-visual {
-            position: relative;
-            height: 600px;
-        }
-
-        .hero-visual img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 8px;
-            box-shadow: 0 20px 60px rgba(21, 57, 47, 0.15);
-        }
-
-        /* Benefits */
-        .benefits-container {
-            max-width: 1400px;
-            margin: 8rem auto;
-            padding: 0 2rem;
-        }
-
-        .benefits-intro {
-            text-align: center;
-            margin-bottom: 6rem;
-        }
-
-        .benefits-intro h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            color: #15392f;
-            letter-spacing: -0.02em;
-        }
-
-        .benefits-intro p {
-            font-size: 1.2rem;
-            color: #527c70;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 4rem;
-        }
-
-        .benefit-item {
-            padding: 3rem 2.5rem;
-            background: white;
-            border: 1px solid #c2e1d7;
-            position: relative;
-            transition: all 0.4s ease;
-            border-radius: 8px;
-        }
-
-        .benefit-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 0;
-            background: #b93d22;
-            transition: height 0.4s ease;
-            border-radius: 8px 0 0 8px;
-        }
-
-        .benefit-item:hover::before {
-            height: 100%;
-        }
-
-        .benefit-item:hover {
-            transform: translateX(8px);
-            box-shadow: 0 15px 50px rgba(21, 57, 47, 0.1);
-            border-color: #527c70;
-        }
-
-        .benefit-item h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #15392f;
-        }
-
-        .benefit-item p {
-            color: #527c70;
-            line-height: 1.6;
-        }
-
-        /* About Section */
-        .about-section {
-            max-width: 1400px;
-            margin: 8rem auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 6rem;
-            align-items: center;
-        }
-
-        .about-content h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            margin-bottom: 2rem;
-            color: #15392f;
-            letter-spacing: -0.02em;
-        }
-
-        .about-story {
-            font-size: 1.1rem;
-            line-height: 1.7;
-            color: #527c70;
-            margin-bottom: 2rem;
-        }
-
-        .about-story em {
-            color: #b93d22;
-            font-weight: 600;
-            font-style: normal;
-        }
-
-        .about-visual {
-            position: relative;
-            height: 500px;
-        }
-
-        .about-visual img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 8px;
-            box-shadow: 0 20px 60px rgba(21, 57, 47, 0.15);
-        }
-
-        /* Target Audience */
-        .audience-section {
-            max-width: 1400px;
-            margin: 8rem auto;
-            padding: 0 2rem;
-        }
-
-        .audience-header {
-            text-align: center;
-            margin-bottom: 5rem;
-        }
-
-        .audience-header h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            color: #15392f;
-            letter-spacing: -0.02em;
-        }
-
-        .audience-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-            gap: 3rem;
-        }
-
-        .audience-card {
-            background: white;
-            border: 1px solid #c2e1d7;
-            overflow: hidden;
-            transition: all 0.4s ease;
-            position: relative;
-            border-radius: 8px;
-        }
-
-        .audience-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 80px rgba(21, 57, 47, 0.15);
-        }
-
-        .audience-header-card {
-            padding: 3rem 2.5rem 2rem;
-            background: linear-gradient(135deg, #b93d22, #d14832);
-            color: white;
-            text-align: center;
-            position: relative;
-        }
-
-        .audience-header-card h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .audience-header-card p {
-            opacity: 0.9;
-            font-size: 1rem;
-        }
-
-        .audience-content {
-            padding: 2.5rem;
-        }
-
-        .audience-benefits {
-            list-style: none;
-        }
-
-        .audience-benefits li {
-            padding: 1rem 0;
-            border-bottom: 1px solid #c2e1d7;
-            position: relative;
-            padding-left: 2rem;
-            color: #527c70;
-            line-height: 1.6;
-        }
-
-        .audience-benefits li:last-child {
-            border-bottom: none;
-        }
-
-        .audience-benefits li::before {
-            content: '→';
-            position: absolute;
-            left: 0;
-            color: #b93d22;
-            font-weight: bold;
-        }
-
-        /* How it Works */
-        .how-it-works {
-            max-width: 1400px;
-            margin: 8rem auto;
-            padding: 0 2rem;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .section-header h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            color: #15392f;
-            letter-spacing: -0.02em;
-        }
-
-        .process-switcher {
-            display: flex;
-            justify-content: center;
-            gap: 0;
-            margin-bottom: 4rem;
-            background: white;
-            border-radius: 50px;
-            padding: 0.5rem;
-            box-shadow: 0 4px 20px rgba(21, 57, 47, 0.1);
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .process-tab {
-            flex: 1;
-            padding: 1.2rem 2.5rem;
-            background: transparent;
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1.1rem;
-            color: #527c70;
-            border-radius: 45px;
-            position: relative;
-        }
-
-        .process-tab.active {
-            background: #eba743;
-            color: #15392f;
-            box-shadow: 0 2px 10px rgba(235, 167, 67, 0.3);
-        }
-
-        .process-tab:not(.active):hover {
-            color: #15392f;
-            background: rgba(194, 225, 215, 0.3);
-        }
-
-        .process-timeline {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 3rem;
-            position: relative;
-        }
-
-        .process-timeline::before {
-            content: '';
-            position: absolute;
-            top: 60px;
-            left: 16.66%;
-            right: 16.66%;
-            height: 2px;
-            background: #c2e1d7;
-            z-index: 1;
-        }
-
-        .timeline-step {
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
-
-        .step-indicator {
-            width: 120px;
-            height: 120px;
-            background: white;
-            border: 3px solid #527c70;
-            margin: 0 auto 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            font-weight: 900;
-            color: #527c70;
-            border-radius: 50%;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        .timeline-step h4 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            color: #15392f;
-        }
-
-        .timeline-step p {
-            color: #527c70;
-            line-height: 1.6;
-        }
-
-        /* FAQ Section */
-        .faq-section {
-            max-width: 1000px;
-            margin: 8rem auto;
-            padding: 0 2rem;
-        }
-
-        .faq-header {
-            text-align: center;
-            margin-bottom: 4rem;
-        }
-
-        .faq-header h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            color: #15392f;
-            letter-spacing: -0.02em;
-        }
-
-        .faq-category {
-            margin-bottom: 3rem;
-        }
-
-        .faq-category h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: #15392f;
-        }
-
-        .faq-item {
-            border-bottom: 1px solid #c2e1d7;
-            margin-bottom: 0;
-        }
-
-        .faq-question {
-            width: 100%;
-            padding: 2rem 0;
-            background: none;
-            border: none;
-            text-align: left;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: #15392f;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: color 0.3s ease;
-        }
-
-        .faq-question:hover {
-            color: #b93d22;
-        }
-
-        .faq-toggle {
-            font-size: 1.5rem;
-            transition: transform 0.3s ease;
-            color: #527c70;
-        }
-
-        .faq-item.active .faq-toggle {
-            transform: rotate(45deg);
-            color: #b93d22;
-        }
-
-        .faq-answer {
-            padding: 0 0 2rem 0;
-            color: #527c70;
-            line-height: 1.7;
-            display: none;
-        }
-
-        .faq-answer.active {
-            display: block;
-            animation: fadeIn 0.3s ease;
-        }
-
-        /* Support Section */
-        .support-section {
-            max-width: 1100px;
-            margin: 8rem auto;
-            padding: 0 2rem;
-        }
-
-        .support-card {
-            background: linear-gradient(135deg, #ffffff 0%, #f7fbf9 100%);
-            border: 1px solid #c2e1d7;
-            border-radius: 20px;
-            padding: 3rem;
-            box-shadow: 0 20px 60px rgba(21, 57, 47, 0.08);
-        }
-
-        .support-eyebrow {
-            display: inline-block;
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: #b93d22;
-            margin-bottom: 1rem;
-        }
-
-        .support-card h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: clamp(2.2rem, 4vw, 3.4rem);
-            font-weight: 800;
-            color: #15392f;
-            margin-bottom: 1rem;
-        }
-
-        .support-intro {
-            max-width: 700px;
-            color: #527c70;
-            line-height: 1.7;
-            margin-bottom: 2rem;
-        }
-
-        .support-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .support-item {
-            background: white;
-            border: 1px solid #d7ebe3;
-            border-radius: 14px;
-            padding: 1.5rem;
-        }
-
-        .support-label {
-            display: block;
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.06em;
-            color: #527c70;
-            margin-bottom: 0.65rem;
-        }
-
-        .support-value,
-        .support-value a {
-            color: #15392f;
-            font-size: 1.05rem;
-            font-weight: 600;
-            text-decoration: none;
-        }
-
-        .support-value a:hover {
-            color: #b93d22;
-        }
-
-        .support-note {
-            color: #527c70;
-            line-height: 1.7;
-        }
-
-        /* Sister marketplace (BizzChef) */
-        .sister-section {
-            max-width: 1100px;
-            margin: -4rem auto 8rem;
-            padding: 0 2rem;
-        }
-
-        .sister-card {
-            border: 1px solid #c2e1d7;
-            border-radius: 20px;
-            padding: 2rem 3rem;
-            background: #f7fbf9;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .sister-card h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.35rem;
-            font-weight: 800;
-            color: #15392f;
-            margin-bottom: 0.5rem;
-        }
-
-        .sister-card p {
-            max-width: 600px;
-            color: #527c70;
-            line-height: 1.7;
-        }
-
-        /* Outlined variant of .btn-secondary for the sister block */
-        .sister-card .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            white-space: nowrap;
-            background: transparent;
-            color: #15392f;
-            border: 2px solid #15392f;
-            box-shadow: none;
-        }
-
-        .sister-card .btn-secondary:hover {
-            background: rgba(21, 57, 47, 0.06);
-        }
-
-        .ext {
-            width: 1em;
-            height: 1em;
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-            flex-shrink: 0;
-        }
-
-        .sr-only {
-            position: absolute;
-            width: 1px;
-            height: 1px;
-            padding: 0;
-            margin: -1px;
-            overflow: hidden;
-            clip: rect(0, 0, 0, 0);
-            white-space: nowrap;
-            border: 0;
-        }
-
-        /* BizzChef not launched yet: remove this rule at BizzChef launch to show the block */
-        .sister-section { display: none; }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Footer */
-        footer {
-            margin-top: 8rem;
-            border-top: 1px solid #c2e1d7;
-            padding: 4rem 0 2rem;
-            background: white;
-        }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 3rem;
-        }
-
-        .footer-brand{
-            text-align: center;
-        }
-        .footer-brand h4 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.5rem;
-            font-weight: 800;
-            margin-bottom: 1rem;
-            color: #b93d22;
-        }
-
-        .footer-brand p {
-            color: #527c70;
-            line-height: 1.6;
-            margin-bottom: 2rem;
-        }
-
-        .footer-legal {
-            grid-column: 1 / -1;
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid #c2e1d7;
-            color: #527c70;
-            line-height: 1.8;
-            text-align: center;
-        }
-
-        .footer-legal strong {
-            color: #15392f;
-        }
-
-        .footer-legal a {
-            color: #15392f;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
-        .footer-legal a:hover {
-            color: #b93d22;
-        }
-
-        .footer-section {
-            display: block;
-        }
-        .footer-section h4 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: #15392f;
-        }
-
-        .footer-links {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-
-        .footer-links a {
-            color: #527c70;
-            text-decoration: none;
-            transition: color 0.2s ease;
-        }
-
-        .footer-links a:hover {
-            color: #b93d22;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-        }
-
-        .social-link {
-            width: 44px;
-            height: 44px;
-            background: #c2e1d7;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border-radius: 50%;
-            color: #15392f;
-        }
-
-        .social-link:hover {
-            background: #b93d22;
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        .footer-bottom {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 2rem;
-            border-top: 1px solid #c2e1d7;
-            text-align: center;
-            color: #527c70;
-            font-size: 0.9rem;
-            margin-top: 2rem;
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .hero {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 3rem;
-            }
-
-            .about-section {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .audience-cards {
-                grid-template-columns: 1fr;
-            }
-
-            .process-timeline {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .process-timeline::before {
-                display: none;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr 1fr;
-                gap: 2rem;
-            }
-
-            .support-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero {
-                padding: 100px 1rem 0;
-            }
-
-            .benefits-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .audience-cards {
-                grid-template-columns: 1fr;
-            }
-
-            .cta-group {
-                flex-direction: column;
-                gap: 1rem;
-                align-items: stretch;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
-
-            .support-card {
-                padding: 2rem;
-            }
-
-            .sister-card {
-                padding: 1.5rem;
-            }
-
-            .sister-card .btn-secondary {
-                white-space: normal;
-            }
-
-            .process-switcher {
-                flex-direction: column;
-                border-radius: 12px;
-            }
-
-            .process-tab {
-                border-radius: 8px;
-            }
-
-            .language-switcher {
-                top: auto;
-                bottom: 20px;
-                right: 20px;
-            }
-        }
-
-        /* Smooth scrolling */
-        html {
-            scroll-behavior: smooth;
-        }
-
-        /* Loading animation */
-        @keyframes slideUpAnim {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-in {
-            animation: slideUpAnim 0.8s ease-out;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-link {
-            width: 44px;
-            height: 44px;
-            background: #c2e1d7;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            border-radius: 50%;
-            color: #15392f;
-        }
-
-        .social-link:hover {
-            background: #b93d22;
-            color: white;
-            transform: translateY(-2px);
-        }
-
-        .social-link svg {
-            width: 20px;
-            height: 20px;
-        }
-    </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title data-en="MamChef: dinner, made by a neighbour" data-lt="MamChef: vakarienė iš kaimyno virtuvės">MamChef: dinner, made by a neighbour</title>
+<meta name="description" content="Order real home-cooked meals from registered home cooks near you in Vilnius. Pick up or get it delivered, see who cooks and what is inside, and pay safely." data-content-en="Order real home-cooked meals from registered home cooks near you in Vilnius. Pick up or get it delivered, see who cooks and what is inside, and pay safely." data-content-lt="Užsisakykite tikro namų maisto iš registruotų namų virėjų netoliese Vilniuje. Atsiimkite patys arba gaukite pristatymą, matykite, kas gamina ir kas sudėta, ir mokėkite saugiai.">
+<link rel="canonical" href="https://mamchef.com/">
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#15392f">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MamChef">
+<meta property="og:url" content="https://mamchef.com/">
+<meta property="og:title" content="MamChef: dinner, made by a neighbour">
+<meta property="og:description" content="Real home-cooked meals from registered home cooks near you. Now launching in Vilnius.">
+<meta property="og:image" content="https://mamchef.com/assets/img/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="MamChef: dinner, made by a neighbour">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="MamChef: dinner, made by a neighbour">
+<meta name="twitter:description" content="Real home-cooked meals from registered home cooks near you. Now launching in Vilnius.">
+<meta name="twitter:image" content="https://mamchef.com/assets/img/og.png">
+<link rel="icon" href="favicon.ico" sizes="48x48">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/img/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="preload" href="assets/fonts/bricolage-grotesque-600-800.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/mc-text-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" as="image" type="image/avif" href="assets/img/neighbourhood-1280.avif" fetchpriority="high">
+<script>(function(d){var c=d.documentElement.classList,l,m;c.add('js');try{l=localStorage.getItem('mc-lang');m=localStorage.getItem('mc-motion')}catch(e){}if(!l){var n=(navigator.languages&&navigator.languages[0])||navigator.language||'';l=n.toLowerCase().indexOf('lt')===0?'lt':'en'}if(l==='lt')c.add('i18n-wait');if(m==='off'||(m!=='on'&&window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))c.add('motion-off')})(document)</script>
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/home.css">
+<script src="assets/js/site.js" defer></script>
+<script src="assets/js/home.js" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Organization","name":"MB MamChef","alternateName":"MamChef","url":"https://mamchef.com/","logo":"https://mamchef.com/assets/img/icon-192.png","email":"support@mamchef.com","sameAs":["https://www.facebook.com/people/Mamchefofficial/61579213977609/","https://www.instagram.com/mamchefofficial/","https://x.com/MamChefOfficial"]}</script>
 </head>
 <body>
-<!-- Language Switcher -->
-<div class="language-switcher">
-    <button class="lang-btn active" onclick="changeLanguage('en')">EN</button>
-    <button class="lang-btn" onclick="changeLanguage('lt')">LT</button>
+<svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false" style="position:absolute;overflow:hidden">
+  <symbol id="wm" viewBox="0 0 754 210"><path fill-rule="evenodd" d="M 450.08 5.59 C 435.56 9.49, 423.97 17.84, 401.5 40.58 C 391.6 50.6, 382.38 59.34, 381 60.02 C 378.96 61.02, 379.21 60.51, 382.34 57.24 C 384.75 54.72, 385.77 52.98, 385.08 52.55 C 382.95 51.23, 366.44 50.78, 360.61 51.88 C 338.41 56.05, 324.52 74.74, 332.25 90.02 C 337.08 99.58, 348.45 104.36, 360.9 102.07 C 364.42 101.42, 368.56 100.24, 370.1 99.45 C 373.71 97.58, 375 97.62, 375 99.58 C 375 101.39, 380.96 126.3, 381.54 126.87 C 381.74 127.08, 385.36 123.81, 389.56 119.6 C 409.88 99.28, 435.17 88.15, 458.75 89.15 C 464.96 89.41, 467 89.18, 467 88.22 C 467 85.23, 459.42 72.27, 454.86 67.44 C 449.05 61.31, 450.21 59.65, 456.8 64.68 C 459.19 66.5, 461.68 68, 462.33 67.99 C 465.31 67.97, 474.39 62.68, 478.24 58.72 C 492.52 44.03, 493.36 22.69, 480.13 10.74 C 473.16 4.44, 461.68 2.47, 450.08 5.59 M 454 52.14 C 447.84 57.7, 437.97 62.14, 430.43 62.75 C 424.53 63.23, 424.27 63.37, 421.58 67.62 C 418.32 72.79, 412.65 77.85, 406.45 81.13 C 404 82.43, 402 83.74, 402 84.03 C 402 84.32, 403.18 84.66, 404.61 84.78 C 408.57 85.11, 418.53 79.29, 423.8 73.56 C 428.01 69, 429.18 68.33, 434.94 67.16 C 443.23 65.47, 449.57 62.21, 455.18 56.76 C 459.63 52.44, 461.93 47.96, 459.66 48.04 C 459.02 48.07, 456.48 49.91, 454 52.14 M 721.31 86.86 C 713.81 89.45, 708.31 93.44, 704.96 98.73 C 701.88 103.57, 701.14 106.29, 700.69 114.42 L 700.41 119.33 693.21 119.1 L 686 118.87 686 129.43 L 686 140 692.89 140 C 698.26 140, 699.92 140.35, 700.39 141.58 C 700.73 142.45, 701 156.85, 701 173.58 L 701 204 714 204 L 727 204 727 172 L 727 140 737.5 140 L 748 140 748 129.49 L 748 118.99 737.61 119.58 C 730.75 119.97, 727 119.81, 726.57 119.11 C 725.36 117.16, 728 110.14, 730.76 107.98 C 732.98 106.22, 734.45 105.92, 738.98 106.28 C 742.02 106.52, 745.4 107.03, 746.51 107.41 C 748.33 108.04, 748.74 107.24, 750.9 98.95 C 753.61 88.58, 753.78 88.99, 745.57 86.5 C 738.91 84.47, 727.73 84.64, 721.31 86.86 M 496 145.5 L 496 204 509.5 204 L 523 204 523.02 180.75 C 523.05 156.04, 523.81 149.93, 527.31 146.12 C 534.31 138.51, 548.47 139.59, 553.5 148.11 C 555.34 151.23, 555.52 153.62, 555.81 177.75 L 556.12 204 570.06 204 L 584 204 584 177.68 C 584 149.67, 583.23 142.36, 579.5 135 C 576.63 129.34, 569.38 122.53, 563.18 119.66 C 559.42 117.93, 556.63 117.5, 549 117.5 C 538.24 117.5, 532.09 119.59, 526.25 125.25 L 523 128.39 523 107.7 L 523 87 509.5 87 L 496 87 496 145.5 M 3 147.5 L 3 204 15.99 204 L 28.97 204 29.24 169.14 L 29.5 134.28 43.95 161.14 L 58.4 188 64.58 188 C 68.34 188, 71.14 187.51, 71.72 186.75 C 72.72 185.46, 79.18 173.28, 92.38 147.79 L 100 133.08 100 168.54 L 100 204 113 204 L 126 204 126 147.5 L 126 91 111.09 91 L 96.18 91 92.18 98.75 C 89.99 103.01, 85.65 111.22, 82.55 117 C 79.44 122.78, 74.34 132.56, 71.2 138.75 C 68.07 144.93, 65.28 149.99, 65 149.98 C 64.72 149.97, 57.52 136.71, 49 120.52 L 33.5 91.07 18.25 91.03 L 3 91 3 147.5 M 446 93.64 C 424.91 97.64, 399.87 111.98, 389.11 126.24 C 381.78 135.95, 380.5 139.94, 380.5 153.07 L 380.5 164.65 384.73 173.18 C 388 179.78, 390.5 183.17, 395.76 188.14 C 408.58 200.23, 419.96 204.97, 438 205.72 C 457.65 206.53, 470.82 201.78, 483.01 189.49 C 488.53 183.92, 489.23 182.82, 487.97 181.69 C 487.16 180.97, 482.8 177.11, 478.28 173.11 L 470.05 165.84 465.28 169.85 C 458.55 175.49, 451.19 178.91, 444.16 179.64 C 413.94 182.8, 397.13 145.25, 419.36 124.22 C 426.17 117.78, 432.26 115.49, 442.5 115.53 C 451.54 115.55, 456.72 117.4, 464.61 123.43 C 467.18 125.39, 469.67 127, 470.14 127 C 470.82 127, 481.96 117.73, 488.96 111.34 C 490.23 110.19, 489.75 109.31, 485.46 104.95 C 482.73 102.16, 477.62 98.47, 474.08 96.73 C 468.37 93.91, 466.6 93.53, 458.08 93.36 C 452.81 93.25, 447.38 93.38, 446 93.64 M 165.5 117.65 C 158.43 119.12, 153.71 120.71, 148 123.55 C 140.06 127.5, 137.45 130.09, 138.81 132.67 C 139.34 133.68, 140.29 136.97, 140.91 140 C 142.78 149.03, 142.55 148.97, 153.52 143.41 C 163.14 138.54, 163.3 138.5, 172.86 138.5 C 181.09 138.5, 183.03 138.83, 186.08 140.72 C 189.87 143.09, 192 146.58, 192 150.45 L 192 152.8 174.75 153.16 C 158.71 153.5, 157.12 153.71, 152 156.1 C 139.98 161.74, 135.55 168.17, 135.55 180 C 135.55 188.84, 137.78 194.03, 143.69 198.9 C 149.19 203.43, 156.05 205.46, 166 205.48 C 176.35 205.5, 182.9 203.73, 188.66 199.33 C 191.06 197.5, 193.24 196, 193.51 196 C 193.78 196, 194 197.8, 194 200 L 194 204 206.25 204 L 218.5 204 218 172.75 L 217.5 141.5 214.55 135.68 C 209.83 126.35, 201.85 120.83, 189.2 118.13 C 184.16 117.05, 169.76 116.76, 165.5 117.65 M 267.38 118.56 C 265.12 119.39, 261.41 121.67, 259.13 123.62 L 255 127.16 255 122.58 L 255 118 241.5 118 L 228 118 228 161 L 228 204 241.5 204 L 255 204 255 178.23 C 255 155.07, 255.19 152.12, 256.85 149.02 C 259.46 144.15, 263.07 141.79, 268.79 141.25 C 275.65 140.59, 280.31 142.94, 282.96 148.41 C 284.85 152.33, 285 154.49, 285 178.32 L 285 204 298.44 204 L 311.88 204 312.19 177.57 C 312.53 148.47, 312.48 148.72, 319.38 143.56 C 323.21 140.7, 331.77 140.71, 335.68 143.57 C 341.63 147.94, 342 149.93, 342 178.25 L 342 204 355.58 204 L 369.15 204 368.83 173.25 L 368.5 142.5 365.87 136.88 C 362.29 129.26, 356.95 123.61, 350.16 120.28 C 345.01 117.75, 343.5 117.5, 333.5 117.5 C 323.4 117.5, 322.07 117.73, 317.21 120.28 C 314.31 121.82, 310.12 124.7, 307.91 126.7 L 303.89 130.33 301.05 126.88 C 299.49 124.98, 295.81 122.12, 292.87 120.53 C 288.45 118.12, 286.13 117.57, 279.51 117.33 C 274.17 117.14, 270.13 117.55, 267.38 118.56 M 624.5 118.89 C 604.33 124.76, 591.98 140.72, 592.01 160.85 C 592.06 187.15, 612.37 206, 640.66 206 C 650.9 206, 657.77 204.61, 665.5 200.96 C 671.09 198.32, 680 191.69, 680 190.17 C 680 189.8, 676.38 186.64, 671.95 183.14 L 663.91 176.79 660.05 179.46 C 652.87 184.44, 641.33 186.39, 633.08 184.02 C 626.13 182.03, 619 174.98, 619 170.1 C 619 169.32, 628.69 169, 652 169 L 685 169 684.98 163.75 C 684.94 151.33, 680.3 138.54, 672.94 130.55 C 662.42 119.14, 641.19 114.03, 624.5 118.89 M 629.5 138.57 C 623.88 141.5, 619 147.72, 619 151.97 C 619 152.64, 625.76 153, 638.5 153 C 657.07 153, 658 152.91, 658 151.08 C 658 148.28, 652.06 141, 648.02 138.85 C 643.63 136.52, 633.73 136.37, 629.5 138.57 M 171.84 168.94 C 164.5 170.37, 160.95 174.67, 162.38 180.38 C 164.23 187.76, 182.36 187.84, 189.7 180.5 C 192.48 177.72, 193 176.47, 193 172.6 L 193 168 184.25 168.12 C 179.44 168.18, 173.85 168.55, 171.84 168.94"/></symbol>
+  <symbol id="hat" viewBox="0 0 508 512"><path fill-rule="evenodd" pathLength="1" d="M 372.4 1.6 C 337.2 6.1, 298.6 28.3, 258.7 67 C 240.9 84.2, 218.2 109.6, 200 132.4 C 198.7 134.1, 192.3 142.1, 185.8 150.2 C 179.4 158.3, 173.7 165.7, 173.2 166.7 C 172.4 168, 171.8 168.1, 170.8 167.3 C 168.6 165.5, 150.5 159.1, 142.8 157.4 C 131.4 154.9, 109.4 154.4, 96.9 156.5 C 68.6 161.1, 46.8 172.2, 28 191.6 C 12.9 207.2, 4.9 222.2, 1.5 241.4 C -5.8 282.4, 18.6 319.6, 62.5 334.1 C 72.4 337.3, 72.7 337.4, 91.5 337.4 C 110.4 337.4, 110.6 337.4, 119.5 334.2 C 124.4 332.4, 128.7 331, 129.1 331 C 129.5 331, 130.1 333.6, 130.5 336.8 C 130.9 339.9, 132.4 350.1, 134 359.5 C 135.5 368.9, 138 383.9, 139.4 393 C 140.9 402.1, 143.4 417.6, 145 427.5 C 146.6 437.4, 148.7 450.2, 149.6 456 C 150.6 461.8, 151.6 467.2, 151.9 468.2 C 152.3 469.4, 154.9 466.6, 161.3 458 C 166.2 451.5, 171 445.3, 171.9 444.3 C 172.8 443.3, 178.4 437.1, 184.2 430.5 C 212.5 398.3, 246.1 372, 282.5 353.6 C 317.6 335.8, 353 325.4, 393.2 321.1 C 409.3 319.3, 430 320, 442.3 322.6 C 445.6 323.3, 445.7 323.8, 438 307.5 C 435.1 301.4, 430.9 292.4, 428.5 287.5 C 426.2 282.6, 420.6 270.7, 416 261.1 C 407.5 243.2, 407.3 242.1, 412.3 242 C 414.4 242, 429.8 236.2, 436.1 233 C 459.9 221, 483.1 196.7, 495.5 170.5 C 506.9 146.6, 510.3 119.3, 505.5 91 C 499.6 56.4, 478.6 27.9, 447.2 12.1 C 427 1.9, 399.6 -1.9, 372.4 1.6 M 382 185.9 C 376.3 193.5, 368 201.5, 358.8 208.1 C 352.8 212.4, 339.4 220, 337.8 220 C 337.3 220, 335.4 220.6, 333.7 221.4 C 329.3 223.4, 323.4 225.2, 320.2 225.5 C 306.7 226.9, 299.8 227.1, 295 226.2 C 288.5 225, 288.6 224.9, 283.7 234.2 C 271.6 256.8, 252.1 277.4, 231.8 288.9 C 228.6 290.7, 226 292.3, 226 292.4 C 226 292.6, 228.8 292.3, 232.3 291.8 C 245.5 290, 261.9 282.7, 274.6 272.9 C 281.6 267.5, 292.7 255.7, 296.9 249.2 L 300.3 244 307.4 244 C 319 243.9, 329.7 241.7, 340 237.2 C 350.8 232.4, 364.9 222.3, 370.7 215.3 C 375.3 209.7, 382 200.2, 382 199.4 C 382 199.1, 383.4 195.7, 385.1 191.9 C 386.9 187.6, 388 183.7, 387.8 181.7 L 387.5 178.4 382 185.9 M 400 345.6 C 398.1 345.9, 390.9 346.7, 384 347.5 C 323.9 354.6, 258.9 388, 210 437 C 191.7 455.3, 172.9 479, 170.8 486.6 C 168.8 494.1, 174.4 502.7, 184.3 507 C 198.9 513.5, 238.4 513.5, 265.5 507.1 C 270.3 505.9, 275.6 504.8, 277.3 504.4 C 281.3 503.8, 294.5 499.8, 307.5 495.5 C 378.3 471.6, 447 424.9, 468.3 386 C 472.4 378.5, 473.7 371.4, 472.1 365.3 C 469.9 357.1, 458 350.3, 441 347.4 C 432.4 345.9, 406.5 344.8, 400 345.6"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.2 4.2L19 7"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15z"/><path d="M10 20.5a2 2 0 0 0 4 0"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24" fill="currentColor"><path d="M3.6 10.6L12 3.8l8.4 6.8V20a1 1 0 0 1-1 1h-4.6v-6.2H9.2V21H4.6a1 1 0 0 1-1-1z"/></symbol>
+  <symbol id="i-orders" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="4.5" width="14" height="16.5" rx="2"/><path d="M9 3.5h6v3H9zM8.5 11h7M8.5 15h5"/></symbol>
+  <symbol id="i-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 9h17l-1.8 10a1.6 1.6 0 0 1-1.6 1.3H6.9a1.6 1.6 0 0 1-1.6-1.3z"/><path d="M8 9l3-5M16 9l-3-5M9 13v4M15 13v4"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0"/></symbol>
+  <symbol id="i-cloche" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18h18M5 18a7 7 0 0 1 14 0M12 8V6M10 6h4"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 20s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7a4.3 4.3 0 0 1 7.5 2.8C19.5 15.4 12 20 12 20z"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3.5l2.6 5.4 5.9.8-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.8z"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7.5 3v5.5c0 4.6-3.2 8.4-7.5 9.5-4.3-1.1-7.5-4.9-7.5-9.5V6z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1 12.5H6z"/><path d="M9 10V6.5a3 3 0 0 1 6 0V10"/></symbol>
+  <symbol id="i-bike" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="17" r="3"/><circle cx="18" cy="17" r="3"/><path d="M6 17l3.5-7H15l3 7M9.5 10L8 7H5.5M15 10l-1.5-3H16"/></symbol>
+  <symbol id="i-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 19c0-8 5-13 14-14 0 9-5 14-13 14z"/><path d="M5 19l7.5-7.5"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="4" y="5.5" width="16" height="15" rx="2.5"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M20 12a7.5 7.5 0 0 1-11.2 6.5L4 20l1.5-4.6A7.5 7.5 0 1 1 20 12z"/><path d="M9 12h.01M12 12h.01M15 12h.01" stroke-width="2.6" stroke-linecap="round"/></symbol>
+  <symbol id="i-card" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="6" width="18" height="13" rx="2.5"/><path d="M3 10.5h18M7 15h4"/></symbol>
+  <symbol id="i-user-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="8" r="4"/><path d="M3 21a7 7 0 0 1 12.5-4.3M15 18.5l2 2 4-4.5"/></symbol>
+  <symbol id="i-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 6v12M15 6v12"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l10.5-6.5z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="13" rx="2.5"/><path d="M4 7l8 6 8-6"/></symbol>
+  <symbol id="i-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
+  <symbol id="i-apple" viewBox="0 0 24 24" fill="currentColor"><path d="M16.4 12.6c0-2.2 1.8-3.3 1.9-3.3-1-1.5-2.6-1.7-3.2-1.7-1.4-.1-2.6.8-3.3.8-.7 0-1.7-.8-2.9-.8-1.5 0-2.8.9-3.6 2.2-1.5 2.7-.4 6.6 1.1 8.8.7 1 1.6 2.2 2.7 2.2 1.1 0 1.5-.7 2.8-.7 1.3 0 1.7.7 2.9.7 1.2 0 1.9-1.1 2.6-2.1.8-1.2 1.2-2.4 1.2-2.5 0 0-2.3-.9-2.2-3.6zM14.2 6.1c.6-.7 1-1.7.9-2.8-.9 0-1.9.6-2.5 1.3-.6.6-1.1 1.7-.9 2.7.9.1 1.9-.5 2.5-1.2z"/></symbol>
+  <symbol id="i-gplay" viewBox="0 0 24 24" fill="currentColor"><path d="M4.4 2.9l9.4 9.1-9.4 9.1c-.3-.2-.5-.6-.5-1.1V4c0-.5.2-.9.5-1.1zM15 13.2l2.3 2.2-10.9 6.2 8.6-8.4zm3.5-3.3l2.6 1.5c.8.5.8 1.6 0 2.1l-2.6 1.5-2.5-2.5 2.5-2.6zM6.4 2.4l10.9 6.2-2.3 2.2-8.6-8.4z"/></symbol>
+  <symbol id="i-fb" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></symbol>
+  <symbol id="i-ig" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.405a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></symbol>
+</svg>
+
+<a class="skip-link" href="#main" data-en="Skip to content" data-lt="Pereiti prie turinio">Skip to content</a>
+<header class="site-header" data-header>
+  <div class="hdr">
+    <a class="brand" href="./" aria-label="MamChef home" data-aria-en="MamChef home" data-aria-lt="MamChef pradžia"><svg class="wm" viewBox="0 0 754 210" aria-hidden="true" focusable="false"><use href="#wm"/></svg></a>
+    <nav class="hdr-nav" aria-label="Main" data-aria-en="Main" data-aria-lt="Pagrindinis meniu">
+      <ul role="list">
+        <li><a href="#how-it-works" data-en="How it works" data-lt="Kaip tai veikia">How it works</a></li>
+        <li><a href="#for-cooks" data-en="For cooks" data-lt="Virėjams">For cooks</a></li>
+        <li><a href="#why" data-en="Why MamChef" data-lt="Kodėl MamChef">Why MamChef</a></li>
+        <li><a href="#faq" data-en="FAQ" data-lt="DUK">FAQ</a></li>
+      </ul>
+    </nav>
+    <div class="hdr-tools">
+      <div class="lang" role="group" aria-label="Language" data-aria-en="Language" data-aria-lt="Kalba">
+        <button type="button" data-set-lang="en" aria-pressed="true" lang="en">EN</button>
+        <button type="button" data-set-lang="lt" aria-pressed="false" lang="lt">LT</button>
+      </div>
+      <button type="button" class="icon-btn motion-toggle hide-md" data-motion-toggle aria-pressed="false">
+        <svg class="when-on" aria-hidden="true"><use href="#i-pause"/></svg><svg class="when-off" aria-hidden="true"><use href="#i-play"/></svg>
+        <span class="sr-only" data-en="Pause motion" data-lt="Sustabdyti animacijas">Pause motion</span>
+      </button>
+      <a class="btn btn-glass btn-sm hide-sm" href="https://app.mamchef.com" data-en="Browse meals" data-lt="Rinktis patiekalus">Browse meals</a>
+      <a class="btn btn-gold btn-sm hide-md" href="chefs/" data-en="Become a chef" data-lt="Tapti virėju">Become a chef</a>
+      <button type="button" class="icon-btn burger" data-burger aria-expanded="false" aria-controls="mc-menu" aria-label="Open menu" data-aria-en="Open menu" data-aria-lt="Atidaryti meniu" data-aria-close-en="Close menu" data-aria-close-lt="Uždaryti meniu"><span></span></button>
+    </div>
+    <div class="progress" aria-hidden="true"><i></i></div>
+  </div>
+</header>
+<div class="sheet" id="mc-menu" hidden>
+  <nav aria-label="Menu" data-aria-en="Menu" data-aria-lt="Meniu">
+    <ul role="list">
+        <li><a href="#how-it-works" data-en="How it works" data-lt="Kaip tai veikia">How it works</a></li>
+        <li><a href="#for-cooks" data-en="For cooks" data-lt="Virėjams">For cooks</a></li>
+        <li><a href="#why" data-en="Why MamChef" data-lt="Kodėl MamChef">Why MamChef</a></li>
+        <li><a href="#faq" data-en="FAQ" data-lt="DUK">FAQ</a></li>
+    </ul>
+  </nav>
+  <div class="sheet-ctas">
+    <a class="btn btn-gold" href="https://app.mamchef.com"><span data-en="Browse today's meals" data-lt="Peržiūrėti šiandienos patiekalus">Browse today's meals</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    <a class="btn btn-glass" href="chefs/" data-en="Become a chef" data-lt="Tapti virėju">Become a chef</a>
+  </div>
+  <div class="sheet-foot">
+    <button type="button" class="icon-btn motion-toggle" data-motion-toggle aria-pressed="false">
+      <svg class="when-on" aria-hidden="true"><use href="#i-pause"/></svg><svg class="when-off" aria-hidden="true"><use href="#i-play"/></svg>
+      <span data-en="Pause motion" data-lt="Sustabdyti animacijas">Pause motion</span>
+    </button>
+    <a class="sheet-mail" href="mailto:support@mamchef.com">support@mamchef.com</a>
+  </div>
 </div>
 
-<!-- Header -->
-<header>
-    <nav>
-        <img width="170px" src="https://api.mamchef.com/logo.png" class="logo" alt="MamChef">
-        <ul class="nav-links">
-            <li><a href="#about" data-en="About" data-lt="Apie">About</a></li>
-            <li><a href="#target" data-en="Who we serve" data-lt="Kam skirta">Who we serve</a></li>
-            <li><a href="#how-it-works" data-en="How it works" data-lt="Kaip veikia">How it works</a></li>
-            <li><a href="#faq" data-en="FAQ" data-lt="DUK">FAQ</a></li>
-            <li><a href="#support" data-en="Support" data-lt="Pagalba">Support</a></li>
-        </ul>
-    </nav>
-</header>
 
-<!-- Hero Section -->
-<section class="hero" id="home">
-    <div class="hero-content">
-        <h1 data-en="Fresh <span class='highlight'>Homemade</span> Meals from Neighbours" data-lt="Švieži <span class='highlight'>Namų Gamybos</span> Patiekalai iš Kaimynų">Fresh <span class="highlight">Homemade</span> Meals from Neighbours</h1>
-        <p class="subhead" data-en="Real home cooks. Real taste. Order for pickup or chef delivery — no subscriptions, no hidden fees." data-lt="Tikri namų virėjai. Tikras skonis. Užsisakykite atsiėmimui arba pristatymui — jokių prenumeratų, jokių paslėptų mokesčių.">Real home cooks. Real taste. Order for pickup or chef delivery — no subscriptions, no hidden fees.</p>
-        <div class="cta-group">
-            <a href="https://app.mamchef.com" class="btn-secondary" data-en="Browse today's meals" data-lt="Peržiūrėti šiandienos patiekalus">Browse today's meals</a>
-            <a href="https://chef.mamchef.com" class="btn-primary" data-en="I'm a cook — join MamChef →" data-lt="Esu virėjas — prisijungti prie MamChef →">I'm a cook — join MamChef →</a>
+<main id="main">
+
+<!-- 2. Hero -->
+<section class="hero dark" id="top" aria-labelledby="hero-title">
+  <div class="hero-bg" aria-hidden="true">
+    <div class="hero-floor"></div>
+    <div class="hero-glow"></div>
+    <svg class="hat hat-draw outline-only hero-hat" viewBox="0 0 508 512"><use href="#hat"/></svg>
+  </div>
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <p class="kicker rv"><span class="kicker-dot" aria-hidden="true"></span><span data-en="Launching in Vilnius" data-lt="Startuojame Vilniuje">Launching in Vilnius</span></p>
+      <h1 id="hero-title" class="rv" style="--d:80ms" data-en="Dinner, made by a <em class='hl'>neighbour.</em>" data-lt="Vakarienė iš <em class='hl'>kaimyno</em> virtuvės.">Dinner, made by a <em class="hl">neighbour.</em></h1>
+      <p class="hero-sub rv" style="--d:160ms" data-en="MamChef connects you with licensed home cooks nearby. Pick up or get it delivered. See who cooks, what is inside, and pay safely." data-lt="MamChef jus sujungia su registruotais namų virėjais netoliese. Atsiimkite patys arba gaukite pristatymą. Matykite, kas gamina, kas sudėta į patiekalą, ir mokėkite saugiai.">MamChef connects you with licensed home cooks nearby. Pick up or get it delivered. See who cooks, what is inside, and pay safely.</p>
+      <div class="hero-ctas rv" style="--d:240ms">
+        <a class="btn btn-gold" href="https://app.mamchef.com"><span data-en="Browse today's meals" data-lt="Peržiūrėti šiandienos patiekalus">Browse today's meals</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-glass" href="chefs/" data-en="Become a chef" data-lt="Tapti virėju">Become a chef</a>
+      </div>
+      <ul class="chips rv" style="--d:320ms" role="list">
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-en="Licensed home cooks" data-lt="Registruoti namų virėjai">Licensed home cooks</span></li>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-en="Pickup or delivery" data-lt="Atsiėmimas arba pristatymas">Pickup or delivery</span></li>
+        <li><svg aria-hidden="true"><use href="#i-check"/></svg><span data-en="Allergens shown" data-lt="Alergenai nurodyti">Allergens shown</span></li>
+      </ul>
+    </div>
+
+    <div class="hero-stage" role="img" aria-label="The MamChef app on a phone, in front of a clay-style neighbourhood of home kitchens" data-aria-en="The MamChef app on a phone, in front of a clay-style neighbourhood of home kitchens" data-aria-lt="MamChef programėlė telefone, fone – molio stiliaus namų virtuvių kaimynystė">
+      <div class="stage" data-tilt aria-hidden="true">
+        <div class="arch">
+          <picture>
+            <source type="image/avif" srcset="assets/img/neighbourhood-640.avif 640w, assets/img/neighbourhood-960.avif 960w, assets/img/neighbourhood-1280.avif 1280w" sizes="(min-width: 1100px) 1050px, 180vw">
+            <source type="image/webp" srcset="assets/img/neighbourhood-640.webp 640w, assets/img/neighbourhood-960.webp 960w, assets/img/neighbourhood-1280.webp 1280w" sizes="(min-width: 1100px) 1050px, 180vw">
+            <img src="assets/img/neighbourhood-1280.webp" width="1280" height="720" alt="" fetchpriority="high" decoding="async">
+          </picture>
+          <div class="arch-video" data-video="assets/video/neighbourhood.mp4"></div>
+          <div class="arch-shade"></div>
         </div>
+
+        <div class="phone phone--hero">
+          <div class="phone-body">
+            <div class="phone-screen">
+              <span class="island"></span>
+              <div class="scr is-on">
+                <div class="app-top">
+                  <div class="app-loc">
+                    <span class="app-round"><svg><use href="#i-pin"/></svg></span>
+                    <span class="app-loc-t"><small data-en="Current Location" data-lt="Dabartinė vieta">Current Location</small><b>Vilnius</b></span>
+                    <span class="app-round"><svg><use href="#i-bell"/></svg></span>
+                  </div>
+                  <div class="app-search"><svg><use href="#i-search"/></svg><span data-en="Search for kitchens or dishes..." data-lt="Ieškoti virtuvių ar patiekalų...">Search for kitchens or dishes...</span></div>
+                </div>
+                <div class="app-chips"><span class="on" data-en="For You" data-lt="Tau">For You</span><span data-en="Most Relevant" data-lt="Aktualiausi">Most Relevant</span><span data-en="Highest Rated" data-lt="Aukščiausiai įvertinti">Highest Rated</span></div>
+                <div class="app-card">
+                  <div class="app-img"><picture><source type="image/avif" srcset="assets/img/market-640.avif"><img src="assets/img/market-640.webp" width="640" height="357" alt="" decoding="async"></picture><span class="app-heart"><svg><use href="#i-heart"/></svg></span></div>
+                  <div class="app-meta"><b data-en="Home kitchen nearby" data-lt="Namų virtuvė netoliese">Home kitchen nearby</b><span class="app-tags"><i data-en="Pickup" data-lt="Atsiėmimas">Pickup</i><i data-en="Delivery" data-lt="Pristatymas">Delivery</i></span></div>
+                </div>
+                <div class="app-card">
+                  <div class="app-img"><picture><source type="image/avif" srcset="assets/img/kitchen-640.avif"><img src="assets/img/kitchen-640.webp" width="640" height="360" alt="" decoding="async"></picture><span class="app-heart"><svg><use href="#i-heart"/></svg></span></div>
+                  <div class="app-meta"><b data-en="Home kitchen nearby" data-lt="Namų virtuvė netoliese">Home kitchen nearby</b><span class="app-tags"><i data-en="Pickup" data-lt="Atsiėmimas">Pickup</i><i data-en="Allergens shown" data-lt="Alergenai nurodyti">Allergens shown</i></span></div>
+                </div>
+                <div class="app-nav">
+                  <span class="on"><svg><use href="#i-home"/></svg><small data-en="Home" data-lt="Pagrindinis">Home</small></span>
+                  <span><svg><use href="#i-orders"/></svg><small data-en="Orders" data-lt="Užsakymai">Orders</small></span>
+                  <span class="app-fab"><svg><use href="#i-cloche"/></svg></span>
+                  <span><svg><use href="#i-cart"/></svg><small data-en="Cart" data-lt="Krepšelis">Cart</small></span>
+                  <span><svg><use href="#i-user"/></svg><small data-en="Profile" data-lt="Profilis">Profile</small></span>
+                </div>
+              </div>
+            </div>
+            <span class="phone-glare"></span>
+          </div>
+        </div>
+
+        <div class="float float-a"><span class="float-ic ok"><svg><use href="#i-check"/></svg></span><span><b data-en="Accepted" data-lt="Priimtas">Accepted</b><small data-en="Your card is charged only now" data-lt="Mokėjimas nuskaitomas tik dabar">Your card is charged only now</small></span></div>
+        <div class="float float-b"><span class="float-ic"><svg><use href="#i-bag"/></svg></span><span><b data-en="Ready for Pickup" data-lt="Paruoštas atsiėmimui">Ready for Pickup</b><small data-en="Just around the corner" data-lt="Visai netoliese">Just around the corner</small></span></div>
+        <div class="float float-c"><svg class="hat"><use href="#hat"/></svg><b data-en="Registered kitchen" data-lt="Registruota virtuvė">Registered kitchen</b></div>
+      </div>
     </div>
-    <div class="hero-visual">
-        <img src="https://api.mamchef.com/assets/mamchefhome.jpg" alt="Fresh homemade meal"/>
+  </div>
+
+  <!-- 3. Trust strip -->
+  <div class="trust" role="region" aria-label="Why people trust MamChef" data-aria-en="Why people trust MamChef" data-aria-lt="Kodėl MamChef pasitiki">
+    <div class="trust-track">
+      <ul class="trust-list" role="list">
+        <li><svg aria-hidden="true"><use href="#i-shield"/></svg><span data-en="VMVT-registered kitchens" data-lt="VMVT registruotos virtuvės">VMVT-registered kitchens</span></li>
+        <li><svg aria-hidden="true"><use href="#i-card"/></svg><span data-en="Stripe payments" data-lt="Mokėjimai per Stripe">Stripe payments</span></li>
+        <li><svg aria-hidden="true"><use href="#i-user-check"/></svg><span data-en="Hand-approved cooks" data-lt="Kiekvieną virėją patvirtiname patys">Hand-approved cooks</span></li>
+        <li><svg aria-hidden="true"><use href="#i-star"/></svg><span data-en="Reviews after every order" data-lt="Atsiliepimai po kiekvieno užsakymo">Reviews after every order</span></li>
+        <li><svg aria-hidden="true"><use href="#i-leaf"/></svg><span data-en="Allergens on every dish" data-lt="Alergenai prie kiekvieno patiekalo">Allergens on every dish</span></li>
+      </ul>
+      <ul class="trust-list trust-clone" role="list" aria-hidden="true">
+        <li><svg aria-hidden="true"><use href="#i-shield"/></svg><span data-en="VMVT-registered kitchens" data-lt="VMVT registruotos virtuvės">VMVT-registered kitchens</span></li>
+        <li><svg aria-hidden="true"><use href="#i-card"/></svg><span data-en="Stripe payments" data-lt="Mokėjimai per Stripe">Stripe payments</span></li>
+        <li><svg aria-hidden="true"><use href="#i-user-check"/></svg><span data-en="Hand-approved cooks" data-lt="Kiekvieną virėją patvirtiname patys">Hand-approved cooks</span></li>
+        <li><svg aria-hidden="true"><use href="#i-star"/></svg><span data-en="Reviews after every order" data-lt="Atsiliepimai po kiekvieno užsakymo">Reviews after every order</span></li>
+        <li><svg aria-hidden="true"><use href="#i-leaf"/></svg><span data-en="Allergens on every dish" data-lt="Alergenai prie kiekvieno patiekalo">Allergens on every dish</span></li>
+      </ul>
     </div>
+  </div>
 </section>
 
-<!-- Benefits Section -->
-<section class="benefits-container" id="benefits">
-    <div class="benefits-intro">
-        <h2 data-en="Why choose MamChef" data-lt="Kodėl rinktis MamChef">Why choose MamChef</h2>
-        <p data-en="We've reimagined how you discover and enjoy authentic homemade meals from talented cooks in your neighbourhood." data-lt="Mes iš naujo sugalvojome, kaip atrasti ir mėgautis autentiškais namų gamybos patiekalais iš talentingų jūsų kaimynystės virėjų.">We've reimagined how you discover and enjoy authentic homemade meals from talented cooks in your neighbourhood.</p>
+<!-- 4. How it works: kitchen to couch -->
+<section class="story" id="how-it-works" aria-labelledby="how-title" data-active="1">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow" data-en="How it works" data-lt="Kaip tai veikia">How it works</p>
+      <h2 class="h2" id="how-title" data-en="From a neighbour's kitchen to your table." data-lt="Iš kaimyno virtuvės – į jūsų stalą.">From a neighbour's kitchen to your table.</h2>
+      <p class="lead" data-en="Three steps, no subscriptions. You always see who cooks and what you pay before you order." data-lt="Trys žingsniai, jokių prenumeratų. Prieš užsakydami visada matote, kas gamina ir kiek mokėsite.">Three steps, no subscriptions. You always see who cooks and what you pay before you order.</p>
     </div>
+    <div class="story-grid">
+      <div class="story-visual" aria-hidden="true">
+        <div class="story-frame">
+          <picture class="sv sv-1"><source type="image/avif" srcset="assets/img/kitchen-640.avif 640w, assets/img/kitchen-960.avif 960w, assets/img/kitchen-1280.avif 1280w" sizes="(min-width: 900px) 760px, 140vw"><img src="assets/img/kitchen-960.webp" srcset="assets/img/kitchen-640.webp 640w, assets/img/kitchen-960.webp 960w, assets/img/kitchen-1280.webp 1280w" sizes="(min-width: 900px) 760px, 140vw" width="1280" height="720" alt="" loading="lazy" decoding="async"></picture>
+          <div class="sv-video" data-video="assets/video/kitchen.mp4"></div>
+          <picture class="sv sv-2"><source type="image/avif" srcset="assets/img/market-640.avif 640w, assets/img/market-1024.avif 1024w, assets/img/market-1376.avif 1376w" sizes="(min-width: 900px) 760px, 140vw"><img src="assets/img/market-1024.webp" srcset="assets/img/market-640.webp 640w, assets/img/market-1024.webp 1024w, assets/img/market-1376.webp 1376w" sizes="(min-width: 900px) 760px, 140vw" width="1376" height="768" alt="" loading="lazy" decoding="async"></picture>
+          <picture class="sv sv-3"><source type="image/avif" srcset="assets/img/living-room-640.avif 640w, assets/img/living-room-1024.avif 1024w, assets/img/living-room-1376.avif 1376w" sizes="(min-width: 900px) 760px, 140vw"><img src="assets/img/living-room-1024.webp" srcset="assets/img/living-room-640.webp 640w, assets/img/living-room-1024.webp 1024w, assets/img/living-room-1376.webp 1376w" sizes="(min-width: 900px) 760px, 140vw" width="1376" height="768" alt="" loading="lazy" decoding="async"></picture>
+          <div class="story-ring"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="20"/><circle class="ring-fg" cx="24" cy="24" r="20" pathLength="1"/></svg><span class="ring-n"><b class="n1">1</b><b class="n2">2</b><b class="n3">3</b></span></div>
+        </div>
+        <div class="phone phone--story">
+          <div class="phone-body">
+            <div class="phone-screen">
+              <span class="island"></span>
+              <div class="scr scr-1">
+                <div class="app-top">
+                  <div class="app-loc">
+                    <span class="app-round"><svg><use href="#i-pin"/></svg></span>
+                    <span class="app-loc-t"><small data-en="Current Location" data-lt="Dabartinė vieta">Current Location</small><b>Vilnius</b></span>
+                    <span class="app-round"><svg><use href="#i-bell"/></svg></span>
+                  </div>
+                  <div class="app-search"><svg><use href="#i-search"/></svg><span data-en="Search for kitchens or dishes..." data-lt="Ieškoti virtuvių ar patiekalų...">Search for kitchens or dishes...</span></div>
+                </div>
+                <div class="app-chips"><span class="on" data-en="For You" data-lt="Tau">For You</span><span data-en="Most Relevant" data-lt="Aktualiausi">Most Relevant</span><span data-en="Highest Rated" data-lt="Aukščiausiai įvertinti">Highest Rated</span></div>
+                <div class="app-card">
+                  <div class="app-img"><img src="assets/img/kitchen-640.webp" width="640" height="360" alt="" loading="lazy" decoding="async"><span class="app-heart"><svg><use href="#i-heart"/></svg></span></div>
+                  <div class="app-meta"><b data-en="Home kitchen nearby" data-lt="Namų virtuvė netoliese">Home kitchen nearby</b><span class="app-tags"><i data-en="Pickup" data-lt="Atsiėmimas">Pickup</i><i data-en="Delivery" data-lt="Pristatymas">Delivery</i></span></div>
+                </div>
+                <div class="app-card">
+                  <div class="app-img"><img src="assets/img/market-640.webp" width="640" height="357" alt="" loading="lazy" decoding="async"><span class="app-heart"><svg><use href="#i-heart"/></svg></span></div>
+                  <div class="app-meta"><b data-en="Home kitchen nearby" data-lt="Namų virtuvė netoliese">Home kitchen nearby</b><span class="app-tags"><i data-en="Pickup" data-lt="Atsiėmimas">Pickup</i></span></div>
+                </div>
+              </div>
+              <div class="scr scr-2">
+                <div class="app-title" data-en="Cart" data-lt="Krepšelis">Cart</div>
+                <div class="app-seg"><span data-en="Delivery" data-lt="Pristatymas">Delivery</span><span class="on" data-en="Pickup" data-lt="Atsiėmimas">Pickup</span></div>
+                <div class="app-item">
+                  <img src="assets/img/market-640.webp" width="640" height="357" alt="" loading="lazy" decoding="async">
+                  <span class="app-lines"><i></i><i class="short"></i></span>
+                  <span class="app-qty"><i>&minus;</i><i>+</i></span>
+                </div>
+                <div class="app-allergen"><svg><use href="#i-leaf"/></svg><span data-en="Allergens shown" data-lt="Alergenai nurodyti">Allergens shown</span></div>
+                <div class="app-sum"><span class="app-lines"><i></i><i></i></span></div>
+                <div class="app-note"><svg><use href="#i-shield"/></svg><span data-en="Your card is only held now. It is charged when the cook accepts." data-lt="Suma kortelėje tik rezervuojama. Ji nuskaitoma, kai virėjas priima užsakymą.">Your card is only held now. It is charged when the cook accepts.</span></div>
+                <div class="app-pay"><svg><use href="#i-card"/></svg><span data-en="Pay with Card" data-lt="Mokėti kortele">Pay with Card</span></div>
+              </div>
+              <div class="scr scr-3">
+                <div class="app-title" data-en="Orders" data-lt="Užsakymai">Orders</div>
+                <ol class="app-steps">
+                  <li class="done"><i><svg><use href="#i-check"/></svg></i><span data-en="Order Placed" data-lt="Užsakymas pateiktas">Order Placed</span></li>
+                  <li class="done"><i><svg><use href="#i-check"/></svg></i><span data-en="Accepted" data-lt="Priimtas">Accepted</span></li>
+                  <li class="now"><i><svg><use href="#i-bag"/></svg></i><span data-en="Ready for Pickup" data-lt="Paruoštas atsiėmimui">Ready for Pickup</span></li>
+                </ol>
+                <div class="app-rate">
+                  <b data-en="How was it?" data-lt="Kaip skanavo?">How was it?</b>
+                  <span class="app-stars"><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg><svg><use href="#i-star"/></svg></span>
+                  <span class="app-lines"><i></i><i class="short"></i></span>
+                </div>
+              </div>
+            </div>
+            <span class="phone-glare"></span>
+          </div>
+        </div>
+      </div>
 
-    <div class="benefits-grid">
-        <div class="benefit-item">
-            <h3 data-en="Safety" data-lt="Saugumas">Safety</h3>
-            <p data-en="A trusted marketplace for home-cooked food. Chefs must register with VMVT and VMI and complete our onboarding checks. KYC for payouts is handled via Stripe." data-lt="Patikima namų gamybos maisto prekyvietė. Virėjai privalo registruotis VMVT ir VMI bei praeiti mūsų patikrinimus. Tapatybės patvirtinimas išmokoms vykdomas per Stripe.">A trusted marketplace for home-cooked food. Chefs must register with VMVT and VMI and complete our onboarding checks. KYC for payouts is handled via Stripe.</p>
-        </div>
-        <div class="benefit-item">
-            <h3 data-en="No upfront fees" data-lt="Jokių išankstinių mokesčių">No upfront fees</h3>
-            <p data-en="Chefs pay nothing to join. We only make money when they do — no listing or subscription fees, only commission on completed orders." data-lt="Virėjai nemoka už prisijungimą. Mes uždirbame tik tada, kai uždirba jie — jokių skelbimų ar prenumeratos mokesčių, tik komisija nuo įvykdytų užsakymų.">Chefs pay nothing to join. We only make money when they do — no listing or subscription fees, only commission on completed orders.</p>
-        </div>
-        <div class="benefit-item">
-            <h3 data-en="Easy chef search" data-lt="Paprasta virėjų paieška">Easy chef search</h3>
-            <p data-en="Find food fast. Filter by cuisine, price, pickup time, chef rating, and dietary requirements — order in minutes." data-lt="Greitai raskite maistą. Filtruokite pagal virtuvę, kainą, atsiėmimo laiką, virėjo reitingą ir mitybos reikalavimus — užsisakykite per kelias minutes.">Find food fast. Filter by cuisine, price, pickup time, chef rating, and dietary requirements — order in minutes.</p>
-        </div>
-        <div class="benefit-item">
-            <h3 data-en="Modern" data-lt="Šiuolaikiška">Modern</h3>
-            <p data-en="Fast checkout & scheduling. Apple Pay, Google Pay, credit card — and real-time availability for last-minute pickup." data-lt="Greitas atsiskaitymas ir planavimas. Apple Pay, Google Pay, kreditinė kortelė — ir realaus laiko prieinamumas paskutinės minutės atsiėmimui.">Fast checkout & scheduling. Apple Pay, Google Pay, credit card — and real-time availability for last-minute pickup.</p>
-        </div>
-        <div class="benefit-item">
-            <h3 data-en="Time-saving" data-lt="Taupo laiką">Time-saving</h3>
-            <p data-en="Quick order flow. Browse, select pickup or chef delivery, pay — done in under 90 seconds." data-lt="Greitas užsakymo procesas. Naršykite, pasirinkite atsiėmimą ar pristatymą, apmokėkite — atlikta per 90 sekundžių.">Quick order flow. Browse, select pickup or chef delivery, pay — done in under 90 seconds.</p>
-        </div>
-        <div class="benefit-item">
-            <h3 data-en="Less stress" data-lt="Mažiau streso">Less stress</h3>
-            <p data-en="Trust the food you order. Chef profiles, reviews and clear allergen info so you know exactly what you're getting." data-lt="Pasitikėkite užsakomu maistu. Virėjų profiliai, atsiliepimai ir aiški informacija apie alergenus — žinote tiksliai, ką gaunate.">Trust the food you order. Chef profiles, reviews and clear allergen info so you know exactly what you're getting.</p>
-        </div>
+      <ol class="story-steps" role="list">
+        <li class="step" data-step="1">
+          <picture class="step-media"><source type="image/avif" srcset="assets/img/kitchen-640.avif"><img src="assets/img/kitchen-640.webp" width="640" height="360" alt="" loading="lazy" decoding="async"></picture>
+          <span class="step-n" aria-hidden="true">01</span>
+          <h3 data-en="Find a meal" data-lt="Raskite patiekalą">Find a meal</h3>
+          <p data-en="Browse home kitchens near you. Filter by cuisine, price, pickup or delivery and dietary needs. Order for today or up to a week ahead." data-lt="Naršykite namų virtuves netoliese. Filtruokite pagal virtuvę, kainą, atsiėmimą ar pristatymą ir mitybos poreikius. Užsisakykite šiandienai arba iki savaitės į priekį.">Browse home kitchens near you. Filter by cuisine, price, pickup or delivery and dietary needs. Order for today or up to a week ahead.</p>
+        </li>
+        <li class="step" data-step="2">
+          <picture class="step-media"><source type="image/avif" srcset="assets/img/market-640.avif"><img src="assets/img/market-640.webp" width="640" height="357" alt="" loading="lazy" decoding="async"></picture>
+          <span class="step-n" aria-hidden="true">02</span>
+          <h3 data-en="Order and pay safely" data-lt="Užsisakykite ir mokėkite saugiai">Order and pay safely</h3>
+          <p data-en="Pay by card through Stripe. Your card is only held when you order and charged when the cook accepts. If the cook can't take it, the hold is released." data-lt="Mokėkite kortele per Stripe. Užsakant suma kortelėje tik rezervuojama ir nuskaitoma, kai virėjas priima užsakymą. Jei virėjas negali jo priimti, rezervacija panaikinama.">Pay by card through Stripe. Your card is only held when you order and charged when the cook accepts. If the cook can't take it, the hold is released.</p>
+        </li>
+        <li class="step" data-step="3">
+          <picture class="step-media"><source type="image/avif" srcset="assets/img/living-room-640.avif"><img src="assets/img/living-room-640.webp" width="640" height="357" alt="" loading="lazy" decoding="async"></picture>
+          <span class="step-n" aria-hidden="true">03</span>
+          <h3 data-en="Pick up or get it delivered" data-lt="Atsiimkite arba gaukite pristatymą">Pick up or get it delivered</h3>
+          <p data-en="Each cook offers pickup, delivery or both. Collect your order or have it brought to your door, then leave a review that helps the next neighbour choose." data-lt="Kiekvienas virėjas siūlo atsiėmimą, pristatymą arba abu. Atsiimkite užsakymą arba gaukite jį iki durų, tada palikite atsiliepimą – jis padės kitam kaimynui pasirinkti.">Each cook offers pickup, delivery or both. Collect your order or have it brought to your door, then leave a review that helps the next neighbour choose.</p>
+        </li>
+      </ol>
     </div>
+    <div class="story-cta rv">
+      <a class="btn btn-forest" href="https://app.mamchef.com"><span data-en="Browse today's meals" data-lt="Peržiūrėti šiandienos patiekalus">Browse today's meals</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+    </div>
+  </div>
 </section>
 
-<!-- About Section -->
-<section class="about-section" id="about">
-    <div class="about-content">
-        <h2 data-en="About MamChef" data-lt="Apie MamChef">About MamChef</h2>
-        <div class="about-story">
-            <p data-en="One evening a home-cooked dinner saved the day — and we realised how many great cooks in our neighbourhood had no easy way to sell their food. MamChef started with a simple question: <em>what if finding fresh, homemade meals was as easy as calling a taxi?</em>" data-lt="Vieną vakarą namų gamybos vakarienė išgelbėjo dieną — ir mes supratome, kiek daug puikių virėjų mūsų kaimynystėje neturi paprasto būdo parduoti savo maistą. MamChef prasidėjo nuo paprasto klausimo: <em>o jei rasti šviežius, namų gamybos patiekalus būtų taip pat paprasta, kaip iškviesti taksi?</em>">One evening a home-cooked dinner saved the day — and we realised how many great cooks in our neighbourhood had no easy way to sell their food. MamChef started with a simple question: <em>what if finding fresh, homemade meals was as easy as calling a taxi?</em></p>
-            <p data-en="Today MamChef helps home cooks earn reliably and gives customers a better, affordable alternative to takeout." data-lt="Šiandien MamChef padeda namų virėjams patikimai užsidirbti ir suteikia klientams geresnę, įperkamą alternatyvą išsinešamam maistui.">Today MamChef helps home cooks earn reliably and gives customers a better, affordable alternative to takeout.</p>
+<!-- 5. Why MamChef: bento -->
+<section class="why dark" id="why" aria-labelledby="why-title">
+  <div class="wrap">
+    <div class="sec-head rv">
+      <p class="eyebrow" data-en="Why MamChef" data-lt="Kodėl MamChef">Why MamChef</p>
+      <h2 class="h2" id="why-title" data-en="Home food you can trust." data-lt="Namų maistas, kuriuo galite pasitikėti.">Home food you can trust.</h2>
+    </div>
+    <div class="bento" data-spotlight>
+      <article class="tile tile-a rv">
+        <div class="tile-art" aria-hidden="true"><picture><source type="image/avif" srcset="assets/img/neighbourhood-960.avif 960w, assets/img/neighbourhood-1280.avif 1280w" sizes="(min-width: 900px) 760px, 130vw"><img src="assets/img/neighbourhood-960.webp" srcset="assets/img/neighbourhood-960.webp 960w, assets/img/neighbourhood-1280.webp 1280w" sizes="(min-width: 900px) 760px, 130vw" width="1280" height="720" alt="" loading="lazy" decoding="async"></picture></div>
+        <div class="tile-body">
+          <span class="tile-ic" aria-hidden="true"><svg><use href="#i-user-check"/></svg></span>
+          <h3 data-en="Know your cook" data-lt="Pažinkite savo virėją">Know your cook</h3>
+          <p data-en="Every kitchen has its own page: who cooks, photos of the food and reviews from neighbours who ordered." data-lt="Kiekviena virtuvė turi savo puslapį: kas gamina, patiekalų nuotraukos ir kaimynų, kurie jau užsisakė, atsiliepimai.">Every kitchen has its own page: who cooks, photos of the food and reviews from neighbours who ordered.</p>
         </div>
+      </article>
+      <article class="tile tile-b rv" style="--d:60ms">
+        <span class="tile-ic" aria-hidden="true"><svg><use href="#i-shield"/></svg></span>
+        <h3 data-en="Registered kitchens, approved by people" data-lt="Registruotos virtuvės, patvirtintos žmonių">Registered kitchens, approved by people</h3>
+        <p data-en="Cooks register with VMVT and VMI. Our team checks and approves every kitchen by hand." data-lt="Virėjai registruojasi VMVT ir VMI. Mūsų komanda kiekvieną virtuvę patikrina ir patvirtina pati.">Cooks register with VMVT and VMI. Our team checks and approves every kitchen by hand.</p>
+      </article>
+      <article class="tile tile-c rv" style="--d:120ms">
+        <span class="tile-ic" aria-hidden="true"><svg><use href="#i-bike"/></svg></span>
+        <h3 data-en="Pickup or delivery" data-lt="Atsiėmimas arba pristatymas">Pickup or delivery</h3>
+        <p data-en="Each cook offers pickup, delivery or both. You see the option and the fee before you pay." data-lt="Kiekvienas virėjas siūlo atsiėmimą, pristatymą arba abu. Pasirinkimą ir mokestį matote prieš mokėdami.">Each cook offers pickup, delivery or both. You see the option and the fee before you pay.</p>
+      </article>
+      <article class="tile tile-d rv" style="--d:60ms">
+        <span class="tile-ic" aria-hidden="true"><svg><use href="#i-leaf"/></svg></span>
+        <h3 data-en="Allergens upfront" data-lt="Alergenai iš anksto">Allergens upfront</h3>
+        <p data-en="Ingredients and allergens are listed on every dish, so you know what is inside." data-lt="Prie kiekvieno patiekalo nurodyti ingredientai ir alergenai, tad žinote, kas viduje.">Ingredients and allergens are listed on every dish, so you know what is inside.</p>
+      </article>
+      <article class="tile tile-e rv" style="--d:120ms">
+        <span class="tile-ic" aria-hidden="true"><svg><use href="#i-calendar"/></svg></span>
+        <h3 data-en="Order ahead" data-lt="Užsisakykite iš anksto">Order ahead</h3>
+        <p data-en="Plan dinner for later in the week: pick a day up to a week ahead." data-lt="Planuokite vakarienę vėlesnei savaitės dienai: pasirinkite dieną iki savaitės į priekį.">Plan dinner for later in the week: pick a day up to a week ahead.</p>
+      </article>
+      <article class="tile tile-g rv">
+        <div class="tile-body">
+          <span class="tile-ic" aria-hidden="true"><svg><use href="#i-card"/></svg></span>
+          <h3 data-en="Pay only when the cook accepts" data-lt="Mokate tik tada, kai virėjas priima">Pay only when the cook accepts</h3>
+          <p data-en="Your card is held, not charged, until the cook says yes. If they decline, the hold is released and you pay nothing." data-lt="Kol virėjas nepatvirtina, suma kortelėje tik rezervuojama. Jei virėjas atsisako, rezervacija panaikinama ir nemokate nieko.">Your card is held, not charged, until the cook says yes. If they decline, the hold is released and you pay nothing.</p>
+        </div>
+        <div class="flow" aria-hidden="true">
+          <span class="flow-step"><span class="flow-ic"><svg><use href="#i-card"/></svg></span><b data-en="Card held" data-lt="Suma rezervuota">Card held</b></span>
+          <span class="flow-step"><span class="flow-ic"><svg><use href="#i-cloche"/></svg></span><b data-en="Cook accepts" data-lt="Virėjas priima">Cook accepts</b></span>
+          <span class="flow-step"><span class="flow-ic"><svg><use href="#i-check"/></svg></span><b data-en="Charged" data-lt="Nuskaityta">Charged</b></span>
+          <span class="flow-dot"></span>
+        </div>
+      </article>
+      <article class="tile tile-f rv" style="--d:60ms">
+        <span class="tile-ic" aria-hidden="true"><svg><use href="#i-chat"/></svg></span>
+        <h3 data-en="Support that answers" data-lt="Pagalba, kuri atsako">Support that answers</h3>
+        <p data-en="Real people at <a href='mailto:support@mamchef.com'>support@mamchef.com</a>, for customers and cooks." data-lt="Tikri žmonės adresu <a href='mailto:support@mamchef.com'>support@mamchef.com</a> – klientams ir virėjams.">Real people at <a href="mailto:support@mamchef.com">support@mamchef.com</a>, for customers and cooks.</p>
+      </article>
     </div>
-    <div class="about-visual">
-        <img src="https://api.mamchef.com/assets/mamchefabout.jpg" alt="Home cooking"/>
-    </div>
+  </div>
 </section>
 
-<!-- Target Audience -->
-<section class="audience-section" id="target">
-    <div class="audience-header">
-        <h2 data-en="Who is MamChef for?" data-lt="Kam skirtas MamChef?">Who is MamChef for?</h2>
+<!-- 6. Story -->
+<section class="origin" id="about" aria-labelledby="origin-title">
+  <div class="wrap origin-inner">
+    <div class="divider" aria-hidden="true"><svg class="hat hat-draw" viewBox="0 0 508 512" style="--sw:18"><use href="#hat"/></svg></div>
+    <p class="eyebrow rv" data-en="Our story" data-lt="Mūsų istorija">Our story</p>
+    <h2 class="quote rv" id="origin-title" style="--d:80ms" data-en="&ldquo;What if finding fresh, homemade meals was as easy as <mark>calling a taxi?</mark>&rdquo;" data-lt="&bdquo;O jei rasti šviežius, namų gamybos patiekalus būtų taip pat paprasta, kaip <mark>iškviesti taksi?</mark>&ldquo;">&ldquo;What if finding fresh, homemade meals was as easy as <mark>calling a taxi?</mark>&rdquo;</h2>
+    <div class="origin-text rv" style="--d:160ms">
+      <p data-en="One evening a home-cooked dinner saved the day, and we realised how many great cooks in our neighbourhood had no easy way to sell their food." data-lt="Vieną vakarą namų gamybos vakarienė išgelbėjo dieną, ir mes supratome, kiek daug puikių virėjų mūsų kaimynystėje neturi paprasto būdo parduoti savo maistą.">One evening a home-cooked dinner saved the day, and we realised how many great cooks in our neighbourhood had no easy way to sell their food.</p>
+      <p data-en="Today MamChef helps home cooks earn reliably and gives customers a better, affordable alternative to takeout." data-lt="Šiandien MamChef padeda namų virėjams patikimai užsidirbti ir suteikia klientams geresnę, įperkamą alternatyvą išsinešamam maistui.">Today MamChef helps home cooks earn reliably and gives customers a better, affordable alternative to takeout.</p>
     </div>
-    <div class="audience-cards">
-        <div class="audience-card">
-            <div class="audience-header-card">
-                <h3 data-en="For Home Cooks" data-lt="Namų virėjams">For Home Cooks</h3>
-                <p data-en="Turn your passion into profit" data-lt="Paverskite savo aistrą pelnu">Turn your passion into profit</p>
-            </div>
-            <div class="audience-content">
-                <ul class="audience-benefits">
-                    <li data-en="Earn from your talent — turn your cooking skills into income with no upfront fees" data-lt="Uždirbkite iš savo talento — paverskite kulinarijos įgūdžius pajamomis be išankstinių mokesčių">Earn from your talent — turn your cooking skills into income with no upfront fees</li>
-                    <li data-en="Flexible schedule — cook when you want, choose pickup or chef delivery" data-lt="Lankstus grafikas — gaminkite kada norite, pasirinkite atsiėmimą ar pristatymą">Flexible schedule — cook when you want, choose pickup or chef delivery</li>
-                    <li data-en="Local recognition — build a profile, gain reviews, and grow your own micro-brand" data-lt="Vietinis pripažinimas — kurkite profilį, gaukite atsiliepimų ir auginkite savo mikro prekės ženklą">Local recognition — build a profile, gain reviews, and grow your own micro-brand</li>
-                    <li data-en="Simple payouts — bi-weekly transfers directly to your bank via Stripe" data-lt="Paprastos išmokos — kas dvi savaites pervedimai tiesiai į jūsų banką per Stripe">Simple payouts — bi-weekly transfers directly to your bank via Stripe</li>
-                </ul>
-            </div>
-        </div>
-        <div class="audience-card">
-            <div class="audience-header-card">
-                <h3 data-en="For Food Lovers" data-lt="Maisto gurmanams">For Food Lovers</h3>
-                <p data-en="Discover authentic homemade meals" data-lt="Atraskite autentiškus namų gamybos patiekalus">Discover authentic homemade meals</p>
-            </div>
-            <div class="audience-content">
-                <ul class="audience-benefits">
-                    <li data-en="Affordable meals — real homemade food at prices lower than many restaurants" data-lt="Įperkami patiekalai — tikras namų gamybos maistas už mažesnes nei daugelio restoranų kainas">Affordable meals — real homemade food at prices lower than many restaurants</li>
-                    <li data-en="Support local — every order helps a neighbour earn and grow" data-lt="Palaikykite vietinius — kiekvienas užsakymas padeda kaimynui užsidirbti ir augti">Support local — every order helps a neighbour earn and grow</li>
-                    <li data-en="Healthier choices — authentic recipes, clear allergens, no industrial kitchens" data-lt="Sveikesni pasirinkimai — autentiški receptai, aiškūs alergenai, jokių pramoninių virtuvių">Healthier choices — authentic recipes, clear allergens, no industrial kitchens</li>
-                    <li data-en="Convenience — order in under 90 seconds, pickup nearby or get chef delivery" data-lt="Patogumas — užsisakykite per 90 sekundžių, atsiimkite netoliese arba gaukite pristatymą">Convenience — order in under 90 seconds, pickup nearby or get chef delivery</li>
-                </ul>
-            </div>
-        </div>
-    </div>
+  </div>
 </section>
 
-<!-- How it Works -->
-<section class="how-it-works" id="how-it-works">
-    <div class="section-header">
-        <h2 data-en="How it works" data-lt="Kaip tai veikia">How it works</h2>
+<!-- 7. For home cooks -->
+<section class="cooks dark" id="for-cooks" aria-labelledby="cooks-title">
+  <div class="wrap cooks-inner">
+    <div class="cooks-copy">
+      <p class="eyebrow rv" data-en="For home cooks" data-lt="Namų virėjams">For home cooks</p>
+      <h2 class="h2 rv" id="cooks-title" style="--d:60ms" data-en="Turn your kitchen into <em class='hl'>income.</em>" data-lt="Paverskite virtuvę <em class='hl'>pajamomis.</em>">Turn your kitchen into <em class="hl">income.</em></h2>
+      <p class="lead rv" style="--d:120ms" data-en="No upfront fees. Set your menu, prices and hours. We bring the customers and handle payments. Paid straight to your bank via Stripe." data-lt="Jokių išankstinių mokesčių. Patys nustatote meniu, kainas ir darbo laiką. Mes atvedame klientus ir tvarkome mokėjimus. Pinigai – tiesiai į jūsų banką per Stripe.">No upfront fees. Set your menu, prices and hours. We bring the customers and handle payments. Paid straight to your bank via Stripe.</p>
+      <div class="cooks-ctas rv" style="--d:180ms">
+        <a class="btn btn-gold" href="chefs/"><span data-en="Become a chef" data-lt="Tapti virėju">Become a chef</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <p class="fine" data-en="MamChef takes a small commission only when you sell." data-lt="MamChef ima nedidelį komisinį mokestį tik tada, kai parduodate.">MamChef takes a small commission only when you sell.</p>
+      </div>
     </div>
-    <div class="process-switcher">
-        <button class="process-tab active" onclick="showProcess('customers')" data-en="For Customers" data-lt="Klientams">For Customers</button>
-        <button class="process-tab" onclick="showProcess('chefs')" data-en="For Chefs" data-lt="Virėjams">For Chefs</button>
+    <div class="cooks-art rv" aria-hidden="true">
+      <div class="cooks-frame">
+        <picture><source type="image/avif" srcset="assets/img/kitchen-640.avif 640w, assets/img/kitchen-960.avif 960w, assets/img/kitchen-1280.avif 1280w" sizes="(min-width: 900px) 900px, 160vw"><img src="assets/img/kitchen-960.webp" srcset="assets/img/kitchen-640.webp 640w, assets/img/kitchen-960.webp 960w, assets/img/kitchen-1280.webp 1280w" sizes="(min-width: 900px) 900px, 160vw" width="1280" height="720" alt="" loading="lazy" decoding="async"></picture>
+      </div>
+      <div class="order-card">
+        <span class="oc-top"><span class="oc-dot"></span><b data-en="New order" data-lt="Naujas užsakymas">New order</b></span>
+        <span class="app-lines"><i></i><i class="short"></i></span>
+        <span class="oc-btns"><i data-en="Decline" data-lt="Atmesti">Decline</i><i class="ok" data-en="Accept" data-lt="Priimti">Accept</i></span>
+      </div>
+      <div class="payout-card"><svg class="hat"><use href="#hat"/></svg><span><b data-en="Payout via Stripe" data-lt="Išmoka per Stripe">Payout via Stripe</b><small data-en="Straight to your bank" data-lt="Tiesiai į jūsų banką">Straight to your bank</small></span></div>
     </div>
-
-    <div id="customers-process" class="process-timeline">
-        <div class="timeline-step">
-            <div class="step-indicator">1</div>
-            <h4 data-en="Find a meal" data-lt="Raskite patiekalą">Find a meal</h4>
-            <p data-en="Browse menus, filter by cuisine, price, or pickup/delivery options to find the perfect homemade meal." data-lt="Naršykite meniu, filtruokite pagal virtuvę, kainą ar atsiėmimo/pristatymo galimybes, kad rastumėte tobulą namų gamybos patiekalą.">Browse menus, filter by cuisine, price, or pickup/delivery options to find the perfect homemade meal.</p>
-        </div>
-        <div class="timeline-step">
-            <div class="step-indicator">2</div>
-            <h4 data-en="Order & pay" data-lt="Užsisakykite ir apmokėkite">Order & pay</h4>
-            <p data-en="Secure checkout with card, Apple Pay, or Google Pay. No hidden fees, just transparent pricing." data-lt="Saugus atsiskaitymas kortele, Apple Pay ar Google Pay. Jokių paslėptų mokesčių, tik skaidri kainodara.">Secure checkout with card, Apple Pay, or Google Pay. No hidden fees, just transparent pricing.</p>
-        </div>
-        <div class="timeline-step">
-            <div class="step-indicator">3</div>
-            <h4 data-en="Enjoy & review" data-lt="Mėgaukitės ir įvertinkite">Enjoy & review</h4>
-            <p data-en="Pick up your order or get it delivered, then leave feedback to help the chef grow their business." data-lt="Atsiimkite užsakymą arba gaukite pristatymą, tada palikite atsiliepimą, kad padėtumėte virėjui auginti verslą.">Pick up your order or get it delivered, then leave feedback to help the chef grow their business.</p>
-        </div>
-    </div>
-
-    <div id="chefs-process" class="process-timeline" style="display: none;">
-        <div class="timeline-step">
-            <div class="step-indicator">1</div>
-            <h4 data-en="Join MamChef" data-lt="Prisijunkite prie MamChef">Join MamChef</h4>
-            <p data-en="Sign up, complete VMVT/VMI registration, and create your chef profile with photos and specialties." data-lt="Užsiregistruokite, užbaikite VMVT/VMI registraciją ir sukurkite virėjo profilį su nuotraukomis ir specialybėmis.">Sign up, complete VMVT/VMI registration, and create your chef profile with photos and specialties.</p>
-        </div>
-        <div class="timeline-step">
-            <div class="step-indicator">2</div>
-            <h4 data-en="List your meals" data-lt="Įkelkite patiekalus">List your meals</h4>
-            <p data-en="Upload dishes with photos, set prices, and choose pickup/delivery times that work for you." data-lt="Įkelkite patiekalus su nuotraukomis, nustatykite kainas ir pasirinkite jums tinkantį atsiėmimo/pristatymo laiką.">Upload dishes with photos, set prices, and choose pickup/delivery times that work for you.</p>
-        </div>
-        <div class="timeline-step">
-            <div class="step-indicator">3</div>
-            <h4 data-en="Cook & earn" data-lt="Gaminkite ir uždirbkite">Cook & earn</h4>
-            <p data-en="Receive orders, prepare meals with love, and get paid bi-weekly directly to your bank account." data-lt="Gaukite užsakymus, ruoškite patiekalus su meile ir gaukite išmokas kas dvi savaites tiesiai į banko sąskaitą.">Receive orders, prepare meals with love, and get paid bi-weekly directly to your bank account.</p>
-        </div>
-    </div>
+    <ol class="rail" role="list" data-inview>
+      <li class="rv"><span class="rail-n" aria-hidden="true">1</span><h3 data-en="Sign up" data-lt="Užsiregistruokite">Sign up</h3><p data-en="Create your chef account in the MamChef chef app or web panel." data-lt="Susikurkite virėjo paskyrą MamChef virėjų programėlėje arba internetiniame skydelyje.">Create your chef account in the MamChef chef app or web panel.</p></li>
+      <li class="rv" style="--d:90ms"><span class="rail-n" aria-hidden="true">2</span><h3 data-en="Get approved" data-lt="Gaukite patvirtinimą">Get approved</h3><p data-en="Add your VMVT number and documents. We guide you through VMVT and VMI registration." data-lt="Pateikite VMVT numerį ir dokumentus. Padėsime susitvarkyti VMVT ir VMI registraciją.">Add your VMVT number and documents. We guide you through VMVT and VMI registration.</p></li>
+      <li class="rv" style="--d:180ms"><span class="rail-n" aria-hidden="true">3</span><h3 data-en="Set up your kitchen" data-lt="Įsirenkite savo virtuvę">Set up your kitchen</h3><p data-en="Add dishes with photos, prices and allergens, and choose your pickup or delivery times." data-lt="Įkelkite patiekalus su nuotraukomis, kainomis ir alergenais, pasirinkite atsiėmimo ar pristatymo laiką.">Add dishes with photos, prices and allergens, and choose your pickup or delivery times.</p></li>
+      <li class="rv" style="--d:270ms"><span class="rail-n" aria-hidden="true">4</span><h3 data-en="Cook and earn" data-lt="Gaminkite ir uždirbkite">Cook and earn</h3><p data-en="Accept orders, cook and hand over. Payouts go to your bank via Stripe." data-lt="Priimkite užsakymus, gaminkite ir perduokite. Išmokos keliauja į jūsų banką per Stripe.">Accept orders, cook and hand over. Payouts go to your bank via Stripe.</p></li>
+    </ol>
+  </div>
 </section>
 
-<!-- FAQ Section -->
-<section class="faq-section" id="faq">
-    <div class="faq-header">
-        <h2 data-en="Frequently asked questions" data-lt="Dažniausiai užduodami klausimai">Frequently asked questions</h2>
+<!-- 8. Neighbourhood -->
+<section class="hood" id="vilnius" aria-labelledby="hood-title">
+  <div class="wrap hood-inner">
+    <div class="hood-copy">
+      <p class="eyebrow rv" data-en="Neighbourhood" data-lt="Kaimynystė">Neighbourhood</p>
+      <h2 class="h2 rv" id="hood-title" style="--d:60ms" data-en="Starting in Vilnius. Your city next?" data-lt="Pradedame Vilniuje. Kitas – jūsų miestas?">Starting in Vilnius. Your city next?</h2>
+      <p class="lead rv" style="--d:120ms" data-en="MamChef is local by design: the cook and the customer live in the same streets. We are opening city by city." data-lt="MamChef sukurtas vietiniam ryšiui: virėjas ir klientas gyvena tose pačiose gatvėse. Atsidarome miestas po miesto.">MamChef is local by design: the cook and the customer live in the same streets. We are opening city by city.</p>
+      <a class="btn btn-line rv" style="--d:180ms" href="mailto:support@mamchef.com?subject=MamChef%20in%20my%20city"><svg aria-hidden="true"><use href="#i-mail"/></svg><span data-en="Tell us where: support@mamchef.com" data-lt="Parašykite mums: support@mamchef.com">Tell us where: support@mamchef.com</span></a>
     </div>
-
-    <div class="faq-category">
-        <h3 data-en="For Customers" data-lt="Klientams">For Customers</h3>
-        <div class="faq-item">
-            <button class="faq-question" onclick="toggleFaq(this)">
-                <span data-en="Where does the food come from?" data-lt="Iš kur yra maistas?">Where does the food come from?</span>
-                <span class="faq-toggle">+</span>
-            </button>
-            <div class="faq-answer" data-en="All meals are prepared by independent home cooks (chefs) in Vilnius, who are registered with the State Food and Veterinary Service (VMVT) and meet hygiene regulations." data-lt="Visus patiekalus ruošia nepriklausomi namų virėjai Vilniuje, kurie yra registruoti Valstybinėje maisto ir veterinarijos tarnyboje (VMVT) ir atitinka higienos reikalavimus.">
-                All meals are prepared by independent home cooks (chefs) in Vilnius, who are registered with the State Food and Veterinary Service (VMVT) and meet hygiene regulations.
-            </div>
-        </div>
-        <div class="faq-item">
-            <button class="faq-question" onclick="toggleFaq(this)">
-                <span data-en="How do I pay for my order?" data-lt="Kaip apmokėti užsakymą?">How do I pay for my order?</span>
-                <span class="faq-toggle">+</span>
-            </button>
-            <div class="faq-answer" data-en="Payments are made securely through MamChef using card, Apple Pay, or Google Pay. All transactions are processed through our secure payment system." data-lt="Mokėjimai saugiai atliekami per MamChef naudojant kortelę, Apple Pay ar Google Pay. Visos transakcijos apdorojamos per mūsų saugią mokėjimo sistemą.">
-                Payments are made securely through MamChef using card, Apple Pay, or Google Pay. All transactions are processed through our secure payment system.
-            </div>
-        </div>
-        <div class="faq-item">
-            <button class="faq-question" onclick="toggleFaq(this)">
-                <span data-en="Can I get my food delivered?" data-lt="Ar galiu gauti maisto pristatymą?">Can I get my food delivered?</span>
-                <span class="faq-toggle">+</span>
-            </button>
-            <div class="faq-answer" data-en="Yes — some chefs offer delivery ('chef delivery'), while others provide pickup. You can choose your preferred option during checkout." data-lt="Taip — kai kurie virėjai siūlo pristatymą ('virėjo pristatymas'), kiti siūlo atsiėmimą. Galite pasirinkti norimą variantą atsiskaitydami.">
-                Yes — some chefs offer delivery ("chef delivery"), while others provide pickup. You can choose your preferred option during checkout.
-            </div>
-        </div>
-        <div class="faq-item">
-            <button class="faq-question" onclick="toggleFaq(this)">
-                <span data-en="What if I have allergies or dietary restrictions?" data-lt="Ką daryti, jei turiu alergijų ar mitybos apribojimų?">What if I have allergies or dietary restrictions?</span>
-                <span class="faq-toggle">+</span>
-            </button>
-            <div class="faq-answer" data-en="Each meal listing includes detailed ingredient information and allergen warnings. You can also filter meals by dietary preferences like vegetarian, vegan, gluten-free, and more." data-lt="Kiekviename patiekalo apraše yra detali informacija apie ingredientus ir įspėjimai apie alergenus. Taip pat galite filtruoti patiekalus pagal mitybos prioritetus: vegetariški, veganiški, be glitimo ir kt.">
-                Each meal listing includes detailed ingredient information and allergen warnings. You can also filter meals by dietary preferences like vegetarian, vegan, gluten-free, and more.
-            </div>
-        </div>
-        <div class="faq-item">
-            <button class="faq-question" onclick="toggleFaq(this)">
-                <span data-en="What if something goes wrong with my order?" data-lt="Ką daryti, jei su užsakymu kažkas negerai?">What if something goes wrong with my order?</span>
-                <span class="faq-toggle">+</span>
-            </button>
-            <div class="faq-answer" data-en="You can request support directly via the app or website. Refunds and disputes are handled fairly between you and the chef, with MamChef support team helping when needed." data-lt="Galite kreiptis pagalbos tiesiai per programėlę ar svetainę. Grąžinimai ir ginčai sprendžiami sąžiningai tarp jūsų ir virėjo, MamChef palaikymo komandai padedant esant poreikiui.">
-                You can request support directly via the app or website. Refunds and disputes are handled fairly between you and the chef, with MamChef support team helping when needed.
-            </div>
-        </div>
+    <div class="map rv" aria-hidden="true">
+      <div class="map-plane">
+        <svg class="map-svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+          <rect width="800" height="600" fill="#0f2a22"/>
+          <path d="M-20 430 C 120 380, 220 470, 360 420 S 600 330, 820 380 L 820 470 C 620 420, 520 520, 360 510 S 120 470, -20 520 Z" fill="#163a30"/>
+          <g fill="#15392f">
+            <rect x="40" y="40" width="150" height="110" rx="10"/><rect x="215" y="40" width="120" height="110" rx="10"/><rect x="360" y="40" width="170" height="110" rx="10"/><rect x="555" y="40" width="205" height="110" rx="10"/>
+            <rect x="40" y="175" width="110" height="150" rx="10"/><rect x="175" y="175" width="160" height="70" rx="10"/><rect x="175" y="265" width="160" height="60" rx="10"/><rect x="455" y="175" width="120" height="150" rx="10"/><rect x="600" y="175" width="160" height="150" rx="10"/>
+            <rect x="40" y="540" width="200" height="80" rx="10"/><rect x="265" y="545" width="220" height="80" rx="10"/><rect x="510" y="530" width="250" height="90" rx="10"/>
+          </g>
+          <rect x="360" y="175" width="70" height="150" rx="10" fill="#2c5346"/>
+          <g fill="#527c70"><circle cx="380" cy="200" r="7"/><circle cx="405" cy="225" r="6"/><circle cx="385" cy="262" r="8"/><circle cx="410" cy="298" r="6"/></g>
+          <g fill="none" stroke="#c2e1d7" stroke-opacity=".28" stroke-width="3" stroke-linecap="round">
+            <path d="M0 162 H800 M0 337 H800 M202 0 V350 M347 0 V600 M542 0 V600 M443 160 V340"/>
+            <path d="M0 530 C 200 500, 420 560, 800 510" stroke-dasharray="2 10"/>
+          </g>
+        </svg>
+        <div class="radius"><i></i><i></i></div>
+        <span class="you"><i></i></span>
+        <span class="pin pin-1"><svg class="hat"><use href="#hat"/></svg></span>
+        <span class="pin pin-2 pin-rust"><svg class="hat"><use href="#hat"/></svg></span>
+        <span class="pin pin-3"><svg class="hat"><use href="#hat"/></svg></span>
+        <span class="pin pin-4 pin-rust"><svg class="hat"><use href="#hat"/></svg></span>
+        <div class="pin-card pc-1"><b data-en="A home cook nearby" data-lt="Namų virėjas netoliese">A home cook nearby</b><span class="app-tags"><i data-en="Pickup" data-lt="Atsiėmimas">Pickup</i><i data-en="Delivery" data-lt="Pristatymas">Delivery</i></span></div>
+        <div class="pin-card pc-2"><b data-en="A home cook nearby" data-lt="Namų virėjas netoliese">A home cook nearby</b><span class="app-tags"><i data-en="Pickup" data-lt="Atsiėmimas">Pickup</i></span></div>
+      </div>
     </div>
-
-    <div class="faq-category">
-        <h3 data-en="For Home Cooks (Chefs)" data-lt="Namų virėjams">For Home Cooks (Chefs)</h3>
-        <div class="faq-item">
-            <button class="faq-question" onclick="toggleFaq(this)">
-                <span data-en="Do I need a license to sell food on MamChef?" data-lt="Ar reikia licencijos parduoti maistą MamChef?">Do I need a license to sell food on MamChef?</span>
-                <span class="faq-toggle">+</span>
-            </button>
-            <div class="faq-answer" data-en="Yes — all chefs must register their activity with VMI (for taxes) and VMVT (for food safety approval). MamChef provides a step-by-step guide to help you." data-lt="Taip — visi virėjai privalo registruoti savo veiklą VMI (mokesčiams) ir VMVT (maisto saugos patvirtinimui). MamChef pateikia žingsnis po žingsnio vadovą jums padėti.">
-                Yes — all chefs must register their activity with VMI (for taxes) and VMVT (for food safety approval). MamChef provides a step-by-step guide to help you.
-            </div>
-        </div>
-        <div class="faq-item">
-            <button class="faq-question" onclick="toggleFaq(this)">
-                <span data-en="How much does it cost to join MamChef?" data-lt="Kiek kainuoja prisijungti prie MamChef?">How much does it cost to join MamChef?</span>
-                <span class="faq-toggle">+</span>
-            </button>
-            <div class="faq-answer" data-en="There are no upfront fees. MamChef charges a small commission only when you sell a meal." data-lt="Nėra jokių išankstinių mokesčių. MamChef ima nedidelį komisinius tik kai parduodate patiekalą.">
-                There are no upfront fees. MamChef charges a small commission only when you sell a meal.
-            </div>
-        </div>
-        <div class="faq-item">
-            <button class="faq-question" onclick="toggleFaq(this)">
-                <span data-en="How do payouts work?" data-lt="Kaip veikia išmokos?">How do payouts work?</span>
-                <span class="faq-toggle">+</span>
-            </button>
-            <div class="faq-answer" data-en="Payouts are handled through Stripe Connect. Chefs receive their earnings every two weeks, directly to their bank account, minus MamChef's commission." data-lt="Išmokos tvarkomos per Stripe Connect. Virėjai gauna pajamas kas dvi savaites tiesiai į banko sąskaitą, atėmus MamChef komisinius.">
-                Payouts are handled through Stripe Connect. Chefs receive their earnings every two weeks, directly to their bank account, minus MamChef's commission.
-            </div>
-        </div>
-        <div class="faq-item">
-            <button class="faq-question" onclick="toggleFaq(this)">
-                <span data-en="How do I set my menu and prices?" data-lt="Kaip nustatyti meniu ir kainas?">How do I set my menu and prices?</span>
-                <span class="faq-toggle">+</span>
-            </button>
-            <div class="faq-answer" data-en="Once approved, you can upload meals, set portion sizes, add photos, and choose your own pricing and pickup/delivery times." data-lt="Kai būsite patvirtinti, galėsite įkelti patiekalus, nustatyti porcijų dydžius, pridėti nuotraukas ir pasirinkti savo kainodarą bei atsiėmimo/pristatymo laikus.">
-                Once approved, you can upload meals, set portion sizes, add photos, and choose your own pricing and pickup/delivery times.
-            </div>
-        </div>
-        <div class="faq-item">
-            <button class="faq-question" onclick="toggleFaq(this)">
-                <span data-en="What support does MamChef provide?" data-lt="Kokią pagalbą teikia MamChef?">What support does MamChef provide?</span>
-                <span class="faq-toggle">+</span>
-            </button>
-            <div class="faq-answer" data-en="We provide onboarding guidance (VMVT & VMI), marketing exposure on our platform, and secure payment processing." data-lt="Mes teikiame pradžios konsultacijas (VMVT ir VMI), rinkodaros matomumą mūsų platformoje ir saugų mokėjimų apdorojimą.">
-                We provide onboarding guidance (VMVT & VMI), marketing exposure on our platform, and secure payment processing.
-            </div>
-        </div>
-    </div>
+  </div>
 </section>
 
-<!-- Support Section -->
-<section class="support-section" id="support">
-    <div class="support-card">
-        <span class="support-eyebrow" data-en="Support & Company Information" data-lt="Pagalba ir įmonės informacija">Support & Company Information</span>
-        <h2 data-en="Need help with MamChef?" data-lt="Reikia pagalbos su MamChef?">Need help with MamChef?</h2>
-        <p class="support-intro" data-en="MamChef customer and chef support is available by email. If you have a question about orders, onboarding, payments, or your account, contact us directly and our team will help you." data-lt="MamChef klientų ir virėjų pagalba teikiama el. paštu. Jei turite klausimų apie užsakymus, registraciją, mokėjimus ar paskyrą, susisiekite su mumis tiesiogiai ir mūsų komanda padės.">MamChef customer and chef support is available by email. If you have a question about orders, onboarding, payments, or your account, contact us directly and our team will help you.</p>
-        <div class="support-grid">
-            <div class="support-item">
-                <span class="support-label" data-en="Company" data-lt="Įmonė">Company</span>
-                <div class="support-value">MB MamChef</div>
-            </div>
-            <div class="support-item">
-                <span class="support-label" data-en="Support Email" data-lt="Pagalbos el. paštas">Support Email</span>
-                <div class="support-value"><a href="mailto:support@mamchef.com">support@mamchef.com</a></div>
-            </div>
+<!-- 9. Get the app / launch band -->
+<section class="launch dark" id="get-the-app" aria-labelledby="launch-title">
+  <div class="wrap">
+    <div class="ticket rv">
+      <div class="ticket-main">
+        <p class="kicker"><span class="kicker-dot" aria-hidden="true"></span><span data-en="Launching now" data-lt="Startuojame dabar">Launching now</span></p>
+        <h2 class="h2" id="launch-title" data-en="Try MamChef now." data-lt="Išbandykite MamChef dabar.">Try MamChef now.</h2>
+        <p class="lead" data-en="Open the web app on any phone or computer. Nothing to install." data-lt="Atidarykite internetinę programėlę bet kuriame telefone ar kompiuteryje. Nieko diegti nereikia.">Open the web app on any phone or computer. Nothing to install.</p>
+        <div class="ticket-ctas">
+          <a class="btn btn-gold" href="https://app.mamchef.com"><span data-en="Open the web app" data-lt="Atidaryti programėlę">Open the web app</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
         </div>
-        <p class="support-note">
-            <span data-en="For App Store users, this page and our dedicated support page are public contact points for customer questions and assistance. You can also visit " data-lt="App Store naudotojams šis puslapis ir mūsų atskiras pagalbos puslapis yra vieši kontaktiniai taškai klausimams ir pagalbai. Taip pat galite apsilankyti ">For App Store users, this page and our dedicated support page are public contact points for customer questions and assistance. You can also visit </span><a href="support/">mamchef.com/support</a><span data-en=" once this file is published at that route." data-lt=", kai šis failas bus paskelbtas tuo adresu."> once this file is published at that route.</span>
-        </p>
+        <div class="stores">
+          <p data-en="Cooking at home? Get the chef app:" data-lt="Gaminate namuose? Atsisiųskite virėjų programėlę:">Cooking at home? Get the chef app:</p>
+          <div class="store-row">
+            <a class="store" href="https://apps.apple.com/us/app/mamchef-chef-panel/id6765938630"><svg aria-hidden="true"><use href="#i-apple"/></svg><span><small data-en="Chef app on the" data-lt="Virėjų programėlė">Chef app on the</small><b>App Store</b></span></a>
+            <a class="store" href="https://play.google.com/store/apps/details?id=com.mamchef.chef"><svg aria-hidden="true"><use href="#i-gplay"/></svg><span><small data-en="Chef app on" data-lt="Virėjų programėlė">Chef app on</small><b>Google Play</b></span></a>
+          </div>
+        </div>
+      </div>
+      <div class="ticket-stub">
+        <div class="qr"><svg viewBox="-2 -2 29 29" role="img" aria-label="QR code that opens app.mamchef.com" data-aria-en="QR code that opens app.mamchef.com" data-aria-lt="QR kodas, atidarantis app.mamchef.com"><path stroke="#15392f" d="M0 0.5h7m1 0h5m3 0h1m1 0h7m-25 1h1m5 0h1m1 0h2m1 0h1m6 0h1m5 0h1m-25 1h1m1 0h3m1 0h1m4 0h4m1 0h1m1 0h1m1 0h3m1 0h1m-25 1h1m1 0h3m1 0h1m1 0h2m1 0h1m1 0h2m3 0h1m1 0h3m1 0h1m-25 1h1m1 0h3m1 0h1m2 0h1m2 0h1m1 0h3m1 0h1m1 0h3m1 0h1m-25 1h1m5 0h1m2 0h2m1 0h1m1 0h1m3 0h1m5 0h1m-25 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-17 1h2m2 0h1m1 0h2m-16 1h1m1 0h2m1 0h3m1 0h3m4 0h1m1 0h1m2 0h1m1 0h2m-24 1h2m1 0h1m3 0h3m1 0h2m2 0h2m1 0h1m3 0h1m-24 1h3m2 0h3m1 0h1m2 0h2m2 0h2m1 0h2m-21 1h1m2 0h3m1 0h2m1 0h4m5 0h1m1 0h2m-22 1h3m1 0h2m2 0h3m1 0h2m2 0h2m1 0h1m1 0h3m-24 1h1m1 0h1m1 0h1m2 0h2m1 0h1m2 0h3m1 0h3m3 0h1m-24 1h1m1 0h1m2 0h5m1 0h1m7 0h1m1 0h2m-24 1h1m1 0h2m3 0h1m1 0h2m1 0h1m1 0h2m2 0h3m3 0h1m-23 1h1m1 0h1m1 0h2m2 0h2m1 0h1m2 0h9m-17 1h2m2 0h1m3 0h1m3 0h1m1 0h1m1 0h1m-25 1h7m1 0h1m1 0h5m1 0h1m1 0h1m1 0h1m1 0h3m-25 1h1m5 0h1m1 0h3m1 0h1m2 0h2m3 0h1m3 0h1m-25 1h1m1 0h3m1 0h1m2 0h3m2 0h1m1 0h6m1 0h1m-24 1h1m1 0h3m1 0h1m1 0h2m2 0h2m4 0h1m1 0h5m-25 1h1m1 0h3m1 0h1m1 0h1m2 0h1m3 0h4m1 0h1m1 0h2m-24 1h1m5 0h1m3 0h1m2 0h2m2 0h2m1 0h1m1 0h1m-23 1h7m1 0h1m3 0h1m6 0h6"/></svg></div>
+        <p class="qr-cap" data-en="Scan to open app.mamchef.com" data-lt="Nuskenuokite ir atidarykite app.mamchef.com">Scan to open app.mamchef.com</p>
+        <p class="built" data-en="Built in Lithuania. Launching now." data-lt="Sukurta Lietuvoje. Startuojame dabar.">Built in Lithuania. Launching now.</p>
+        <a class="partners" href="mailto:support@mamchef.com?subject=Partners%20and%20investors"><span data-en="For partners and investors" data-lt="Partneriams ir investuotojams">For partners and investors</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
     </div>
+  </div>
+</section>
+
+<!-- 10. FAQ -->
+<section class="faq" id="faq" aria-labelledby="faq-title">
+  <div class="wrap faq-inner">
+    <div class="faq-head rv">
+      <p class="eyebrow" data-en="FAQ" data-lt="DUK">FAQ</p>
+      <h2 class="h2" id="faq-title" data-en="Questions, answered." data-lt="Klausimai ir atsakymai.">Questions, answered.</h2>
+      <p class="lead" data-en="Something else? Write to <a href='mailto:support@mamchef.com'>support@mamchef.com</a>." data-lt="Kitas klausimas? Rašykite <a href='mailto:support@mamchef.com'>support@mamchef.com</a>.">Something else? Write to <a href="mailto:support@mamchef.com">support@mamchef.com</a>.</p>
+    </div>
+    <div class="faq-groups">
+      <div class="faq-group rv">
+        <h3 data-en="For customers" data-lt="Klientams">For customers</h3>
+        <details><summary><span data-en="Where does the food come from?" data-lt="Iš kur atkeliauja maistas?">Where does the food come from?</span></summary><p data-en="Every meal is cooked by an independent home cook in Vilnius who is registered with the State Food and Veterinary Service (VMVT) and follows its hygiene rules." data-lt="Kiekvieną patiekalą gamina nepriklausomas namų virėjas Vilniuje, užsiregistravęs Valstybinėje maisto ir veterinarijos tarnyboje (VMVT) ir laikantis jos higienos reikalavimų.">Every meal is cooked by an independent home cook in Vilnius who is registered with the State Food and Veterinary Service (VMVT) and follows its hygiene rules.</p></details>
+        <details><summary><span data-en="How do I know the cook is licensed?" data-lt="Kaip žinoti, ar virėjas registruotas?">How do I know the cook is licensed?</span></summary><p data-en="Cooks must be registered with VMVT (food safety) and VMI (tax). Before anyone can sell, they give us their VMVT number and documents, and our team checks and approves each kitchen by hand." data-lt="Virėjai privalo būti registruoti VMVT (maisto sauga) ir VMI (mokesčiai). Prieš pradėdami prekiauti, jie pateikia mums VMVT numerį ir dokumentus, o mūsų komanda kiekvieną virtuvę patikrina ir patvirtina pati.">Cooks must be registered with VMVT (food safety) and VMI (tax). Before anyone can sell, they give us their VMVT number and documents, and our team checks and approves each kitchen by hand.</p></details>
+        <details><summary><span data-en="How do I pay?" data-lt="Kaip sumokėti?">How do I pay?</span></summary><p data-en="By card, through Stripe's secure checkout. Your card is only held when you order and charged when the cook accepts. If the cook declines, the hold is released. You can also use MamChef credit in your account." data-lt="Kortele, per saugų Stripe atsiskaitymą. Užsakant suma kortelėje tik rezervuojama ir nuskaitoma, kai virėjas priima užsakymą. Jei virėjas atsisako, rezervacija panaikinama. Taip pat galite naudoti MamChef kreditą savo paskyroje.">By card, through Stripe's secure checkout. Your card is only held when you order and charged when the cook accepts. If the cook declines, the hold is released. You can also use MamChef credit in your account.</p></details>
+        <details><summary><span data-en="Can I get my food delivered?" data-lt="Ar galima užsisakyti pristatymą?">Can I get my food delivered?</span></summary><p data-en="Yes, where the cook offers it. Each cook chooses pickup, delivery or both, and you see the option and any delivery fee before you pay." data-lt="Taip, jei virėjas jį siūlo. Kiekvienas virėjas pasirenka atsiėmimą, pristatymą arba abu, o pasirinkimą ir pristatymo mokestį matote prieš mokėdami.">Yes, where the cook offers it. Each cook chooses pickup, delivery or both, and you see the option and any delivery fee before you pay.</p></details>
+        <details><summary><span data-en="What if I have allergies or dietary needs?" data-lt="Ką daryti, jei turiu alergijų ar mitybos apribojimų?">What if I have allergies or dietary needs?</span></summary><p data-en="Each meal lists its ingredients and allergen warnings. You can also filter meals by dietary preferences such as vegetarian, vegan or gluten-free." data-lt="Prie kiekvieno patiekalo nurodyti ingredientai ir įspėjimai apie alergenus. Taip pat galite filtruoti patiekalus pagal mitybos pasirinkimus, pavyzdžiui, vegetariški, veganiški ar be glitimo.">Each meal lists its ingredients and allergen warnings. You can also filter meals by dietary preferences such as vegetarian, vegan or gluten-free.</p></details>
+        <details><summary><span data-en="What if something goes wrong with my order?" data-lt="Ką daryti, jei su užsakymu kažkas negerai?">What if something goes wrong with my order?</span></summary><p data-en="Contact support from the app or at support@mamchef.com. Refunds and disputes are handled fairly between you and the cook, and our support team steps in when needed." data-lt="Kreipkitės pagalbos programėlėje arba adresu support@mamchef.com. Grąžinimai ir ginčai sprendžiami sąžiningai tarp jūsų ir virėjo, o prireikus įsitraukia mūsų pagalbos komanda.">Contact support from the app or at support@mamchef.com. Refunds and disputes are handled fairly between you and the cook, and our support team steps in when needed.</p></details>
+        <details><summary><span data-en="Which cities do you cover?" data-lt="Kuriuose miestuose veikiate?">Which cities do you cover?</span></summary><p data-en="We are starting in Vilnius, with more cities soon. Want MamChef where you live? Tell us at support@mamchef.com." data-lt="Pradedame Vilniuje, netrukus – ir kituose miestuose. Norite MamChef savo mieste? Parašykite mums support@mamchef.com.">We are starting in Vilnius, with more cities soon. Want MamChef where you live? Tell us at support@mamchef.com.</p></details>
+      </div>
+      <div class="faq-group rv" style="--d:80ms">
+        <h3 data-en="For home cooks" data-lt="Namų virėjams">For home cooks</h3>
+        <details><summary><span data-en="Do I need a licence to sell food on MamChef?" data-lt="Ar reikia leidimo parduoti maistą MamChef?">Do I need a licence to sell food on MamChef?</span></summary><p data-en="Yes. All cooks must register their activity with VMI (for taxes) and VMVT (for food safety). MamChef gives you a step-by-step guide." data-lt="Taip. Visi virėjai privalo registruoti savo veiklą VMI (mokesčiams) ir VMVT (maisto saugai). MamChef pateikia žingsnis po žingsnio vadovą.">Yes. All cooks must register their activity with VMI (for taxes) and VMVT (for food safety). MamChef gives you a step-by-step guide.</p></details>
+        <details><summary><span data-en="How much does it cost to join?" data-lt="Kiek kainuoja prisijungti?">How much does it cost to join?</span></summary><p data-en="There are no upfront fees. MamChef charges a small commission only when you sell a meal." data-lt="Jokių išankstinių mokesčių. MamChef ima nedidelį komisinį mokestį tik tada, kai parduodate patiekalą.">There are no upfront fees. MamChef charges a small commission only when you sell a meal.</p></details>
+        <details><summary><span data-en="How do payouts work?" data-lt="Kaip veikia išmokos?">How do payouts work?</span></summary><p data-en="Payouts go through Stripe Connect, paid via Stripe to your bank account, minus MamChef's commission." data-lt="Išmokos vykdomos per Stripe Connect: pinigai per Stripe pervedami į jūsų banko sąskaitą, atskaičius MamChef komisinį mokestį.">Payouts go through Stripe Connect, paid via Stripe to your bank account, minus MamChef's commission.</p></details>
+        <details><summary><span data-en="How do I set my menu and prices?" data-lt="Kaip nustatyti meniu ir kainas?">How do I set my menu and prices?</span></summary><p data-en="Once approved, you upload meals, set portion sizes, add photos and choose your own prices and pickup or delivery times." data-lt="Kai būsite patvirtinti, įkelsite patiekalus, nustatysite porcijų dydžius, pridėsite nuotraukas ir pasirinksite savo kainas bei atsiėmimo ar pristatymo laiką.">Once approved, you upload meals, set portion sizes, add photos and choose your own prices and pickup or delivery times.</p></details>
+        <details><summary><span data-en="What support does MamChef provide?" data-lt="Kokią pagalbą teikia MamChef?">What support does MamChef provide?</span></summary><p data-en="Onboarding guidance for VMVT and VMI, visibility on our platform and secure payment processing." data-lt="Pagalbą registruojantis VMVT ir VMI, matomumą mūsų platformoje ir saugų mokėjimų apdorojimą.">Onboarding guidance for VMVT and VMI, visibility on our platform and secure payment processing.</p></details>
+        <a class="faq-more" href="chefs/"><span data-en="More for cooks on the chef page" data-lt="Daugiau virėjams – virėjų puslapyje">More for cooks on the chef page</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11. Support and company -->
+<section class="support-section" id="support" aria-labelledby="support-title">
+  <div class="wrap">
+    <div class="support-card rv">
+      <div>
+        <p class="eyebrow" data-en="Support and company information" data-lt="Pagalba ir įmonės informacija">Support and company information</p>
+        <h2 class="h2" id="support-title" data-en="Need help with MamChef?" data-lt="Reikia pagalbos su MamChef?">Need help with MamChef?</h2>
+        <p class="support-intro" data-en="MamChef customer and chef support is available by email. If you have a question about orders, onboarding, payments or your account, contact us and our team will help you." data-lt="MamChef klientų ir virėjų pagalba teikiama el. paštu. Jei turite klausimų apie užsakymus, registraciją, mokėjimus ar paskyrą, susisiekite su mumis ir mūsų komanda padės.">MamChef customer and chef support is available by email. If you have a question about orders, onboarding, payments or your account, contact us and our team will help you.</p>
+        <p class="support-note"><span data-en="This page and our " data-lt="Šis puslapis ir mūsų ">This page and our </span><a href="support/" data-en="support page" data-lt="pagalbos puslapis">support page</a><span data-en=" are public contact points for customers, cooks and App Store users." data-lt=" yra vieši kontaktiniai taškai klientams, virėjams ir App Store naudotojams."> are public contact points for customers, cooks and App Store users.</span></p>
+      </div>
+      <dl class="support-grid">
+        <div class="support-item"><dt data-en="Company" data-lt="Įmonė">Company</dt><dd>MB MamChef</dd></div>
+        <div class="support-item"><dt data-en="Support email" data-lt="Pagalbos el. paštas">Support email</dt><dd><a href="mailto:support@mamchef.com">support@mamchef.com</a></dd></div>
+      </dl>
+    </div>
+  </div>
 </section>
 
 <!-- Sister marketplace (BizzChef) — hidden by CSS until BizzChef launches -->
@@ -1376,150 +556,55 @@
     </div>
 </section>
 
-<!-- Footer -->
-<footer>
-    <div class="footer-content">
-        <div class="footer-brand">
-            <h4>MamChef</h4>
-            <p data-en="Connecting food lovers with talented home cooks in their neighbourhood." data-lt="Sujungiame maisto gurmanams su talentingais namų virėjais jų kaimynystėje.">Connecting food lovers with talented home cooks in their neighbourhood.</p>
-            <div class="social-links">
-                <a href="https://www.facebook.com/people/Mamchefofficial/61579213977609/" class="social-link" aria-label="Facebook">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-                    </svg>
-                </a>
-                <a href="https://www.instagram.com/mamchefofficial/" class="social-link" aria-label="Instagram">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zM5.838 12a6.162 6.162 0 1 1 12.324 0 6.162 6.162 0 0 1-12.324 0zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm4.965-10.405a1.44 1.44 0 1 1 2.881.001 1.44 1.44 0 0 1-2.881-.001z"/>
-                    </svg>
-                </a>
-                <a href="https://x.com/MamChefOfficial" class="social-link" aria-label="X (Twitter)">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                    </svg>
-                </a>
-            </div>
+</main>
+
+<footer class="site-footer dark">
+  <div class="wrap">
+    <div class="ft-grid">
+      <div class="ft-brand">
+        <svg class="wm" viewBox="0 0 754 210" role="img" aria-label="MamChef"><use href="#wm"/></svg>
+        <p data-en="Real home cooking from registered home cooks in your neighbourhood." data-lt="Tikras namų maistas iš registruotų namų virėjų jūsų kaimynystėje.">Real home cooking from registered home cooks in your neighbourhood.</p>
+        <div class="ft-social">
+          <a href="https://www.facebook.com/people/Mamchefofficial/61579213977609/" aria-label="MamChef on Facebook" data-aria-en="MamChef on Facebook" data-aria-lt="MamChef Facebook"><svg aria-hidden="true"><use href="#i-fb"/></svg></a>
+          <a href="https://www.instagram.com/mamchefofficial/" aria-label="MamChef on Instagram" data-aria-en="MamChef on Instagram" data-aria-lt="MamChef Instagram"><svg aria-hidden="true"><use href="#i-ig"/></svg></a>
+          <a href="https://x.com/MamChefOfficial" aria-label="MamChef on X" data-aria-en="MamChef on X" data-aria-lt="MamChef X"><svg aria-hidden="true"><use href="#i-x"/></svg></a>
         </div>
-        <div class="footer-section">
-            <h4 data-en="For Customers" data-lt="Klientams">For Customers</h4>
-            <ul class="footer-links">
-                <li><a href="https://app.mamchef.com" data-en="Browse Meals" data-lt="Peržiūrėti patiekalus">Browse Meals</a></li>
-                <li><a href="https://app.mamchef.com/privacy.html" data-en="Customer Privacy" data-lt="Klientų privatumas">Customer Privacy</a></li>
-            </ul>
-        </div>
-        <div class="footer-section">
-            <h4 data-en="For Chefs" data-lt="Virėjams">For Chefs</h4>
-            <ul class="footer-links">
-                <li><a href="https://chef.mamchef.com" data-en="Become a Chef" data-lt="Tapti virėju">Become a Chef</a></li>
-                <li><a href="https://chef.mamchef.com/privacy.html" data-en="Chef Privacy" data-lt="Virėjų privatumas">Chef Privacy</a></li>
-            </ul>
-        </div>
-        <div class="footer-section">
-            <h4 data-en="Company" data-lt="Įmonė">Company</h4>
-            <ul class="footer-links">
-                <li><a href="#about" data-en="About Us" data-lt="Apie mus">About Us</a></li>
-                <li><a href="#support" data-en="Support" data-lt="Pagalba">Support</a></li>
-                <li><a href="mailto:support@mamchef.com" data-en="Contact" data-lt="Kontaktai">Contact</a></li>
-            </ul>
-        </div>
-        <div class="footer-legal">
-            <div><strong>MB MamChef</strong></div>
-            <div><a href="mailto:support@mamchef.com">support@mamchef.com</a></div>
-            <div><a href="support/" data-en="Support Page" data-lt="Pagalbos puslapis">Support Page</a></div>
-        </div>
+      </div>
+      <nav class="ft-col" aria-labelledby="ft-c">
+        <h2 id="ft-c" data-en="For customers" data-lt="Klientams">For customers</h2>
+        <ul role="list">
+          <li><a href="https://app.mamchef.com" data-en="Browse meals" data-lt="Rinktis patiekalus">Browse meals</a></li>
+          <li><a href="https://app.mamchef.com/privacy.html" data-en="Customer privacy" data-lt="Klientų privatumas">Customer privacy</a></li>
+          <li><a href="./#faq" data-en="Questions and answers" data-lt="Klausimai ir atsakymai">Questions and answers</a></li>
+        </ul>
+      </nav>
+      <nav class="ft-col" aria-labelledby="ft-k">
+        <h2 id="ft-k" data-en="For home cooks" data-lt="Namų virėjams">For home cooks</h2>
+        <ul role="list">
+          <li><a href="chefs/" data-en="Become a chef" data-lt="Tapti virėju">Become a chef</a></li>
+          <li><a href="https://chef.mamchef.com" data-en="Chef web panel" data-lt="Virėjo internetinis skydelis">Chef web panel</a></li>
+          <li><a href="https://chef.mamchef.com/privacy.html" data-en="Chef privacy" data-lt="Virėjų privatumas">Chef privacy</a></li>
+        </ul>
+      </nav>
+      <nav class="ft-col" aria-labelledby="ft-m">
+        <h2 id="ft-m" data-en="Company" data-lt="Įmonė">Company</h2>
+        <ul role="list">
+          <li><span class="muted">MB MamChef</span></li>
+          <li><a href="support/" data-en="Support page" data-lt="Pagalbos puslapis">Support page</a></li>
+          <li><a href="mailto:support@mamchef.com">support@mamchef.com</a></li>
+        </ul>
+      </nav>
     </div>
-    <div class="footer-bottom">
-        <p data-en="&copy; 2025 MamChef. All rights reserved." data-lt="&copy; 2025 MamChef. Visos teisės saugomos.">&copy; 2025 MamChef. All rights reserved.</p>
+    <div class="ft-giant" aria-hidden="true"><svg class="wm" viewBox="0 0 754 210"><use href="#wm"/></svg></div>
+    <div class="ft-bottom">
+      <p>&copy; <span data-year>2026</span> MB MamChef. <span data-en="Built in Lithuania." data-lt="Sukurta Lietuvoje.">Built in Lithuania.</span></p>
+      <button type="button" class="icon-btn motion-toggle" data-motion-toggle aria-pressed="false">
+        <svg class="when-on" aria-hidden="true"><use href="#i-pause"/></svg><svg class="when-off" aria-hidden="true"><use href="#i-play"/></svg>
+        <span data-en="Pause motion" data-lt="Sustabdyti animacijas">Pause motion</span>
+      </button>
     </div>
+  </div>
 </footer>
 
-<script>
-    // Language switching functionality
-    let currentLang = 'en';
-    
-    function changeLanguage(lang) {
-        currentLang = lang;
-        
-        // Update language buttons
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.classList.remove('active');
-        });
-        event.target.classList.add('active');
-        
-        // Update all elements with data attributes
-        document.querySelectorAll('[data-en]').forEach(element => {
-            if (element.hasAttribute('data-' + lang)) {
-                element.innerHTML = element.getAttribute('data-' + lang);
-            }
-        });
-        
-        // Update placeholders
-        document.querySelectorAll('[data-placeholder-en]').forEach(element => {
-            if (element.hasAttribute('data-placeholder-' + lang)) {
-                element.placeholder = element.getAttribute('data-placeholder-' + lang);
-            }
-        });
-        
-        // Update document title
-        document.title = lang === 'lt' ? 
-            'MamChef - Švieži namų gamybos patiekalai iš kaimynų' : 
-            'MamChef - Fresh homemade meals from neighbours';
-    }
-    
-    // Process switching functionality
-    function showProcess(type) {
-        const customerProcess = document.getElementById('customers-process');
-        const chefProcess = document.getElementById('chefs-process');
-        const tabs = document.querySelectorAll('.process-tab');
-
-        tabs.forEach(tab => tab.classList.remove('active'));
-
-        if (type === 'customers') {
-            customerProcess.style.display = 'grid';
-            chefProcess.style.display = 'none';
-            tabs[0].classList.add('active');
-        } else {
-            customerProcess.style.display = 'none';
-            chefProcess.style.display = 'grid';
-            tabs[1].classList.add('active');
-        }
-    }
-
-    // FAQ toggle functionality
-    function toggleFaq(button) {
-        const faqItem = button.parentElement;
-        const answer = faqItem.querySelector('.faq-answer');
-
-        faqItem.classList.toggle('active');
-        answer.classList.toggle('active');
-    }
-    
-    // Smooth scroll behavior for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-            }
-        });
-    });
-    
-    // Add scroll effect to header
-    window.addEventListener('scroll', function() {
-        const header = document.querySelector('header');
-        if (window.scrollY > 50) {
-            header.style.background = 'rgba(245, 245, 245, 0.98)';
-            header.style.boxShadow = '0 2px 20px rgba(21, 57, 47, 0.1)';
-        } else {
-            header.style.background = 'rgba(245, 245, 245, 0.95)';
-            header.style.boxShadow = '0 2px 10px rgba(21, 57, 47, 0.05)';
-        }
-    });
-    
-</script>
 </body>
 </html>
