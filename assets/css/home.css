@@ -423,36 +423,49 @@
 /* ======================= LAUNCH / GET THE APP ======================= */
 .launch { z-index: 6; background: radial-gradient(80% 90% at 12% 0%, var(--deep), var(--forest) 55%, var(--night)); padding: calc(var(--chap) + clamp(56px, 7vw, 96px)) 0 calc(var(--chap) + clamp(64px, 8vw, 112px)); overflow: hidden; }
 .launch::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(rgba(194, 225, 215, .12) 1.2px, transparent 1.2px); background-size: 26px 26px; -webkit-mask-image: radial-gradient(70% 70% at 80% 40%, var(--forest), transparent); mask-image: radial-gradient(70% 70% at 80% 40%, var(--forest), transparent); pointer-events: none; }
-.ticket {
-  --cut: 60%;
-  position: relative; display: grid; grid-template-columns: 3fr 2fr; border-radius: 32px;
+.get-head { max-width: 760px; }
+.get-head .h2 { margin-top: 18px; }
+.get-head .lead { margin-top: 16px; }
+.get-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 2.4vw, 28px); margin-top: clamp(32px, 4vw, 48px); }
+/* Ticket cards: main part + QR stub below a perforation (side notches sit at the perforation: stub height is fixed) */
+.get-card {
+  --stub: 188px;
+  position: relative; display: grid; grid-template-rows: 1fr var(--stub); border-radius: 32px;
   background: linear-gradient(135deg, rgba(194, 225, 215, .1), rgba(194, 225, 215, .02)), var(--night); border: 1px solid rgba(194, 225, 215, .24); box-shadow: 0 50px 100px rgba(15, 42, 34, .5);
-  -webkit-mask: radial-gradient(circle 20px at var(--cut) 0, transparent 19px, var(--forest) 20px) top / 100% 51% no-repeat, radial-gradient(circle 20px at var(--cut) 100%, transparent 19px, var(--forest) 20px) bottom / 100% 51% no-repeat;
-  mask: radial-gradient(circle 20px at var(--cut) 0, transparent 19px, var(--forest) 20px) top / 100% 51% no-repeat, radial-gradient(circle 20px at var(--cut) 100%, transparent 19px, var(--forest) 20px) bottom / 100% 51% no-repeat;
+  -webkit-mask: radial-gradient(circle 18px at 0 calc(100% - var(--stub)), transparent 17px, var(--forest) 18px) left / 51% 100% no-repeat, radial-gradient(circle 18px at 100% calc(100% - var(--stub)), transparent 17px, var(--forest) 18px) right / 51% 100% no-repeat;
+  mask: radial-gradient(circle 18px at 0 calc(100% - var(--stub)), transparent 17px, var(--forest) 18px) left / 51% 100% no-repeat, radial-gradient(circle 18px at 100% calc(100% - var(--stub)), transparent 17px, var(--forest) 18px) right / 51% 100% no-repeat;
 }
-
-.ticket-main { padding: clamp(28px, 4.5vw, 64px); }
-.ticket .h2 { margin-top: 18px; }
-.ticket .lead { margin-top: 16px; }
-.ticket-ctas { margin-top: 30px; }
-.stores { margin-top: 34px; padding-top: 24px; border-top: 1px solid var(--hair-dark); }
-.stores p { color: var(--mint); font-size: .9375rem; }
-.store-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; }
+.get-main { display: flex; flex-direction: column; align-items: flex-start; padding: clamp(26px, 3.6vw, 48px); }
+.get-ic { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 16px; background: rgba(194, 225, 215, .1); border: 1px solid var(--hair-dark); color: var(--gold); }
+.get-ic svg { width: 26px; height: 26px; }
+.get-ic .hat { width: 28px; height: auto; }
+.get-card h3 { margin-top: 20px; font-size: clamp(1.625rem, 1.25rem + 1.2vw, 2.25rem); font-weight: 800; color: var(--white); }
+.get-line { margin-top: 10px; color: var(--mint); font-size: clamp(1.0625rem, 1rem + .25vw, 1.1875rem); }
+.store-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
 .store { display: inline-flex; align-items: center; gap: 12px; min-height: 58px; padding: 8px 20px 8px 14px; border-radius: 16px; background: var(--night); border: 1px solid rgba(194, 225, 215, .3); color: var(--white); text-decoration: none; transition: transform .4s var(--ease), border-color .3s; }
 .store:hover { transform: translateY(-2px); border-color: var(--mint); }
 .store svg { width: 26px; height: 26px; }
 .store small { display: block; color: var(--mint); font-size: .75rem; line-height: 1.2; }
 .store b { display: block; font-family: var(--display); font-weight: 700; font-size: 1.0625rem; line-height: 1.15; }
-.ticket-stub { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: clamp(28px, 4vw, 56px); text-align: center; border-left: 2px dashed rgba(194, 225, 215, .3); }
-.qr { position: relative; width: min(210px, 70%); padding: 14px; border-radius: 24px; background: var(--white); box-shadow: 0 20px 40px rgba(15, 42, 34, .45), 0 0 0 6px rgba(235, 167, 67, .3); overflow: hidden; }
+.get-link { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-top: auto; padding-top: 18px; color: var(--gold); font-family: var(--display); font-weight: 600; text-underline-offset: 4px; }
+.get-link svg { width: 18px; height: 18px; transition: transform .4s var(--ease); }
+.get-link:hover svg { transform: translateX(3px); }
+.get-stub { display: flex; align-items: center; gap: 22px; padding: 0 clamp(26px, 3.6vw, 48px); border-top: 2px dashed rgba(194, 225, 215, .3); }
+.qr { position: relative; flex: none; width: 140px; padding: 10px; border-radius: 18px; background: var(--white); box-shadow: 0 16px 32px rgba(15, 42, 34, .45), 0 0 0 5px rgba(235, 167, 67, .3); overflow: hidden; }
 .qr svg { width: 100%; height: auto; shape-rendering: crispEdges; }
-.qr::after { content: ""; position: absolute; left: 8px; right: 8px; top: 8px; height: 3px; border-radius: 3px; background: var(--gold); opacity: .55; animation: scan 3.2s ease-in-out infinite; }
-@keyframes scan { 50% { transform: translateY(190px); } }
+.qr::after { content: ""; position: absolute; left: 6px; right: 6px; top: 6px; height: 3px; border-radius: 3px; background: var(--gold); opacity: .55; animation: scan 3.2s ease-in-out infinite; }
+@keyframes scan { 50% { transform: translateY(124px); } }
 .motion-off .qr::after { display: none; }
-.qr-cap { margin-top: 6px; color: var(--white); font-family: var(--display); font-weight: 650; font-size: 1.0625rem; }
-.built { color: var(--mint); font-size: .9375rem; }
-.partners { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--gold); font-family: var(--display); font-weight: 600; text-underline-offset: 4px; }
-.partners svg { width: 18px; height: 18px; transition: transform .4s var(--ease); }
+.qr-txt { display: grid; gap: 6px; }
+.qr-cap { color: var(--white); font-family: var(--display); font-weight: 650; font-size: 1.0625rem; line-height: 1.25; }
+.qr-txt small { color: var(--mint); font-size: .875rem; line-height: 1.35; }
+/* Phones: only this platform's store badge, no QR (a phone cannot scan its own screen) */
+.os-ios .store-gp, .os-android .store-as, .os-ios .get-stub, .os-android .get-stub { display: none; }
+.os-ios .get-card, .os-android .get-card { grid-template-rows: 1fr; -webkit-mask: none; mask: none; }
+.get-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 24px; margin-top: 28px; color: var(--mint); font-size: .9375rem; }
+/* on the open band (deep-to-night gradient): white text (gold on deep is only 4.17), gold arrow */
+.partners { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--white); font-family: var(--display); font-weight: 600; text-underline-offset: 4px; }
+.partners svg { width: 18px; height: 18px; color: var(--gold); transition: transform .4s var(--ease); }
 .partners:hover svg { transform: translateX(3px); }
 
 /* ======================= FAQ ======================= */
@@ -528,8 +541,7 @@
   .cooks-art { padding: 0; max-width: 480px; margin: 0 auto; width: 100%; }
   .faq-inner { grid-template-columns: 1fr; }
   .faq-head { position: static; }
-  .ticket { --cut: 0; grid-template-columns: 1fr; -webkit-mask: none; mask: none; }
-  .ticket-stub { border-left: 0; border-top: 2px dashed rgba(194, 225, 215, .3); }
+  .get-grid { grid-template-columns: minmax(0, 1fr); }
   .support-card { grid-template-columns: 1fr; }
   .tile-g { grid-template-columns: 1fr; }
 }
@@ -564,7 +576,10 @@
   .pin-card b { font-size: .75rem; }
   .pin-card .app-tags { font-size: 9.5px; }
   .faq details p { padding-right: 0; }
-  .qr { width: min(220px, 72%); }
+  .get-card { --stub: 172px; }
+  .get-stub { gap: 16px; }
+  .qr { width: 124px; padding: 8px; }
+  @keyframes scan { 50% { transform: translateY(110px); } }
 }
 @media (min-width: 1600px) {
   .stage { width: min(100%, 640px); }
