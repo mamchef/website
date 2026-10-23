@@ -105,6 +105,28 @@ strong { font-weight: 700; }
 .btn-gold:hover::after { transform: translateX(120%); }
 .btn-glass { background: rgba(255, 255, 255, .08); color: var(--white); border-color: rgba(194, 225, 215, .4); }
 .btn-glass:hover { background: rgba(255, 255, 255, .14); border-color: var(--mint); }
+/* "Become a chef": dark pill with the real logo hat and a slowly turning gold-mint-sage ring (palette only).
+   Ring = rotating conic layer (::before, transform only) under an inner night fill (::after); hover = lift, glow, light sweep. */
+.btn-chef { color: var(--white); background: transparent; border: 0; padding: 0 26px 0 20px; box-shadow: 0 10px 28px rgba(15, 42, 34, .45); }
+.btn-chef::before {
+  content: ""; position: absolute; z-index: -2; left: 50%; top: 50%; width: calc(100% + 56px); aspect-ratio: 1; pointer-events: none;
+  translate: -50% -50%; background: conic-gradient(from 0deg, var(--gold), var(--mint) 30%, var(--sage) 50%, var(--mint) 70%, var(--gold));
+  animation: chef-ring 5s linear infinite;
+}
+.btn-chef::after {
+  content: ""; position: absolute; z-index: -1; inset: 2px; border-radius: inherit; pointer-events: none;
+  background: linear-gradient(110deg, rgba(194, 225, 215, 0) 35%, rgba(194, 225, 215, .2) 50%, rgba(194, 225, 215, 0) 65%) no-repeat -150% 0 / 60% 100%,
+    linear-gradient(160deg, var(--night-card), var(--night) 80%);
+  transition: background-position .9s var(--ease);
+}
+@keyframes chef-ring { to { transform: rotate(1turn); } }
+.btn-chef .hat { width: 22px; height: auto; color: var(--gold); transition: transform .45s var(--ease); }
+.btn-chef:hover { box-shadow: 0 16px 38px rgba(15, 42, 34, .5), 0 0 26px rgba(235, 167, 67, .3); }
+.btn-chef:hover::after { background-position: 250% 0, 0 0; }
+.btn-chef:hover .hat { transform: rotate(-12deg) translateY(-1px); }
+.btn-chef.btn-sm { padding: 0 18px 0 14px; }
+.btn-chef.btn-sm .hat { width: 19px; }
+.motion-off .btn-chef::before { animation: none; transform: rotate(35deg); }
 .btn-forest { background: var(--forest); color: var(--white); box-shadow: var(--shadow-1); }
 .btn-forest:hover { background: var(--deep); box-shadow: var(--shadow-2); }
 .btn-line { color: var(--forest); border-color: var(--forest); background: transparent; }
@@ -157,9 +179,6 @@ strong { font-weight: 700; }
 }
 .icon-btn:hover { background: rgba(194, 225, 215, .16); color: var(--mint); }
 .icon-btn svg { width: 18px; height: 18px; }
-.motion-toggle .when-off, .motion-off .motion-toggle .when-on { display: none; }
-.motion-off .motion-toggle .when-off { display: inline; }
-.motion-btn-label { display: inline-flex; align-items: center; gap: 10px; }
 
 .burger { display: none; }
 .burger span { position: relative; width: 18px; height: 2px; border-radius: 2px; background: currentColor; }
@@ -211,7 +230,6 @@ strong { font-weight: 700; }
 .sheet-ctas .btn { width: 100%; }
 .sheet-mail { color: var(--mint); font-family: var(--display); font-weight: 600; text-underline-offset: 4px; }
 .sheet-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-top: 28px; }
-.sheet-foot .motion-toggle { display: inline-flex; align-items: center; width: auto; padding: 0 18px; gap: 10px; border-radius: 999px; font-family: var(--display); font-weight: 600; font-size: .9375rem; }
 body.sheet-open { overflow: hidden; }
 @media (min-width: 1100px) { .sheet { display: none !important; } }
 
@@ -253,11 +271,12 @@ body.sheet-open { overflow: hidden; }
   position: relative; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px;
   margin-top: 28px; padding-top: 22px; border-top: 1px solid var(--hair-dark); font-size: .9375rem; color: var(--mint);
 }
-.ft-bottom .motion-toggle { display: inline-flex; align-items: center; width: auto; height: 44px; padding: 0 18px; gap: 10px; border-radius: 999px; font-size: .875rem; font-family: var(--display); font-weight: 600; }
+/* Giant wordmark: phones and tablets only (desktop already shows the logo in the footer brand column) */
+@media (min-width: 1024px) { .ft-giant { display: none; } .ft-bottom { margin-top: clamp(48px, 5vw, 72px); } }
 @media (max-width: 899px) { .ft-grid { grid-template-columns: 1fr 1fr; } .ft-brand { grid-column: 1 / -1; } }
 @media (max-width: 479px) { .ft-grid { grid-template-columns: 1fr; } }
 
-/* ---------- Motion off: user toggle or prefers-reduced-motion (class set before first paint) ---------- */
+/* ---------- Motion off: OS prefers-reduced-motion (class set before first paint; no on-page toggle) ---------- */
 .motion-off *, .motion-off *::before, .motion-off *::after {
   animation-duration: 1ms !important; animation-iteration-count: 1 !important; animation-delay: 0ms !important;
   transition-duration: 1ms !important; transition-delay: 0ms !important; scroll-behavior: auto !important;

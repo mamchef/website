@@ -48,22 +48,17 @@
     b.addEventListener('click', function () { setLang(b.getAttribute('data-set-lang'), true); });
   });
 
-  /* ---------- Motion (user toggle + prefers-reduced-motion) ---------- */
+  /* ---------- Motion: follows the OS "reduce motion" setting only (no on-page toggle) ---------- */
   var reduce = w.matchMedia ? w.matchMedia('(prefers-reduced-motion: reduce)') : null;
-  function setMotion(off, persist) {
+  function setMotion(off) {
     de.classList.toggle('motion-off', off);
-    each('[data-motion-toggle]', function (b) { b.setAttribute('aria-pressed', String(off)); });
-    if (persist) store('mc-motion', off ? 'off' : 'on');
     if (off) each('.rv, .hat-draw, [data-inview]', function (el) { el.classList.add('in'); });
     d.dispatchEvent(new CustomEvent('mc:motion', { detail: { off: off } }));
   }
   w.mcMotionOff = function () { return de.classList.contains('motion-off'); };
-  setMotion(de.classList.contains('motion-off'), false);
-  each('[data-motion-toggle]', function (b) {
-    b.addEventListener('click', function () { setMotion(!w.mcMotionOff(), true); });
-  });
+  setMotion(!!(reduce && reduce.matches));
   if (reduce && reduce.addEventListener) {
-    reduce.addEventListener('change', function (e) { if (!store('mc-motion')) setMotion(e.matches, false); });
+    reduce.addEventListener('change', function (e) { setMotion(e.matches); });
   }
 
   /* ---------- Header: hide on scroll down, show on scroll up ---------- */

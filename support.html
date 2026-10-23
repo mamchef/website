@@ -11,7 +11,7 @@
     <meta name="theme-color" content="#15392f">
     <link rel="preload" href="assets/fonts/bricolage-grotesque-600-800.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="assets/fonts/mc-text-400.woff2" as="font" type="font/woff2" crossorigin>
-    <script>(function(d){var c=d.documentElement.classList,l,m;c.add('js');try{l=localStorage.getItem('mc-lang');m=localStorage.getItem('mc-motion')}catch(e){}if(!l){var n=(navigator.languages&&navigator.languages[0])||navigator.language||'';l=n.toLowerCase().indexOf('lt')===0?'lt':'en'}if(l==='lt')c.add('i18n-wait');if(m==='off'||(m!=='on'&&window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))c.add('motion-off')})(document)</script>
+    <script>(function(d){var c=d.documentElement.classList,l;c.add('js');try{l=localStorage.getItem('mc-lang')}catch(e){}if(!l){var n=(navigator.languages&&navigator.languages[0])||navigator.language||'';l=n.toLowerCase().indexOf('lt')===0?'lt':'en'}if(l==='lt')c.add('i18n-wait');if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)c.add('motion-off')})(document)</script>
     <link rel="stylesheet" href="assets/css/site.css">
     <script src="assets/js/site.js" defer></script>
     <style>
@@ -174,8 +174,6 @@
   <symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M20 12a7.5 7.5 0 0 1-11.2 6.5L4 20l1.5-4.6A7.5 7.5 0 1 1 20 12z"/><path d="M9 12h.01M12 12h.01M15 12h.01" stroke-width="2.6" stroke-linecap="round"/></symbol>
   <symbol id="i-card" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="6" width="18" height="13" rx="2.5"/><path d="M3 10.5h18M7 15h4"/></symbol>
   <symbol id="i-user-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="10" cy="8" r="4"/><path d="M3 21a7 7 0 0 1 12.5-4.3M15 18.5l2 2 4-4.5"/></symbol>
-  <symbol id="i-pause" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M9 6v12M15 6v12"/></symbol>
-  <symbol id="i-play" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l10.5-6.5z"/></symbol>
   <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5.5" width="17" height="13" rx="2.5"/><path d="M4 7l8 6 8-6"/></symbol>
   <symbol id="i-ext" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></symbol>
   <symbol id="i-apple" viewBox="0 0 24 24" fill="currentColor"><path d="M16.4 12.6c0-2.2 1.8-3.3 1.9-3.3-1-1.5-2.6-1.7-3.2-1.7-1.4-.1-2.6.8-3.3.8-.7 0-1.7-.8-2.9-.8-1.5 0-2.8.9-3.6 2.2-1.5 2.7-.4 6.6 1.1 8.8.7 1 1.6 2.2 2.7 2.2 1.1 0 1.5-.7 2.8-.7 1.3 0 1.7.7 2.9.7 1.2 0 1.9-1.1 2.6-2.1.8-1.2 1.2-2.4 1.2-2.5 0 0-2.3-.9-2.2-3.6zM14.2 6.1c.6-.7 1-1.7.9-2.8-.9 0-1.9.6-2.5 1.3-.6.6-1.1 1.7-.9 2.7.9.1 1.9-.5 2.5-1.2z"/></symbol>
@@ -202,12 +200,8 @@
         <button type="button" data-set-lang="en" aria-pressed="true" lang="en">EN</button>
         <button type="button" data-set-lang="lt" aria-pressed="false" lang="lt">LT</button>
       </div>
-      <button type="button" class="icon-btn motion-toggle hide-md" data-motion-toggle aria-pressed="false">
-        <svg class="when-on" aria-hidden="true"><use href="#i-pause"/></svg><svg class="when-off" aria-hidden="true"><use href="#i-play"/></svg>
-        <span class="sr-only" data-en="Pause motion" data-lt="Sustabdyti animacijas">Pause motion</span>
-      </button>
       <a class="btn btn-glass btn-sm hide-sm" href="https://app.mamchef.com" data-en="Browse meals" data-lt="Rinktis patiekalus">Browse meals</a>
-      <a class="btn btn-gold btn-sm hide-md" href="chefs/" data-en="Become a chef" data-lt="Tapti virėju">Become a chef</a>
+      <a class="btn btn-chef btn-sm hide-md" href="chefs/"><svg class="hat" viewBox="0 0 508 512" aria-hidden="true" focusable="false"><use href="#hat"/></svg><span data-en="Become a chef" data-lt="Tapti virėju">Become a chef</span></a>
       <button type="button" class="icon-btn burger" data-burger aria-expanded="false" aria-controls="mc-menu" aria-label="Open menu" data-aria-en="Open menu" data-aria-lt="Atidaryti meniu" data-aria-close-en="Close menu" data-aria-close-lt="Uždaryti meniu"><span></span></button>
     </div>
     <div class="progress" aria-hidden="true"><i></i></div>
@@ -224,13 +218,9 @@
   </nav>
   <div class="sheet-ctas">
     <a class="btn btn-gold" href="https://app.mamchef.com"><span data-en="Browse today's meals" data-lt="Peržiūrėti šiandienos patiekalus">Browse today's meals</span><svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-    <a class="btn btn-glass" href="chefs/" data-en="Become a chef" data-lt="Tapti virėju">Become a chef</a>
+    <a class="btn btn-chef" href="chefs/"><svg class="hat" viewBox="0 0 508 512" aria-hidden="true" focusable="false"><use href="#hat"/></svg><span data-en="Become a chef" data-lt="Tapti virėju">Become a chef</span></a>
   </div>
   <div class="sheet-foot">
-    <button type="button" class="icon-btn motion-toggle" data-motion-toggle aria-pressed="false">
-      <svg class="when-on" aria-hidden="true"><use href="#i-pause"/></svg><svg class="when-off" aria-hidden="true"><use href="#i-play"/></svg>
-      <span data-en="Pause motion" data-lt="Sustabdyti animacijas">Pause motion</span>
-    </button>
     <a class="sheet-mail" href="mailto:support@mamchef.com">support@mamchef.com</a>
   </div>
 </div>
@@ -313,10 +303,6 @@
     <div class="ft-giant" aria-hidden="true"><svg class="wm" viewBox="0 0 754 210"><use href="#wm"/></svg></div>
     <div class="ft-bottom">
       <p>&copy; <span data-year>2026</span> MB MamChef. <span data-en="Built in Lithuania." data-lt="Sukurta Lietuvoje.">Built in Lithuania.</span></p>
-      <button type="button" class="icon-btn motion-toggle" data-motion-toggle aria-pressed="false">
-        <svg class="when-on" aria-hidden="true"><use href="#i-pause"/></svg><svg class="when-off" aria-hidden="true"><use href="#i-play"/></svg>
-        <span data-en="Pause motion" data-lt="Sustabdyti animacijas">Pause motion</span>
-      </button>
     </div>
   </div>
 </footer>

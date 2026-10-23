@@ -1,5 +1,5 @@
 /* MamChef home page: hero tilt, sticky "kitchen to couch" story, bento spotlight, idle-loaded clay videos.
-   transform/opacity only; everything is skipped when motion is off (toggle or prefers-reduced-motion). */
+   transform/opacity only; everything is skipped when motion is off (OS prefers-reduced-motion). */
 (function () {
   'use strict';
   var d = document, w = window;

@@ -219,6 +219,8 @@
 .story-frame { position: absolute; inset: 0 13% 7% 0; overflow: hidden; border-radius: var(--r3); background: var(--mint); box-shadow: var(--shadow-2); }
 .sv, .sv-video { position: absolute; inset: 0; opacity: 0; transform: scale(1.07); transition: opacity .8s var(--ease), transform 1.4s var(--ease); }
 .sv img { width: 100%; height: 100%; object-fit: cover; }
+/* living-room still is shown mirrored (founder 2026-10-23); set on elements that carry no transform of their own */
+.mirror-x { transform: scaleX(-1); }
 .story[data-active="1"] .sv-1, .story[data-active="1"] .sv-video, .story[data-active="2"] .sv-2, .story[data-active="3"] .sv-3 { opacity: 1; transform: none; }
 .story-ring { position: absolute; left: 18px; top: 18px; display: grid; place-items: center; width: 68px; height: 68px; border-radius: 50%; background: var(--white); box-shadow: var(--shadow-1); }
 .story-ring svg { position: absolute; inset: 7px; width: calc(100% - 14px); height: calc(100% - 14px); transform: rotate(-90deg); }
@@ -508,7 +510,8 @@
 /* ======================= RESPONSIVE ======================= */
 @media (max-width: 1199px) {
   .float-a { right: 0; transform: translateZ(60px); }
-  .float-b { left: -2%; transform: translateZ(60px); }
+  /* "Ready for Pickup" stays in front of the phone (phone's nearest corner is ~130px deep); scale(.9) cancels the perspective growth */
+  .float-b { left: -2%; top: 69%; transform: translateZ(150px) scale(.9); }
   .float-c { transform: translateZ(60px); }
 }
 @media (max-width: 1099px) {
@@ -539,7 +542,7 @@
   .float small { font-size: .75rem; }
   .float-ic { width: 30px; height: 30px; border-radius: 9px; }
   .float-a { right: 0; top: 16%; transform: translateZ(24px); }
-  .float-b { left: 0; top: 64%; transform: translateZ(24px); }
+  .float-b { left: 3%; top: 68%; max-width: min(74%, 270px); transform: translateZ(150px) scale(.9); }
   .float-c { right: 0; bottom: 0; transform: translateZ(24px); }
   .trust-list { gap: 40px; padding: 18px 20px; }
   .trust-list li { font-size: 1rem; }
