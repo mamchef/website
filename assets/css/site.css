@@ -310,3 +310,17 @@ html:not(.motion-off) .is-off .ch-rc-row, html:not(.motion-off) .is-off details 
 }
 .motion-off .progress { display: none; }
 @media print { .site-header, .sheet, .skip-link { display: none !important; } }
+
+/* T-20261023-07 r5: phones (≤ 899 px or touch) get every shadow at 70% (offset, blur, spread × 0.7, whole px);
+   colours unchanged, desktop untouched. Focus rings are outlines, not shadows, so they stay full size. */
+@media (max-width: 899px), (pointer: coarse) {
+  :root {
+    --shadow-1: 0 1px 1px rgba(15, 42, 34, .06), 0 6px 17px rgba(15, 42, 34, .08);
+    --shadow-2: 0 1px 4px rgba(15, 42, 34, .08), 0 17px 42px rgba(15, 42, 34, .16);
+  }
+  .btn-gold { box-shadow: 0 6px 17px rgba(235, 167, 67, .28), inset 0 1px 0 rgba(255, 255, 255, .45); }
+  .btn-gold:hover { box-shadow: 0 10px 25px rgba(235, 167, 67, .42), inset 0 1px 0 rgba(255, 255, 255, .45); }
+  .btn-chef { box-shadow: 0 7px 20px rgba(15, 42, 34, .45); }
+  .btn-chef:hover { box-shadow: 0 11px 27px rgba(15, 42, 34, .5), 0 0 18px rgba(235, 167, 67, .3); }
+  .hdr { box-shadow: 0 8px 22px rgba(15, 42, 34, .22); }
+}
