@@ -107,7 +107,10 @@
   content: ""; position: absolute; z-index: -1; inset: 0; border-radius: inherit; pointer-events: none;
   background: var(--gold); opacity: 0; animation: ch-pulse 2.6s var(--ease) infinite;
 }
-.ch-acc::after { --sx: 1.165; --sy: 1.48; } /* ~12px each side on the 137-153 x 50 px button */
+.ch-acc::after { z-index: -2; --sx: 1.165; --sy: 1.48; } /* ~12px each side on the 137-153 x 50 px button */
+/* :active scale makes .ch-acc its own stacking context, and then the ring would paint over its background.
+   A static copy of the background (inherited, so hover/transition follow) sits above the ring in both cases. */
+.ch-acc::before { content: ""; position: absolute; z-index: -1; inset: 0; border-radius: inherit; background: inherit; pointer-events: none; }
 .ch-app-btns .ok::after { inset: -1px; --sx: 1.24; --sy: 1.75; } /* border box ~91-104 x 29-37 px */
 @keyframes ch-pulse { 0% { transform: scale(1); opacity: .65; } 70%, 100% { transform: scale(var(--sx), var(--sy)); opacity: 0; } }
 .ch-used .ch-acc::after { animation: none; }
