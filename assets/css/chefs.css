@@ -95,13 +95,25 @@
 [data-state="acc"] .ch-t-note svg { color: var(--gold); }
 .ch-t-btns { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: 10px; margin-top: 14px; }
 .ch-acc, .ch-dec, .ch-again { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; padding: 0 12px; border-radius: 12px; font-family: var(--display); font-weight: 700; font-size: 1rem; transition: transform .35s var(--ease), background-color .25s, border-color .25s; }
-.ch-acc { background: var(--forest); color: var(--white); animation: ch-pulse 2.6s var(--ease) infinite; }
+.ch-acc { position: relative; background: var(--forest); color: var(--white); }
 .ch-acc .hat { width: 18px; color: var(--gold); transition: transform .45s var(--ease); }
 .ch-acc:hover { background: var(--deep); }
 .ch-acc:hover .hat { transform: rotate(-12deg); }
 .ch-acc:active, .ch-dec:active, .ch-again:active { transform: scale(.97); }
-@keyframes ch-pulse { 0% { box-shadow: 0 0 0 0 rgba(235, 167, 67, .65); } 70%, 100% { box-shadow: 0 0 0 12px rgba(235, 167, 67, 0); } }
-.ch-used .ch-acc { animation: none; }
+/* Pulse ring = a gold copy of the button behind it that grows ~12px each side and fades (transform + opacity only,
+   runs on the compositor; was an animated box-shadow, repainted every frame). Parents isolate so it sits right under the button. */
+.ch-t-btns, .ch-app-btns { isolation: isolate; }
+.ch-acc::after, .ch-app-btns .ok::after {
+  content: ""; position: absolute; z-index: -1; inset: 0; border-radius: inherit; pointer-events: none;
+  background: var(--gold); opacity: 0; animation: ch-pulse 2.6s var(--ease) infinite;
+}
+.ch-acc::after { z-index: -2; --sx: 1.165; --sy: 1.48; } /* ~12px each side on the 137-153 x 50 px button */
+/* :active scale makes .ch-acc its own stacking context, and then the ring would paint over its background.
+   A static copy of the background (inherited, so hover/transition follow) sits above the ring in both cases. */
+.ch-acc::before { content: ""; position: absolute; z-index: -1; inset: 0; border-radius: inherit; background: inherit; pointer-events: none; }
+.ch-app-btns .ok::after { inset: -1px; --sx: 1.24; --sy: 1.75; } /* border box ~91-104 x 29-37 px */
+@keyframes ch-pulse { 0% { transform: scale(1); opacity: .65; } 70%, 100% { transform: scale(var(--sx), var(--sy)); opacity: 0; } }
+.ch-used .ch-acc::after { animation: none; }
 .ch-dec { border: 1.5px solid rgba(21, 57, 47, .3); color: var(--forest); }
 .ch-dec:hover { border-color: var(--forest); }
 .ch-again { width: 100%; margin-top: 14px; border: 1.5px solid var(--forest); color: var(--forest); }
@@ -264,8 +276,8 @@
 .ch-app-btns { display: grid; grid-template-columns: 1fr 1fr; gap: .6em; }
 .ch-app-btns > span { display: flex; align-items: center; justify-content: center; gap: .35em; padding: .7em .3em; border-radius: .9em; border: 1px solid var(--mint); text-align: center; font-family: var(--display); font-weight: 700; font-size: .92em; }
 .ch-app-btns .no { border-color: rgba(185, 61, 34, .45); color: var(--rust); }
-.ch-app-btns .ok { background: var(--forest); border-color: var(--forest); color: var(--white); animation: ch-pulse 2.6s var(--ease) infinite; }
-.ch-oc-next .ch-app-btns .ok { animation: none; } /* one pulsing ACCEPT per screen */
+.ch-app-btns .ok { position: relative; background: var(--forest); border-color: var(--forest); color: var(--white); }
+.ch-oc-next .ch-app-btns .ok::after { animation: none; } /* one pulsing ACCEPT per screen */
 .scr .ch-app-btns .hat { width: 1.15em; height: 1.15em; color: var(--gold); }
 .ch-app-btn { display: flex; align-items: center; justify-content: center; gap: .4em; padding: .8em; border-radius: .9em; background: var(--forest); color: var(--white); text-align: center; font-family: var(--display); font-weight: 800; }
 .scr .ch-app-btn svg { width: 1.2em; height: 1.2em; color: var(--gold); }
@@ -323,7 +335,9 @@
 
 .ch-plan { position: relative; padding: clamp(20px, 3vw, 34px); border-radius: 28px; background: rgba(22, 58, 48, .9); border: 1px solid var(--hair-dark); box-shadow: 0 50px 100px rgba(15, 42, 34, .55); }
 @supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-  .ch-plan { background: rgba(22, 58, 48, .62); -webkit-backdrop-filter: blur(18px) saturate(1.2); backdrop-filter: blur(18px) saturate(1.2); }
+  /* Same .62 tint, no backdrop blur: the backdrop here is a flat dark gradient, so the blur was invisible (measured
+     0.9/255 mean pixel difference) but it was the main per-frame raster cost of /chefs while scrolling. */
+  .ch-plan { background: rgba(22, 58, 48, .62); }
 }
 .ch-plan::before { content: ""; position: absolute; z-index: -1; inset: 18% -12% -14% 24%; border-radius: 50%; background: radial-gradient(closest-side, rgba(235, 167, 67, .26), rgba(235, 167, 67, 0)); pointer-events: none; }
 .ch-plan h3 { color: var(--white); font-size: clamp(1.5rem, 1.25rem + 1vw, 2rem); font-weight: 800; }
@@ -502,7 +516,7 @@
 }
 
 /* reduced motion */
-.motion-off .ch-hang, .motion-off .ch-glow, .motion-off .ch-acc, .motion-off .ch-app-btns .ok, .motion-off .ch-dot::after { animation: none; }
+.motion-off .ch-hang, .motion-off .ch-glow, .motion-off .ch-acc::after, .motion-off .ch-app-btns .ok::after, .motion-off .ch-dot::after { animation: none; }
 .motion-off .ch-embers, .motion-off .ch-video { display: none; }
 .motion-off .ch-glow { opacity: .85; }
 .motion-off .ch-phone.is-swap, .motion-off .ch-pan:not([hidden]), .motion-off .ch-receipt.is-print .ch-rc-row { animation: none; }

@@ -143,13 +143,15 @@ strong { font-weight: 700; }
   color: var(--white);
 }
 .site-header.is-hidden { transform: translate(-50%, calc(-100% - 60px)); }
+.site-header.is-moving { will-change: transform; } /* only while the hide/show slide runs (site.js) */
 .hdr {
   display: flex; align-items: center; gap: 16px; height: var(--hdr-h); padding: 0 10px 0 22px;
   border-radius: 999px; background: var(--night-card); border: 1px solid var(--hair-dark);
   box-shadow: 0 12px 32px rgba(15, 42, 34, .22);
 }
 @supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-  .hdr { background: var(--glass); -webkit-backdrop-filter: blur(18px) saturate(1.2); backdrop-filter: blur(18px) saturate(1.2); }
+  /* blur 10px, no saturate(): about half the per-frame filter cost of 18px + saturate, same tint (measured closest look) */
+  .hdr { background: var(--glass); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
 }
 .brand { display: block; width: 124px; flex: none; color: var(--white); border-radius: 8px; }
 .brand:hover { color: var(--mint); }
@@ -290,6 +292,13 @@ body.sheet-open { overflow: hidden; }
 @media (min-width: 1024px) { .ft-giant { display: none; } .ft-bottom { margin-top: clamp(48px, 5vw, 72px); } }
 @media (max-width: 899px) { .ft-grid { grid-template-columns: 1fr 1fr; } .ft-brand { grid-column: 1 / -1; } }
 @media (max-width: 479px) { .ft-grid { grid-template-columns: 1fr; } }
+
+/* ---------- Off-screen pause (site.js adds .is-off to sections far outside the viewport): loops keep their state ---------- */
+html:not(.motion-off) .is-off, html:not(.motion-off) .is-off::before, html:not(.motion-off) .is-off::after,
+html:not(.motion-off) .is-off *, html:not(.motion-off) .is-off *::before, html:not(.motion-off) .is-off *::after { animation-play-state: paused !important; }
+/* one-shot entrance animations (chefs tabs/phone/receipt, FAQ answers) still finish off screen, exactly as before */
+html:not(.motion-off) .is-off .ch-pan, html:not(.motion-off) .is-off .ch-phone,
+html:not(.motion-off) .is-off .ch-rc-row, html:not(.motion-off) .is-off details p { animation-play-state: running !important; }
 
 /* ---------- Motion off: OS prefers-reduced-motion (class set before first paint; no on-page toggle) ---------- */
 .motion-off *, .motion-off *::before, .motion-off *::after {

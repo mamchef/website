@@ -69,13 +69,18 @@
   function onScroll() {
     var y = w.scrollY;
     if (header && !d.body.classList.contains('sheet-open') && !header.contains(d.activeElement)) {
+      var was = header.classList.contains('is-hidden');
       if (y > lastY + 6 && y > 160) header.classList.add('is-hidden');
       else if (y < lastY - 6 || y < 160) header.classList.remove('is-hidden');
+      if (was !== header.classList.contains('is-hidden')) header.classList.add('is-moving'); // will-change only during the slide
     }
     lastY = y; ticking = false;
   }
   w.addEventListener('scroll', function () { if (!ticking) { ticking = true; w.requestAnimationFrame(onScroll); } }, { passive: true });
-  if (header) header.addEventListener('focusin', function () { header.classList.remove('is-hidden'); });
+  if (header) {
+    header.addEventListener('focusin', function () { header.classList.remove('is-hidden'); });
+    header.addEventListener('transitionend', function (e) { if (e.target === header) header.classList.remove('is-moving'); });
+  }
 
   /* ---------- Mobile menu sheet ---------- */
   function openSheet(open) {
@@ -128,6 +133,15 @@
       });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0.12 });
     Array.prototype.forEach.call(targets, function (el) { io.observe(el); });
+  }
+
+  /* ---------- Off-screen pause: sections far outside the viewport get .is-off, which pauses their CSS animations
+     (site.css). Same look on screen; no style/paint work per frame for loops nobody can see. ---------- */
+  if ('IntersectionObserver' in w) {
+    var pio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { en.target.classList.toggle('is-off', !en.isIntersecting); });
+    }, { rootMargin: '25% 0px' });
+    each('[data-header], main > section, .site-footer', function (el) { pio.observe(el); });
   }
 
   /* ---------- Footer year (static 2026 fallback in the HTML) ---------- */
