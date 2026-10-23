@@ -32,37 +32,19 @@
     Array.prototype.forEach.call(steps, function (s) { s.classList.toggle('is-active', s === step); });
     syncVideos();
   }
-  // Activation band: viewport middle on desktop; on phones/tablets a thin band at the bottom edge of the pinned
-  // visual, where the sticky step cards stop (so the active step is always the fully visible one).
+  // Activation band = the middle 10% of the viewport. The pinned story only shows at >= 1024 px (CSS); below that the
+  // steps are plain stacked cards. Steps are 74vh tall, so at most one is ever in the band; when none is (between
+  // steps, or after the last one has left), the current step stays active: no fall-back to an earlier step.
   if (story && steps.length) {
     activate(steps[0]);
-    var sio = null, live = [], narrow = w.matchMedia('(max-width: 899px)');
-    var watch = function () {
-      if (!('IntersectionObserver' in w)) return;
-      if (sio) sio.disconnect();
-      live = [];
-      var margin = '-45% 0px -45% 0px';
-      var vis = story.querySelector('.story-visual');
-      if (narrow.matches && vis && vis.offsetParent !== null) {
-        var line = vis.offsetHeight;
-        margin = '-' + Math.round(line) + 'px 0px -' + Math.max(0, Math.round(w.innerHeight - line - 24)) + 'px 0px';
-      }
-      sio = new IntersectionObserver(function (entries) {
-        entries.forEach(function (en) {
-          var i = live.indexOf(en.target);
-          if (en.isIntersecting && i < 0) live.push(en.target);
-          if (!en.isIntersecting && i >= 0) live.splice(i, 1);
-        });
-        var last = null;
-        Array.prototype.forEach.call(steps, function (s) { if (live.indexOf(s) >= 0) last = s; });
-        if (last) activate(last);
-      }, { rootMargin: margin, threshold: 0 });
+    if ('IntersectionObserver' in w) {
+      var sio = new IntersectionObserver(function (entries) {
+        var hit = null;
+        entries.forEach(function (en) { if (en.isIntersecting) hit = en.target; });
+        if (hit) activate(hit);
+      }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
       Array.prototype.forEach.call(steps, function (s) { sio.observe(s); });
-    };
-    watch();
-    var rt = 0;
-    w.addEventListener('resize', function () { clearTimeout(rt); rt = setTimeout(watch, 200); });
-    d.addEventListener('mc:motion', watch);
+    }
   }
 
   /* ---------- Bento: spotlight border follows the pointer, small tilt on the hovered tile; tap lift on touch ---------- */
