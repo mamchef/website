@@ -113,6 +113,13 @@
 }
 @keyframes sweep { 0%, 55% { transform: translateX(-60%); } 85%, 100% { transform: translateX(60%); } }
 
+/* Phones / touch: calm hero. Same static 3D pose; the loops stop (static frame = the reduced-motion look) and only the small
+   glass cards keep their gentle drift. Tilt JS is not bound here (home.js). Desktop unchanged. */
+@media (max-width: 899px), (pointer: coarse) {
+  .hero-floor::before, .hero-glow, .phone--hero .phone-body, .phone--hero .phone-glare::before, .hero .kicker-dot::after { animation: none; }
+  .hero .btn-chef::before { animation: none; transform: rotate(35deg); } /* = the motion-off pose (site.css) */
+}
+
 /* App UI inside the phone (built from the app's own EN/LT strings; decorative, aria-hidden) */
 .scr { position: absolute; inset: 0; display: flex; flex-direction: column; overflow: hidden; opacity: 0; transition: opacity .6s var(--ease); }
 .scr > * { flex-shrink: 0; }

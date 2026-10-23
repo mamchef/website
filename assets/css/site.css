@@ -4,6 +4,7 @@
    paper 245,245,245 | white 255,255,255 | night 15,42,34 | night-card 22,58,48 | night-input 18,51,42 */
 
 :root {
+  color-scheme: only light; /* "only" = opt out of browser auto-dark / forced dark mode (plain "light" does not) */
   --forest: #15392f; --deep: #2c5346; --sage: #527c70; --mint: #c2e1d7;
   --gold: #eba743; --rust: #b93d22; --paper: #f5f5f5; --white: #ffffff;
   --night: #0f2a22; --night-card: #163a30; --night-input: #12332a;
