@@ -215,7 +215,7 @@
 .float-ic { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 11px; background: var(--mint); color: var(--forest); flex: none; }
 .float-ic svg { width: 19px; height: 19px; }
 .float-ic.ok { background: var(--forest); color: var(--gold); }
-.float-a { right: -7%; top: 20%; transform: translateZ(120px); }
+.float-a { left: 40%; top: 20%; transform: translateZ(130px); }
 .float-b { left: -12%; top: 75%; transform: translateZ(140px); animation-duration: 9.5s; animation-delay: -3s; }
 .float-c { right: 4%; bottom: 3%; transform: translateZ(100px); padding: 10px 16px; background: var(--night-card); color: var(--white); border-color: var(--hair-dark); animation-duration: 10s; animation-delay: -5s; }
 @supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
@@ -555,7 +555,7 @@
 
 /* ======================= RESPONSIVE ======================= */
 @media (max-width: 1199px) {
-  .float-a { right: 0; transform: translateZ(60px); }
+  .float-a { left: 40%; transform: translateZ(130px); }
   /* "Ready for Pickup" stays in front of the phone (phone's nearest corner is ~130px deep); scale(.9) cancels the perspective growth */
   .float-b { left: -2%; top: 69%; transform: translateZ(150px) scale(.9); }
   .float-c { transform: translateZ(60px); }
@@ -586,7 +586,7 @@
   .float b { font-size: .8125rem; }
   .float small { font-size: .75rem; }
   .float-ic { width: 30px; height: 30px; border-radius: 9px; }
-  .float-a { right: 0; top: 16%; transform: translateZ(24px); }
+  .float-a { left: 40%; top: 16%; transform: translateZ(130px); }
   .float-b { left: 3%; top: 68%; max-width: min(74%, 270px); transform: translateZ(150px) scale(.9); }
   .float-c { right: 0; bottom: 0; transform: translateZ(24px); }
   .trust-list { gap: 40px; padding: 18px 20px; }
