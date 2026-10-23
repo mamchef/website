@@ -65,185 +65,6 @@
             background: rgba(235, 167, 67, 0.1);
         }
 
-        /* Coming Soon Modal */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 9999;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .modal-overlay.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 1;
-        }
-
-        .coming-soon-modal {
-            background: linear-gradient(135deg, #f5f5f5 0%, #ffffff 100%);
-            border-radius: 20px;
-            padding: 3rem;
-            max-width: 600px;
-            width: 90%;
-            position: relative;
-            animation: slideUp 0.4s ease;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .close-modal {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            width: 40px;
-            height: 40px;
-            border: none;
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            color: #527c70;
-            transition: all 0.3s ease;
-        }
-
-        .close-modal:hover {
-            background: #b93d22;
-            color: white;
-            transform: rotate(90deg);
-        }
-
-        .coming-soon-content {
-            text-align: center;
-        }
-
-        .coming-soon-icon {
-            width: 120px;
-            height: 120px;
-            margin: 0 auto 2rem;
-            background: linear-gradient(135deg, #eba743, #b93d22);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(1.05);
-            }
-        }
-
-        .coming-soon-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: #15392f;
-            margin-bottom: 1rem;
-            letter-spacing: -0.02em;
-        }
-
-        .coming-soon-subtitle {
-            font-size: 1.2rem;
-            color: #527c70;
-            margin-bottom: 2rem;
-            line-height: 1.6;
-        }
-
-        .notify-form {
-            display: flex;
-            gap: 1rem;
-            margin-bottom: 2rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .notify-input {
-            flex: 1;
-            min-width: 250px;
-            padding: 1rem 1.5rem;
-            border: 2px solid #c2e1d7;
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .notify-input:focus {
-            outline: none;
-            border-color: #eba743;
-            box-shadow: 0 0 0 3px rgba(235, 167, 67, 0.1);
-        }
-
-        .notify-btn {
-            padding: 1rem 2rem;
-            background: #eba743;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .notify-btn:hover {
-            background: #b93d22;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(185, 61, 34, 0.3);
-        }
-
-        .launch-features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 1.5rem;
-            margin-top: 2rem;
-            padding-top: 2rem;
-            border-top: 1px solid #c2e1d7;
-        }
-
-        .launch-feature {
-            text-align: center;
-        }
-
-        .feature-icon {
-            width: 50px;
-            height: 50px;
-            margin: 0 auto 0.5rem;
-            background: rgba(235, 167, 67, 0.1);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
-
-        .feature-text {
-            font-size: 0.9rem;
-            color: #527c70;
-        }
-
         /* Header */
         header {
             position: fixed;
@@ -894,6 +715,72 @@
             line-height: 1.7;
         }
 
+        /* Sister marketplace (BizzChef) */
+        .sister-section {
+            max-width: 1100px;
+            margin: -4rem auto 8rem;
+            padding: 0 2rem;
+        }
+
+        .sister-card {
+            border: 1px solid #c2e1d7;
+            border-radius: 20px;
+            padding: 2rem 3rem;
+            background: #f7fbf9;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .sister-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: #15392f;
+            margin-bottom: 0.5rem;
+        }
+
+        .sister-card p {
+            max-width: 600px;
+            color: #527c70;
+            line-height: 1.7;
+        }
+
+        .sister-card .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            white-space: nowrap;
+        }
+
+        .ext {
+            width: 1em;
+            height: 1em;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            flex-shrink: 0;
+        }
+
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            white-space: nowrap;
+            border: 0;
+        }
+
+        /* BizzChef not launched yet: remove this rule at BizzChef launch to show the block */
+        .sister-section { display: none; }
+
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -1094,6 +981,14 @@
                 padding: 2rem;
             }
 
+            .sister-card {
+                padding: 1.5rem;
+            }
+
+            .sister-card .btn-secondary {
+                white-space: normal;
+            }
+
             .process-switcher {
                 flex-direction: column;
                 border-radius: 12px;
@@ -1168,34 +1063,6 @@
     <button class="lang-btn" onclick="changeLanguage('lt')">LT</button>
 </div>
 
-<!-- Coming Soon Modal -->
-<div class="modal-overlay" id="comingSoonModal">
-    <div class="coming-soon-modal">
-        <button class="close-modal" onclick="closeModal()">×</button>
-        <div class="coming-soon-content">
-            <div class="coming-soon-icon">🍽️</div>
-            <h2 class="coming-soon-title" data-en="Coming Soon!" data-lt="Jau greitai!">Coming Soon!</h2>
-            <p class="coming-soon-subtitle" data-en="We're preparing something delicious for you!" data-lt="Ruošiame jums kažką skanaus. Būkite pirmi!">
-                We're preparing something delicious for you!
-            </p>
-            <div class="launch-features">
-                <div class="launch-feature">
-                    <div class="feature-icon">📍</div>
-                    <div class="feature-text" data-en="Local chefs" data-lt="Vietiniai virėjai">Local chefs</div>
-                </div>
-                <div class="launch-feature">
-                    <div class="feature-icon">🏠</div>
-                    <div class="feature-text" data-en="Homemade quality" data-lt="Namų kokybė">Homemade quality</div>
-                </div>
-                <div class="launch-feature">
-                    <div class="feature-icon">💰</div>
-                    <div class="feature-text" data-en="Fair prices" data-lt="Sąžiningos kainos">Fair prices</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
 <!-- Header -->
 <header>
     <nav>
@@ -1216,7 +1083,7 @@
         <h1 data-en="Fresh <span class='highlight'>Homemade</span> Meals from Neighbours" data-lt="Švieži <span class='highlight'>Namų Gamybos</span> Patiekalai iš Kaimynų">Fresh <span class="highlight">Homemade</span> Meals from Neighbours</h1>
         <p class="subhead" data-en="Real home cooks. Real taste. Order for pickup or chef delivery — no subscriptions, no hidden fees." data-lt="Tikri namų virėjai. Tikras skonis. Užsisakykite atsiėmimui arba pristatymui — jokių prenumeratų, jokių paslėptų mokesčių.">Real home cooks. Real taste. Order for pickup or chef delivery — no subscriptions, no hidden fees.</p>
         <div class="cta-group">
-            <button class="btn-secondary" onclick="openModal()" data-en="Browse today's meals" data-lt="Peržiūrėti šiandienos patiekalus">Browse today's meals</button>
+            <a href="https://app.mamchef.com" class="btn-secondary" data-en="Browse today's meals" data-lt="Peržiūrėti šiandienos patiekalus">Browse today's meals</a>
             <a href="https://chef.mamchef.com" class="btn-primary" data-en="I'm a cook — join MamChef →" data-lt="Esu virėjas — prisijungti prie MamChef →">I'm a cook — join MamChef →</a>
         </div>
     </div>
@@ -1468,7 +1335,7 @@
     <div class="support-card">
         <span class="support-eyebrow" data-en="Support & Company Information" data-lt="Pagalba ir įmonės informacija">Support & Company Information</span>
         <h2 data-en="Need help with MamChef?" data-lt="Reikia pagalbos su MamChef?">Need help with MamChef?</h2>
-        <p class="support-intro" data-en="MamChef customer and chef support is available by email and phone. If you have a question about orders, onboarding, payments, or your account, contact us directly and our team will help you." data-lt="MamChef klientų ir virėjų pagalba teikiama el. paštu ir telefonu. Jei turite klausimų apie užsakymus, registraciją, mokėjimus ar paskyrą, susisiekite su mumis tiesiogiai ir mūsų komanda padės.">MamChef customer and chef support is available by email and phone. If you have a question about orders, onboarding, payments, or your account, contact us directly and our team will help you.</p>
+        <p class="support-intro" data-en="MamChef customer and chef support is available by email. If you have a question about orders, onboarding, payments, or your account, contact us directly and our team will help you." data-lt="MamChef klientų ir virėjų pagalba teikiama el. paštu. Jei turite klausimų apie užsakymus, registraciją, mokėjimus ar paskyrą, susisiekite su mumis tiesiogiai ir mūsų komanda padės.">MamChef customer and chef support is available by email. If you have a question about orders, onboarding, payments, or your account, contact us directly and our team will help you.</p>
         <div class="support-grid">
             <div class="support-item">
                 <span class="support-label" data-en="Company" data-lt="Įmonė">Company</span>
@@ -1478,18 +1345,25 @@
                 <span class="support-label" data-en="Support Email" data-lt="Pagalbos el. paštas">Support Email</span>
                 <div class="support-value"><a href="mailto:support@mamchef.com">support@mamchef.com</a></div>
             </div>
-            <div class="support-item">
-                <span class="support-label" data-en="Phone" data-lt="Telefonas">Phone</span>
-                <div class="support-value"><a href="tel:+37063909449">+370 639 09449</a></div>
-            </div>
-            <div class="support-item">
-                <span class="support-label" data-en="Address" data-lt="Adresas">Address</span>
-                <div class="support-value" data-en="Kriviu St. 5, LT-01204 Vilnius, Lithuania" data-lt="Krivių g. 5, LT-01204 Vilnius, Lietuva">Kriviu St. 5, LT-01204 Vilnius, Lithuania</div>
-            </div>
         </div>
         <p class="support-note">
             <span data-en="For App Store users, this page and our dedicated support page are public contact points for customer questions and assistance. You can also visit " data-lt="App Store naudotojams šis puslapis ir mūsų atskiras pagalbos puslapis yra vieši kontaktiniai taškai klausimams ir pagalbai. Taip pat galite apsilankyti ">For App Store users, this page and our dedicated support page are public contact points for customer questions and assistance. You can also visit </span><a href="support/">mamchef.com/support</a><span data-en=" once this file is published at that route." data-lt=", kai šis failas bus paskelbtas tuo adresu."> once this file is published at that route.</span>
         </p>
+    </div>
+</section>
+
+<!-- Sister marketplace (BizzChef) — hidden by CSS until BizzChef launches -->
+<section class="sister-section" id="sister" aria-labelledby="sister-title">
+    <div class="sister-card">
+        <div>
+            <h3 id="sister-title" data-en="Ordering for an office or event?" data-lt="Užsakote biurui ar renginiui?">Ordering for an office or event?</h3>
+            <p data-en="For corporate and bulk food orders from catering businesses, see our sister marketplace, BizzChef." data-lt="Įmonių ir didelių užsakymų maistui iš maitinimo įmonių rinkitės mūsų sesers platformą BizzChef.">For corporate and bulk food orders from catering businesses, see our sister marketplace, BizzChef.</p>
+        </div>
+        <a class="btn-secondary" href="https://bizzchef.com" target="_blank" rel="noopener">
+            <span data-en="BizzChef · Corporate catering" data-lt="BizzChef · Įmonių maitinimas">BizzChef · Corporate catering</span>
+            <svg class="ext" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>
+            <span class="sr-only" data-en="(opens in a new tab)" data-lt="(atsidaro naujame skirtuke)">(opens in a new tab)</span>
+        </a>
     </div>
 </section>
 
@@ -1541,8 +1415,7 @@
         </div>
         <div class="footer-legal">
             <div><strong>MB MamChef</strong></div>
-            <div data-en="Address: Kriviu St. 5, LT-01204 Vilnius, Lithuania" data-lt="Adresas: Krivių g. 5, LT-01204 Vilnius, Lietuva">Address: Kriviu St. 5, LT-01204 Vilnius, Lithuania</div>
-            <div><a href="mailto:support@mamchef.com">support@mamchef.com</a> | <a href="tel:+37063909449">+370 639 09449</a></div>
+            <div><a href="mailto:support@mamchef.com">support@mamchef.com</a></div>
             <div><a href="support/" data-en="Support Page" data-lt="Pagalbos puslapis">Support Page</a></div>
         </div>
     </div>
@@ -1583,26 +1456,6 @@
             'MamChef - Švieži namų gamybos patiekalai iš kaimynų' : 
             'MamChef - Fresh homemade meals from neighbours';
     }
-    
-    // Modal functions
-    function openModal() {
-        const modal = document.getElementById('comingSoonModal');
-        modal.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-    
-    function closeModal() {
-        const modal = document.getElementById('comingSoonModal');
-        modal.classList.remove('active');
-        document.body.style.overflow = 'auto';
-    }
-    
-    // Close modal when clicking outside
-    document.getElementById('comingSoonModal').addEventListener('click', function(e) {
-        if (e.target === this) {
-            closeModal();
-        }
-    });
     
     // Handle notify form submission
     function handleNotifySubmit(event) {
@@ -1677,12 +1530,6 @@
         }
     });
     
-    // Escape key to close modal
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            closeModal();
-        }
-    });
 </script>
 </body>
 </html>
