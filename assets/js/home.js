@@ -8,27 +8,19 @@
   var videos = [];
 
   /* ---------- Hero: phone + arch tilt with the pointer (rAF-throttled CSS vars) ---------- */
-  /* Phones / touch (same query as the calm-hero block in home.css): no tilt listeners at all; bound later if that stops matching. */
-  var calmHero = w.matchMedia('(max-width: 899px), (pointer: coarse)');
   var hero = d.querySelector('.hero');
   var stage = d.querySelector('[data-tilt]');
   if (hero && stage) {
-    var tx = 0, ty = 0, raf = 0, tiltOn = false;
+    var tx = 0, ty = 0, raf = 0;
     var apply = function () { raf = 0; stage.style.setProperty('--mx', tx.toFixed(3)); stage.style.setProperty('--my', ty.toFixed(3)); };
-    var bindTilt = function () {
-      if (tiltOn || calmHero.matches) return;
-      tiltOn = true;
-      hero.addEventListener('pointermove', function (e) {
-        if (off() || !finePointer.matches || calmHero.matches) return;
-        var r = hero.getBoundingClientRect();
-        tx = ((e.clientX - r.left) / r.width - 0.5) * 2;
-        ty = ((e.clientY - r.top) / r.height - 0.5) * 2;
-        if (!raf) raf = w.requestAnimationFrame(apply);
-      }, { passive: true });
-      hero.addEventListener('pointerleave', function () { tx = 0; ty = 0; if (!raf) raf = w.requestAnimationFrame(apply); });
-    };
-    bindTilt();
-    if (!tiltOn && calmHero.addEventListener) calmHero.addEventListener('change', bindTilt);
+    hero.addEventListener('pointermove', function (e) {
+      if (off() || !finePointer.matches) return;
+      var r = hero.getBoundingClientRect();
+      tx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+      ty = ((e.clientY - r.top) / r.height - 0.5) * 2;
+      if (!raf) raf = w.requestAnimationFrame(apply);
+    }, { passive: true });
+    hero.addEventListener('pointerleave', function () { tx = 0; ty = 0; if (!raf) raf = w.requestAnimationFrame(apply); });
   }
 
   /* ---------- Story: the step in the middle of the viewport drives image, phone screen and ring ---------- */
