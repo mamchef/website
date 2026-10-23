@@ -314,3 +314,25 @@ html:not(.motion-off) .is-off .ch-rc-row, html:not(.motion-off) .is-off details 
 }
 .motion-off .progress { display: none; }
 @media print { .site-header, .sheet, .skip-link { display: none !important; } }
+
+/* ---------- Hidden diagnostic switches (T-20261023-07 r3, temporary) ----------
+   Only active with ?test=<a,b,...> in the URL (inline <head> script adds html.t-<value>);
+   normal visitors never get a t-* class. To be removed in the fix round. */
+.t-badge { position: fixed; z-index: 9999; left: 4px; top: 4px; padding: 2px 6px; border-radius: 4px; background: #c00; color: #fff; font: 600 10px/1.4 system-ui, sans-serif; pointer-events: none; }
+html.t-noblur *, html.t-noblur *::before, html.t-noblur *::after { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+html.t-nofloat .float, html.t-nofloat .phone-body, html.t-nofloat .order-card, html.t-nofloat .payout-card, html.t-nofloat .ch-hang { animation: none !important; }
+html.t-noanim body *, html.t-noanim body *::before, html.t-noanim body *::after { animation: none !important; transition: none !important; }
+html.t-noanim .rv { opacity: 1 !important; transform: none !important; }
+html.t-noanim .radius i { opacity: 1 !important; transform: translate(-50%, -50%) scale(.75) !important; }
+html.t-noanim .progress { display: none !important; }
+html.t-no3d *, html.t-no3d *::before, html.t-no3d *::after { transform-style: flat !important; perspective: none !important; }
+html.t-no3d .stage, html.t-no3d .phone, html.t-no3d .phone-body::before, html.t-no3d .float, html.t-no3d .hero-floor, html.t-no3d .map-plane,
+html.t-no3d .pin, html.t-no3d .pin-card, html.t-no3d .tile, html.t-no3d .ch-tile, html.t-no3d .ch-phone.phone { transform: none !important; }
+html.t-noglow .hero, html.t-noglow .hero-glow, html.t-noglow .sheet, html.t-noglow .site-footer::before, html.t-noglow .why::before, html.t-noglow .tile::before, html.t-noglow .tile::after,
+html.t-noglow .cooks::before, html.t-noglow .radius i, html.t-noglow .launch, html.t-noglow .launch::before, html.t-noglow .ch-hero, html.t-noglow .ch-glow,
+html.t-noglow .ch-kitchen::before, html.t-noglow .ch-money, html.t-noglow .ch-plan::before, html.t-noglow .ch-end { background-image: none !important; }
+html.t-noglow .hero, html.t-noglow .launch { background-color: var(--forest) !important; }
+html.t-noglow .sheet { background-color: var(--night) !important; }
+html.t-noshadow *, html.t-noshadow *::before, html.t-noshadow *::after { box-shadow: none !important; }
+html.t-nosticky .story-visual, html.t-nosticky .faq-head, html.t-nosticky .ch-jr-head { position: relative !important; top: auto !important; }
+html.t-noheader .site-header { display: none !important; }
