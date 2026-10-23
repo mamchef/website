@@ -184,6 +184,7 @@ strong { font-weight: 700; }
 }
 @media (max-width: 599px) {
   :root { --hdr-h: 58px; }
+  .btn { white-space: normal; text-align: center; line-height: 1.2; padding-block: 10px; }
   .site-header { top: 8px; width: calc(100% - 16px); }
   .hdr { padding: 0 7px 0 16px; gap: 8px; }
   .brand { width: 108px; }
