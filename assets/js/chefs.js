@@ -16,7 +16,7 @@
     if (el.innerHTML !== v) el.innerHTML = v;
   }
 
-  /* ---------- Header "Start cooking": one tap to the store listing on a phone (desktop keeps #join) ---------- */
+  /* ---------- Header "Start cooking": one tap to the store listing on a phone (desktop scrolls to the closing #start) ---------- */
   var store = de.classList.contains('os-ios') ? 'https://apps.apple.com/app/id6765938630'
     : de.classList.contains('os-android') ? 'https://play.google.com/store/apps/details?id=com.mamchef.chef' : '';
   if (store) $$('[data-ch-start]').forEach(function (a) { a.href = store; });
@@ -201,21 +201,22 @@
     d.addEventListener('mc:motion', function (e) { if (e.detail.off) { stop(); w.removeEventListener('scroll', onScroll); on = false; } });
   }
 
-  /* ---------- Sticky phone CTA (< 768 px, CSS): after the hero, never over #join or the footer ---------- */
-  var bar = $('[data-ch-bar]'), join = $('#join');
-  if (bar && hero && join && 'IntersectionObserver' in w) {
-    var st = { hero: true, join: false, past: false };
+  /* ---------- Sticky phone CTA (< 768 px, CSS): after the hero, never over the closing #start section (it has the same
+     badges) or the footer ---------- */
+  var bar = $('[data-ch-bar]'), end = $('#start');
+  if (bar && hero && end && 'IntersectionObserver' in w) {
+    var st = { hero: true, end: false, past: false };
     var bio = new IntersectionObserver(function (es) {
       es.forEach(function (e) {
         if (e.target === hero) st.hero = e.isIntersecting;
-        else { st.join = e.isIntersecting; st.past = !e.isIntersecting && e.boundingClientRect.top < 0; }
+        else { st.end = e.isIntersecting; st.past = !e.isIntersecting && e.boundingClientRect.top < 0; }
       });
-      var show = !st.hero && !st.join && !st.past;
+      var show = !st.hero && !st.end && !st.past;
       bar.classList.toggle('is-on', show);
       bar.inert = !show;
       bar.setAttribute('aria-hidden', String(!show));
     });
-    bio.observe(hero); bio.observe(join);
+    bio.observe(hero); bio.observe(end);
   }
 
   /* ---------- Hero clay video: desktop fine pointer only, after idle, never Save-Data / slow / motion off ---------- */
