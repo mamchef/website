@@ -16,9 +16,13 @@
     if (el.innerHTML !== v) el.innerHTML = v;
   }
 
-  /* ---------- Header "Start cooking": one tap to the store listing on a phone (desktop scrolls to the closing #start) ---------- */
-  var store = de.classList.contains('os-ios') ? 'https://apps.apple.com/app/id6765938630'
-    : de.classList.contains('os-android') ? 'https://play.google.com/store/apps/details?id=com.mamchef.chef' : '';
+  /* ---------- Header "Start cooking": iPhone + Android -> mamchef.com/chef-recruiter (nginx sends the phone to its store);
+     iPad (iPad UA, or iPadOS Safari = Mac UA + touch, which the recruiter would send back to /chefs) -> the App Store listing;
+     desktop + no-JS keep href="#start" (the closing section). os-ios / os-android come from the early inline script on <html>;
+     only the href changes, so nothing moves. ---------- */
+  var ua = navigator.userAgent || '', ipad = /iPad/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+  var store = de.classList.contains('os-ios') ? (ipad ? 'https://apps.apple.com/app/id6765938630' : 'https://mamchef.com/chef-recruiter')
+    : de.classList.contains('os-android') ? 'https://mamchef.com/chef-recruiter' : '';
   if (store) $$('[data-ch-start]').forEach(function (a) { a.href = store; });
 
   /* ---------- Hero: accept or decline a sample order ---------- */
@@ -101,7 +105,7 @@
     });
   });
 
-  /* ---------- Plan your week: plates = round(per day x days x 52/12), sales = round(price x plates) ---------- */
+  /* ---------- Plan your week: plates = round(per day x days x 52/12), sales = round(price x plates); plain numbers, no qualifiers ---------- */
   var plan = $('[data-ch-plan]');
   if (plan) {
     var price = $('#ch-price', plan), per = $('#ch-per', plan), days = $$('.ch-day-chips input', plan);
@@ -116,7 +120,6 @@
     var num = function (n) { return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, NB); };
     var plates = function (n) { return n + ' ' + (n === 1 ? 'plate' : 'plates'); };
     var ltPl = function (n) { return n + ' ' + ltP(n, 'patiekalas', 'patiekalai', 'patiekalų'); };
-    var ltPlAcc = function (n) { return n + ' ' + ltP(n, 'patiekalą', 'patiekalus', 'patiekalų'); };
     var fill = function (el) { el.style.setProperty('--fill', (el.value - el.min) / (el.max - el.min) * 100 + '%'); };
     var render = function () {
       var p = +price.value, q = +per.value, k = days.filter(function (c) { return c.checked; }).length;
@@ -129,17 +132,14 @@
         receipt.setAttribute('data-empty', '');
       } else {
         receipt.removeAttribute('data-empty');
-        say(R.f1, plates(q) + ' × ' + k + (k === 1 ? ' day' : ' days') + ' × about 4.3 weeks a month',
-          ltPl(q) + ' × ' + k + ' ' + ltP(k, 'diena', 'dienos', 'dienų') + ' × apie 4,3 savaitės per mėnesį');
-        say(R.v1, 'about ' + plates(n) + ' a month', 'apie ' + ltPlAcc(n) + ' per mėnesį');
+        R.v1.textContent = String(n);
         say(R.f2, plates(n) + ' × ' + p + '&nbsp;€', ltPl(n) + ' × ' + p + '&nbsp;€');
-        say(R.v2, 'about ' + num(s) + '&nbsp;€', 'apie ' + num(s) + '&nbsp;€');
+        say(R.v2, num(s) + '&nbsp;€ <small class="ch-rc-per">/&nbsp;month</small>', num(s) + '&nbsp;€ <small class="ch-rc-per">/&nbsp;mėn.</small>');
       }
       // Screen readers: one polite sentence once the value settles (not on every slider step)
       var tell = function () {
         if (!k) say(out, 'Pick at least one day.', 'Pasirinkite bent vieną dieną.');
-        else say(out, 'About ' + plates(n) + ' a month, about ' + num(s) + ' euros in customer payments a month, before commission and your own costs.',
-          'Apie ' + ltPlAcc(n) + ' per mėnesį, apie ' + num(s) + ' eurų klientų mokėjimų per mėnesį, prieš komisinį ir jūsų išlaidas.');
+        else say(out, plates(n) + ' a month, ' + num(s) + ' € a month.', ltPl(n) + ' per mėnesį, ' + num(s) + ' € per mėnesį.');
       };
       clearTimeout(timer);
       if (first) {
