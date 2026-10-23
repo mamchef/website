@@ -1,0 +1,8 @@
+# Editor / OS / tooling files: never deployed (site is published by git pull)
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+*.log
+node_modules/
+*.swp
