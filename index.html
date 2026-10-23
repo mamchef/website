@@ -748,11 +748,20 @@
             line-height: 1.7;
         }
 
+        /* Outlined variant of .btn-secondary for the sister block */
         .sister-card .btn-secondary {
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
             white-space: nowrap;
+            background: transparent;
+            color: #15392f;
+            border: 2px solid #15392f;
+            box-shadow: none;
+        }
+
+        .sister-card .btn-secondary:hover {
+            background: rgba(21, 57, 47, 0.06);
         }
 
         .ext {
@@ -1455,25 +1464,6 @@
         document.title = lang === 'lt' ? 
             'MamChef - Švieži namų gamybos patiekalai iš kaimynų' : 
             'MamChef - Fresh homemade meals from neighbours';
-    }
-    
-    // Handle notify form submission
-    function handleNotifySubmit(event) {
-        event.preventDefault();
-        const email = event.target.querySelector('input[type="email"]').value;
-        
-        // Here you would normally send the email to your backend
-        console.log('Email submitted:', email);
-        
-        // Show success message
-        const form = event.target;
-        const originalHTML = form.innerHTML;
-        form.innerHTML = currentLang === 'lt' ? 
-            '<p style="color: #527c70; font-size: 1.1rem;">Ačiū! Pranešime jums, kai startuosime!</p>' :
-            '<p style="color: #527c70; font-size: 1.1rem;">Thank you! We\'ll notify you when we launch!</p>';
-        
-        // Reset form after 3 seconds
-
     }
     
     // Process switching functionality
