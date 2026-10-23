@@ -1,6 +1,8 @@
 /* MamChef home page. Palette tokens + rgba() of palette triplets only (see site.css header). */
 
-:root { --chap: clamp(24px, 4vw, 56px); }
+/* --chap: rounded overlap of each chapter onto the previous one (hidden part of the previous section's bottom padding).
+   --sec-top / --sec-bot: VISIBLE space above the first and below the last content of a chapter (founder round 3: ~40-50 px on desktop). */
+:root { --chap: clamp(24px, 4vw, 56px); --sec-top: clamp(28px, 12px + 2.4vw, 48px); --sec-bot: clamp(40px, 16px + 4vw, 72px); }
 
 /* Chapters stack like cards: each overlaps the previous one with rounded top corners */
 .story, .why, .origin, .cooks, .hood, .launch, .faq, .site-footer {
@@ -213,7 +215,7 @@
 .motion-off .trust-list { flex-wrap: wrap; justify-content: center; gap: 14px 36px; }
 
 /* ======================= HOW IT WORKS (sticky story) ======================= */
-.story { z-index: 1; background: var(--paper); padding: calc(var(--chap) + clamp(64px, 8vw, 112px)) 0 clamp(96px, 10vw, 150px); }
+.story { z-index: 1; background: var(--paper); padding: var(--sec-top) 0 calc(var(--chap) + var(--sec-bot)); }
 .story-grid { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, .88fr); gap: clamp(32px, 5vw, 88px); margin-top: clamp(32px, 4vw, 56px); }
 .story-visual { position: sticky; top: calc(var(--hdr-h) + 36px); align-self: start; height: min(660px, calc(100vh - var(--hdr-h) - 72px)); perspective: 1400px; }
 .story-frame { position: absolute; inset: 0 13% 7% 0; overflow: hidden; border-radius: var(--r3); background: var(--mint); box-shadow: var(--shadow-2); }
@@ -292,7 +294,7 @@
 }
 
 /* ======================= WHY (bento with spotlight) ======================= */
-.why { z-index: 2; overflow: hidden; background: var(--forest); padding: calc(var(--chap) + clamp(64px, 8vw, 104px)) 0 calc(var(--chap) + clamp(72px, 9vw, 120px)); }
+.why { z-index: 2; overflow: hidden; background: var(--forest); padding: var(--sec-top) 0 calc(var(--chap) + var(--sec-bot)); }
 .why::before { content: ""; position: absolute; left: -20%; top: -30%; width: 80%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(closest-side, rgba(44, 83, 70, .9), rgba(44, 83, 70, 0)); pointer-events: none; }
 .why .wrap { position: relative; }
 .bento {
@@ -340,7 +342,7 @@
 .motion-off .flow-dot { display: none; }
 
 /* ======================= ORIGIN STORY ======================= */
-.origin { z-index: 3; background: var(--paper); padding: calc(var(--chap) + clamp(64px, 8vw, 112px)) 0 calc(var(--chap) + clamp(72px, 9vw, 128px)); text-align: center; }
+.origin { z-index: 3; background: var(--paper); padding: var(--sec-top) 0 calc(var(--chap) + var(--sec-bot)); text-align: center; }
 .origin .divider { margin-bottom: 26px; }
 .origin .divider svg { width: 36px; color: var(--forest); }
 .quote { max-width: 21ch; margin: 22px auto 0; font-size: clamp(2rem, 1.2rem + 3.4vw, 4.25rem); font-weight: 800; line-height: 1.07; letter-spacing: -.03em; color: var(--forest); }
@@ -348,7 +350,7 @@
 .origin-text { display: grid; gap: 14px; max-width: 640px; margin: 30px auto 0; color: var(--deep); font-size: 1.125rem; }
 
 /* ======================= FOR HOME COOKS ======================= */
-.cooks { z-index: 4; overflow: hidden; background: var(--night); padding: calc(var(--chap) + clamp(64px, 8vw, 104px)) 0 calc(var(--chap) + clamp(72px, 9vw, 120px)); }
+.cooks { z-index: 4; overflow: hidden; background: var(--night); padding: var(--sec-top) 0 calc(var(--chap) + var(--sec-bot)); }
 .cooks::before { content: ""; position: absolute; right: -15%; top: 5%; width: 70%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(closest-side, rgba(235, 167, 67, .16), rgba(235, 167, 67, 0)); pointer-events: none; }
 .cooks-inner { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(36px, 5vw, 88px); align-items: center; }
 .cooks .lead { margin-top: 20px; }
@@ -385,11 +387,13 @@
 .rail p { margin-top: 8px; color: var(--mint); font-size: 1rem; }
 
 /* ======================= NEIGHBOURHOOD MAP ======================= */
-.hood { z-index: 5; overflow: hidden; background: var(--paper); padding: calc(var(--chap) + clamp(64px, 8vw, 104px)) 0 calc(var(--chap) + clamp(72px, 9vw, 120px)); }
+.hood { z-index: 5; overflow: hidden; background: var(--paper); padding: var(--sec-top) 0 calc(var(--chap) + var(--sec-bot)); }
 .hood-inner { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr); gap: clamp(36px, 5vw, 80px); align-items: center; }
 .hood .lead { margin-top: 20px; }
 .hood .btn { margin-top: 32px; white-space: normal; text-align: left; min-height: 52px; padding: 12px 22px; }
 .map { perspective: 1500px; padding: 40px 0 10px; }
+/* side-by-side layout: the tilted plane is drawn shorter than its box; pull the empty box edges in so the visible top gap matches the other chapters */
+@media (min-width: 900px) { .map { padding: 0; margin-top: -44px; } }
 .map-plane {
   position: relative; aspect-ratio: 4 / 3; border-radius: 30px; transform-style: preserve-3d;
   transform: rotateX(40deg) rotateZ(-9deg); box-shadow: 0 70px 80px -30px rgba(15, 42, 34, .5), 0 0 0 1px rgba(21, 57, 47, .1);
@@ -421,7 +425,7 @@
 .pc-2 { left: 66%; top: 54%; }
 
 /* ======================= LAUNCH / GET THE APP ======================= */
-.launch { z-index: 6; background: radial-gradient(80% 90% at 12% 0%, var(--deep), var(--forest) 55%, var(--night)); padding: calc(var(--chap) + clamp(56px, 7vw, 96px)) 0 calc(var(--chap) + clamp(64px, 8vw, 112px)); overflow: hidden; }
+.launch { z-index: 6; background: radial-gradient(80% 90% at 12% 0%, var(--deep), var(--forest) 55%, var(--night)); padding: var(--sec-top) 0 calc(var(--chap) + var(--sec-bot)); overflow: hidden; }
 .launch::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(rgba(194, 225, 215, .12) 1.2px, transparent 1.2px); background-size: 26px 26px; -webkit-mask-image: radial-gradient(70% 70% at 80% 40%, var(--forest), transparent); mask-image: radial-gradient(70% 70% at 80% 40%, var(--forest), transparent); pointer-events: none; }
 .get-head { max-width: 760px; }
 .get-head .h2 { margin-top: 18px; }
@@ -436,10 +440,7 @@
   mask: radial-gradient(circle 18px at 0 calc(100% - var(--stub)), transparent 17px, var(--forest) 18px) left / 51% 100% no-repeat, radial-gradient(circle 18px at 100% calc(100% - var(--stub)), transparent 17px, var(--forest) 18px) right / 51% 100% no-repeat;
 }
 .get-main { display: flex; flex-direction: column; align-items: flex-start; padding: clamp(26px, 3.6vw, 48px); }
-.get-ic { display: grid; place-items: center; width: 52px; height: 52px; border-radius: 16px; background: rgba(194, 225, 215, .1); border: 1px solid var(--hair-dark); color: var(--gold); }
-.get-ic svg { width: 26px; height: 26px; }
-.get-ic .hat { width: 28px; height: auto; }
-.get-card h3 { margin-top: 20px; font-size: clamp(1.625rem, 1.25rem + 1.2vw, 2.25rem); font-weight: 800; color: var(--white); }
+.get-card h3 { font-size: clamp(1.625rem, 1.25rem + 1.2vw, 2.25rem); font-weight: 800; color: var(--white); }
 .get-line { margin-top: 10px; color: var(--mint); font-size: clamp(1.0625rem, 1rem + .25vw, 1.1875rem); }
 .store-row { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
 .store { display: inline-flex; align-items: center; gap: 12px; min-height: 58px; padding: 8px 20px 8px 14px; border-radius: 16px; background: var(--night); border: 1px solid rgba(194, 225, 215, .3); color: var(--white); text-decoration: none; transition: transform .4s var(--ease), border-color .3s; }
@@ -469,7 +470,7 @@
 .partners:hover svg { transform: translateX(3px); }
 
 /* ======================= FAQ ======================= */
-.faq { z-index: 7; background: var(--paper); padding: calc(var(--chap) + clamp(64px, 8vw, 104px)) 0 clamp(64px, 8vw, 96px); }
+.faq { z-index: 7; background: var(--paper); padding: var(--sec-top) 0 clamp(64px, 8vw, 96px); }
 .faq-inner { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: clamp(32px, 5vw, 88px); }
 .faq-head { position: sticky; top: calc(var(--hdr-h) + 48px); align-self: start; }
 .faq-head .lead { margin-top: 18px; }
