@@ -136,14 +136,22 @@
         say(R.v2, 'about ' + num(s) + '&nbsp;€', 'apie ' + num(s) + '&nbsp;€');
       }
       // Screen readers: one polite sentence once the value settles (not on every slider step)
-      clearTimeout(timer);
-      timer = setTimeout(function () {
-        if (first) { first = false; return; }
+      var tell = function () {
         if (!k) say(out, 'Pick at least one day.', 'Pasirinkite bent vieną dieną.');
         else say(out, 'About ' + plates(n) + ' a month, about ' + num(s) + ' euros in customer payments a month, before commission and your own costs.',
           'Apie ' + ltPlAcc(n) + ' per mėnesį, apie ' + num(s) + ' eurų klientų mokėjimų per mėnesį, prieš komisinį ir jūsų išlaidas.');
+      };
+      clearTimeout(timer);
+      if (first) {
+        // First render: the result is readable at once, then the node becomes the live region, so nothing is spoken on load
+        first = false; tell();
+        out.setAttribute('role', 'status'); out.setAttribute('aria-live', 'polite'); out.setAttribute('aria-atomic', 'true');
+        return;
+      }
+      timer = setTimeout(function () {
+        tell();
         if (!off()) { receipt.classList.remove('is-print'); void receipt.offsetWidth; receipt.classList.add('is-print'); }
-      }, first ? 0 : 400);
+      }, 400);
     };
     [price, per].forEach(function (el) {
       el.addEventListener('input', render);
@@ -214,7 +222,7 @@
   var holder = $('.ch-scene [data-video]'), vid = null, inView = true;
   function allow() {
     var c = navigator.connection || {};
-    return !off() && !c.saveData && !/(^|-)(2g|3g)$/.test(c.effectiveType || '') && w.innerWidth >= 1100 && fine.matches;
+    return !off() && !c.saveData && !/(^|-)(2g|3g)$/.test(c.effectiveType || '') && w.innerWidth >= 1200 && fine.matches;
   }
   function sync() {
     if (!vid) return;
