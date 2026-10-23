@@ -332,7 +332,9 @@
 
 .ch-plan { position: relative; padding: clamp(20px, 3vw, 34px); border-radius: 28px; background: rgba(22, 58, 48, .9); border: 1px solid var(--hair-dark); box-shadow: 0 50px 100px rgba(15, 42, 34, .55); }
 @supports ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
-  .ch-plan { background: rgba(22, 58, 48, .62); -webkit-backdrop-filter: blur(18px) saturate(1.2); backdrop-filter: blur(18px) saturate(1.2); }
+  /* Same .62 tint, no backdrop blur: the backdrop here is a flat dark gradient, so the blur was invisible (measured
+     0.9/255 mean pixel difference) but it was the main per-frame raster cost of /chefs while scrolling. */
+  .ch-plan { background: rgba(22, 58, 48, .62); }
 }
 .ch-plan::before { content: ""; position: absolute; z-index: -1; inset: 18% -12% -14% 24%; border-radius: 50%; background: radial-gradient(closest-side, rgba(235, 167, 67, .26), rgba(235, 167, 67, 0)); pointer-events: none; }
 .ch-plan h3 { color: var(--white); font-size: clamp(1.5rem, 1.25rem + 1vw, 2rem); font-weight: 800; }

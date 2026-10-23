@@ -69,13 +69,18 @@
   function onScroll() {
     var y = w.scrollY;
     if (header && !d.body.classList.contains('sheet-open') && !header.contains(d.activeElement)) {
+      var was = header.classList.contains('is-hidden');
       if (y > lastY + 6 && y > 160) header.classList.add('is-hidden');
       else if (y < lastY - 6 || y < 160) header.classList.remove('is-hidden');
+      if (was !== header.classList.contains('is-hidden')) header.classList.add('is-moving'); // will-change only during the slide
     }
     lastY = y; ticking = false;
   }
   w.addEventListener('scroll', function () { if (!ticking) { ticking = true; w.requestAnimationFrame(onScroll); } }, { passive: true });
-  if (header) header.addEventListener('focusin', function () { header.classList.remove('is-hidden'); });
+  if (header) {
+    header.addEventListener('focusin', function () { header.classList.remove('is-hidden'); });
+    header.addEventListener('transitionend', function (e) { if (e.target === header) header.classList.remove('is-moving'); });
+  }
 
   /* ---------- Mobile menu sheet ---------- */
   function openSheet(open) {
