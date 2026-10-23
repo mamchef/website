@@ -611,3 +611,29 @@
 @media (min-width: 1600px) {
   .stage { width: min(100%, 640px); }
 }
+
+/* T-20261023-07 r5: phones (≤ 899 px or touch) get every shadow at 70% (offset, blur, spread × 0.7, whole px;
+   em sizes × 0.7 to 2 decimals); colours unchanged, desktop untouched. var(--shadow-1/2) users scale via site.css. */
+@media (max-width: 899px), (pointer: coarse) {
+  .arch { box-shadow: 0 35px 63px rgba(15, 42, 34, .6), 0 0 0 1px rgba(194, 225, 215, .3), inset 0 0 0 1px rgba(255, 255, 255, .1); }
+  .phone-body { box-shadow: inset 0 0 0 1px rgba(194, 225, 215, .4), inset 0 0 0 3px var(--night), 0 28px 49px rgba(15, 42, 34, .6), -17px 21px 35px rgba(15, 42, 34, .35); }
+  .phone-body::before { box-shadow: 0 0 0 1px rgba(194, 225, 215, .12); }
+  .app-card { box-shadow: 0 .28em .84em rgba(15, 42, 34, .08); }
+  .app-nav .app-fab { box-shadow: 0 0 0 .32em var(--paper); }
+  .app-seg .on { box-shadow: 0 .14em .42em rgba(15, 42, 34, .1); }
+  .app-oc { box-shadow: 0 .28em .84em rgba(15, 42, 34, .08); }
+  .app-trk .now i { box-shadow: 0 0 0 .25em rgba(82, 124, 112, .2); }
+  .float { box-shadow: 0 13px 28px rgba(15, 42, 34, .35); }
+  .flow-dot { box-shadow: 0 0 0 4px rgba(235, 167, 67, .22); }
+  .cooks-frame { box-shadow: 0 35px 63px rgba(15, 42, 34, .7), 0 0 0 1px rgba(194, 225, 215, .25); }
+  .order-card { box-shadow: 0 17px 35px rgba(15, 42, 34, .55); }
+  .payout-card { box-shadow: 0 17px 35px rgba(15, 42, 34, .5); }
+  .map-plane { box-shadow: 0 49px 56px -21px rgba(15, 42, 34, .5), 0 0 0 1px rgba(21, 57, 47, .1); }
+  .you { box-shadow: 0 0 0 6px rgba(255, 255, 255, .18); }
+  .pin::before { box-shadow: 0 7px 13px rgba(15, 42, 34, .35); }
+  .pin-card { box-shadow: 0 11px 21px rgba(15, 42, 34, .35); }
+  .get-card { box-shadow: 0 35px 70px rgba(15, 42, 34, .5); }
+  .qr { box-shadow: 0 11px 22px rgba(15, 42, 34, .45), 0 0 0 4px rgba(235, 167, 67, .3); }
+  .faq summary::after { box-shadow: 0 0 0 1px var(--mint); }
+  .faq summary:hover::after { box-shadow: 0 0 0 1px var(--forest); }
+}
