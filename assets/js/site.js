@@ -130,6 +130,15 @@
     Array.prototype.forEach.call(targets, function (el) { io.observe(el); });
   }
 
+  /* ---------- Off-screen pause: sections far outside the viewport get .is-off, which pauses their CSS animations
+     (site.css). Same look on screen; no style/paint work per frame for loops nobody can see. ---------- */
+  if ('IntersectionObserver' in w) {
+    var pio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { en.target.classList.toggle('is-off', !en.isIntersecting); });
+    }, { rootMargin: '25% 0px' });
+    each('[data-header], main > section, .site-footer', function (el) { pio.observe(el); });
+  }
+
   /* ---------- Footer year (static 2026 fallback in the HTML) ---------- */
   var y = new Date().getFullYear();
   if (y > 2026) each('[data-year]', function (el) { el.textContent = String(y); });
