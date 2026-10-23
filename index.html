@@ -27,7 +27,8 @@
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="preload" href="assets/fonts/bricolage-grotesque-600-800.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="assets/fonts/mc-text-400.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" as="image" type="image/avif" href="assets/img/neighbourhood-1280.avif" fetchpriority="high">
+<link rel="preload" as="image" type="image/avif" media="(max-width: 899px)" imagesrcset="assets/img/neighbourhood-arch-480.avif 480w, assets/img/neighbourhood-arch-576.avif 576w" imagesizes="76vw" fetchpriority="high">
+<link rel="preload" as="image" type="image/avif" media="(min-width: 900px)" imagesrcset="assets/img/neighbourhood-960.avif 960w, assets/img/neighbourhood-1280.avif 1280w" imagesizes="1000px" fetchpriority="high">
 <script>(function(d){var c=d.documentElement.classList,l,m;c.add('js');try{l=localStorage.getItem('mc-lang');m=localStorage.getItem('mc-motion')}catch(e){}if(!l){var n=(navigator.languages&&navigator.languages[0])||navigator.language||'';l=n.toLowerCase().indexOf('lt')===0?'lt':'en'}if(l==='lt')c.add('i18n-wait');if(m==='off'||(m!=='on'&&window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches))c.add('motion-off')})(document)</script>
 <link rel="stylesheet" href="assets/css/site.css">
 <link rel="stylesheet" href="assets/css/home.css">
@@ -150,9 +151,11 @@
       <div class="stage" data-tilt aria-hidden="true">
         <div class="arch">
           <picture>
-            <source type="image/avif" srcset="assets/img/neighbourhood-640.avif 640w, assets/img/neighbourhood-960.avif 960w, assets/img/neighbourhood-1280.avif 1280w" sizes="(min-width: 1100px) 1050px, 180vw">
-            <source type="image/webp" srcset="assets/img/neighbourhood-640.webp 640w, assets/img/neighbourhood-960.webp 960w, assets/img/neighbourhood-1280.webp 1280w" sizes="(min-width: 1100px) 1050px, 180vw">
-            <img src="assets/img/neighbourhood-1280.webp" width="1280" height="720" alt="" fetchpriority="high" decoding="async">
+            <source media="(max-width: 899px)" type="image/avif" srcset="assets/img/neighbourhood-arch-480.avif 480w, assets/img/neighbourhood-arch-576.avif 576w" sizes="76vw">
+            <source media="(max-width: 899px)" type="image/webp" srcset="assets/img/neighbourhood-arch-480.webp 480w, assets/img/neighbourhood-arch-576.webp 576w" sizes="76vw">
+            <source type="image/avif" srcset="assets/img/neighbourhood-960.avif 960w, assets/img/neighbourhood-1280.avif 1280w" sizes="1000px">
+            <source type="image/webp" srcset="assets/img/neighbourhood-960.webp 960w, assets/img/neighbourhood-1280.webp 1280w" sizes="1000px">
+            <img src="assets/img/neighbourhood-1280.webp" width="1280" height="720" alt="" fetchpriority="high">
           </picture>
           <div class="arch-video" data-video="assets/video/neighbourhood.mp4"></div>
           <div class="arch-shade"></div>
@@ -173,11 +176,11 @@
                 </div>
                 <div class="app-chips"><span class="on" data-en="For You" data-lt="Tau">For You</span><span data-en="Most Relevant" data-lt="Aktualiausi">Most Relevant</span><span data-en="Highest Rated" data-lt="Aukščiausiai įvertinti">Highest Rated</span></div>
                 <div class="app-card">
-                  <div class="app-img"><picture><source type="image/avif" srcset="assets/img/market-640.avif"><img src="assets/img/market-640.webp" width="640" height="357" alt="" decoding="async"></picture><span class="app-heart"><svg><use href="#i-heart"/></svg></span></div>
+                  <div class="app-img"><picture><source type="image/avif" srcset="assets/img/market-360.avif"><img src="assets/img/market-360.webp" width="360" height="201" alt="" decoding="async"></picture><span class="app-heart"><svg><use href="#i-heart"/></svg></span></div>
                   <div class="app-meta"><b data-en="Home kitchen nearby" data-lt="Namų virtuvė netoliese">Home kitchen nearby</b><span class="app-tags"><i data-en="Pickup" data-lt="Atsiėmimas">Pickup</i><i data-en="Delivery" data-lt="Pristatymas">Delivery</i></span></div>
                 </div>
                 <div class="app-card">
-                  <div class="app-img"><picture><source type="image/avif" srcset="assets/img/kitchen-640.avif"><img src="assets/img/kitchen-640.webp" width="640" height="360" alt="" decoding="async"></picture><span class="app-heart"><svg><use href="#i-heart"/></svg></span></div>
+                  <div class="app-img"><picture><source type="image/avif" srcset="assets/img/kitchen-360.avif"><img src="assets/img/kitchen-360.webp" width="360" height="202" alt="" decoding="async"></picture><span class="app-heart"><svg><use href="#i-heart"/></svg></span></div>
                   <div class="app-meta"><b data-en="Home kitchen nearby" data-lt="Namų virtuvė netoliese">Home kitchen nearby</b><span class="app-tags"><i data-en="Pickup" data-lt="Atsiėmimas">Pickup</i><i data-en="Allergens shown" data-lt="Alergenai nurodyti">Allergens shown</i></span></div>
                 </div>
                 <div class="app-nav">
@@ -232,10 +235,10 @@
     <div class="story-grid">
       <div class="story-visual" aria-hidden="true">
         <div class="story-frame">
-          <picture class="sv sv-1"><source type="image/avif" srcset="assets/img/kitchen-640.avif 640w, assets/img/kitchen-960.avif 960w, assets/img/kitchen-1280.avif 1280w" sizes="(min-width: 900px) 760px, 140vw"><img src="assets/img/kitchen-960.webp" srcset="assets/img/kitchen-640.webp 640w, assets/img/kitchen-960.webp 960w, assets/img/kitchen-1280.webp 1280w" sizes="(min-width: 900px) 760px, 140vw" width="1280" height="720" alt="" loading="lazy" decoding="async"></picture>
+          <picture class="sv sv-1"><source type="image/avif" srcset="assets/img/kitchen-640.avif 640w, assets/img/kitchen-960.avif 960w, assets/img/kitchen-1280.avif 1280w" sizes="(min-width: 900px) 760px, 120vw"><img src="assets/img/kitchen-960.webp" srcset="assets/img/kitchen-640.webp 640w, assets/img/kitchen-960.webp 960w, assets/img/kitchen-1280.webp 1280w" sizes="(min-width: 900px) 760px, 120vw" width="1280" height="720" alt="" loading="lazy" decoding="async"></picture>
           <div class="sv-video" data-video="assets/video/kitchen.mp4"></div>
-          <picture class="sv sv-2"><source type="image/avif" srcset="assets/img/market-640.avif 640w, assets/img/market-1024.avif 1024w, assets/img/market-1376.avif 1376w" sizes="(min-width: 900px) 760px, 140vw"><img src="assets/img/market-1024.webp" srcset="assets/img/market-640.webp 640w, assets/img/market-1024.webp 1024w, assets/img/market-1376.webp 1376w" sizes="(min-width: 900px) 760px, 140vw" width="1376" height="768" alt="" loading="lazy" decoding="async"></picture>
-          <picture class="sv sv-3"><source type="image/avif" srcset="assets/img/living-room-640.avif 640w, assets/img/living-room-1024.avif 1024w, assets/img/living-room-1376.avif 1376w" sizes="(min-width: 900px) 760px, 140vw"><img src="assets/img/living-room-1024.webp" srcset="assets/img/living-room-640.webp 640w, assets/img/living-room-1024.webp 1024w, assets/img/living-room-1376.webp 1376w" sizes="(min-width: 900px) 760px, 140vw" width="1376" height="768" alt="" loading="lazy" decoding="async"></picture>
+          <picture class="sv sv-2"><source type="image/avif" srcset="assets/img/market-640.avif 640w, assets/img/market-1024.avif 1024w, assets/img/market-1376.avif 1376w" sizes="(min-width: 900px) 760px, 120vw"><img src="assets/img/market-1024.webp" srcset="assets/img/market-640.webp 640w, assets/img/market-1024.webp 1024w, assets/img/market-1376.webp 1376w" sizes="(min-width: 900px) 760px, 120vw" width="1376" height="768" alt="" loading="lazy" decoding="async"></picture>
+          <picture class="sv sv-3"><source type="image/avif" srcset="assets/img/living-room-640.avif 640w, assets/img/living-room-1024.avif 1024w, assets/img/living-room-1376.avif 1376w" sizes="(min-width: 900px) 760px, 120vw"><img src="assets/img/living-room-1024.webp" srcset="assets/img/living-room-640.webp 640w, assets/img/living-room-1024.webp 1024w, assets/img/living-room-1376.webp 1376w" sizes="(min-width: 900px) 760px, 120vw" width="1376" height="768" alt="" loading="lazy" decoding="async"></picture>
           <div class="story-ring"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="20"/><circle class="ring-fg" cx="24" cy="24" r="20" pathLength="1"/></svg><span class="ring-n"><b class="n1">1</b><b class="n2">2</b><b class="n3">3</b></span></div>
         </div>
         <div class="phone phone--story">
@@ -253,11 +256,11 @@
                 </div>
                 <div class="app-chips"><span class="on" data-en="For You" data-lt="Tau">For You</span><span data-en="Most Relevant" data-lt="Aktualiausi">Most Relevant</span><span data-en="Highest Rated" data-lt="Aukščiausiai įvertinti">Highest Rated</span></div>
                 <div class="app-card">
-                  <div class="app-img"><img src="assets/img/kitchen-640.webp" width="640" height="360" alt="" loading="lazy" decoding="async"><span class="app-heart"><svg><use href="#i-heart"/></svg></span></div>
+                  <div class="app-img"><img src="assets/img/kitchen-360.webp" width="360" height="202" alt="" loading="lazy" decoding="async"><span class="app-heart"><svg><use href="#i-heart"/></svg></span></div>
                   <div class="app-meta"><b data-en="Home kitchen nearby" data-lt="Namų virtuvė netoliese">Home kitchen nearby</b><span class="app-tags"><i data-en="Pickup" data-lt="Atsiėmimas">Pickup</i><i data-en="Delivery" data-lt="Pristatymas">Delivery</i></span></div>
                 </div>
                 <div class="app-card">
-                  <div class="app-img"><img src="assets/img/market-640.webp" width="640" height="357" alt="" loading="lazy" decoding="async"><span class="app-heart"><svg><use href="#i-heart"/></svg></span></div>
+                  <div class="app-img"><img src="assets/img/market-360.webp" width="360" height="201" alt="" loading="lazy" decoding="async"><span class="app-heart"><svg><use href="#i-heart"/></svg></span></div>
                   <div class="app-meta"><b data-en="Home kitchen nearby" data-lt="Namų virtuvė netoliese">Home kitchen nearby</b><span class="app-tags"><i data-en="Pickup" data-lt="Atsiėmimas">Pickup</i></span></div>
                 </div>
               </div>
@@ -265,7 +268,7 @@
                 <div class="app-title" data-en="Cart" data-lt="Krepšelis">Cart</div>
                 <div class="app-seg"><span data-en="Delivery" data-lt="Pristatymas">Delivery</span><span class="on" data-en="Pickup" data-lt="Atsiėmimas">Pickup</span></div>
                 <div class="app-item">
-                  <img src="assets/img/market-640.webp" width="640" height="357" alt="" loading="lazy" decoding="async">
+                  <img src="assets/img/market-360.webp" width="360" height="201" alt="" loading="lazy" decoding="async">
                   <span class="app-lines"><i></i><i class="short"></i></span>
                   <span class="app-qty"><i>&minus;</i><i>+</i></span>
                 </div>
@@ -301,7 +304,7 @@
           <p data-en="Browse home kitchens near you. Filter by cuisine, price, pickup or delivery and dietary needs. Order for today or up to a week ahead." data-lt="Naršykite namų virtuves netoliese. Filtruokite pagal virtuvę, kainą, atsiėmimą ar pristatymą ir mitybos poreikius. Užsisakykite šiandienai arba iki savaitės į priekį.">Browse home kitchens near you. Filter by cuisine, price, pickup or delivery and dietary needs. Order for today or up to a week ahead.</p>
         </li>
         <li class="step" data-step="2">
-          <picture class="step-media"><source type="image/avif" srcset="assets/img/market-640.avif"><img src="assets/img/market-640.webp" width="640" height="357" alt="" loading="lazy" decoding="async"></picture>
+          <picture class="step-media"><source type="image/avif" srcset="assets/img/market-360.avif"><img src="assets/img/market-360.webp" width="360" height="201" alt="" loading="lazy" decoding="async"></picture>
           <span class="step-n" aria-hidden="true">02</span>
           <h3 data-en="Order and pay safely" data-lt="Užsisakykite ir mokėkite saugiai">Order and pay safely</h3>
           <p data-en="Pay by card through Stripe. Your card is only held when you order and charged when the cook accepts. If the cook can't take it, the hold is released." data-lt="Mokėkite kortele per Stripe. Užsakant suma kortelėje tik rezervuojama ir nuskaitoma, kai virėjas priima užsakymą. Jei virėjas negali jo priimti, rezervacija panaikinama.">Pay by card through Stripe. Your card is only held when you order and charged when the cook accepts. If the cook can't take it, the hold is released.</p>
