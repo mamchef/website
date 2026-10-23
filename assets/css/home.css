@@ -231,7 +231,7 @@
   -webkit-mask-image: linear-gradient(90deg, transparent, var(--forest) 8%, var(--forest) 92%, transparent);
   mask-image: linear-gradient(90deg, transparent, var(--forest) 8%, var(--forest) 92%, transparent);
 }
-.trust-track { display: flex; width: max-content; animation: marquee 40s linear infinite; }
+.trust-track { display: flex; width: max-content; animation: marquee 80s linear infinite; } /* list + 3 clones: -50% = 2 lists, so 80s keeps the old speed */
 .trust:hover .trust-track { animation-play-state: paused; }
 .trust-list { display: flex; gap: 56px; padding: 22px 28px; list-style: none; }
 .trust-list li { display: inline-flex; align-items: center; gap: 12px; color: var(--white); font-family: var(--display); font-weight: 600; font-size: 1.0625rem; white-space: nowrap; }
