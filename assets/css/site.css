@@ -176,7 +176,7 @@ strong { font-weight: 700; }
   color: var(--white); text-decoration: none; font-family: var(--display); font-weight: 600; font-size: .9375rem;
   transition: background-color .25s, color .25s;
 }
-.hdr-nav a:hover { background: rgba(185, 61, 34, .3); color: var(--gold); }
+.hdr-nav a:hover { background: rgba(127, 38, 19, .35); color: var(--gold); }
 .hdr-tools { display: flex; align-items: center; gap: 8px; margin-left: auto; }
 .hdr-nav + .hdr-tools { margin-left: 8px; }
 
@@ -186,7 +186,7 @@ strong { font-weight: 700; }
   color: var(--white); letter-spacing: .04em; transition: background-color .25s, color .25s;
 }
 .lang button[aria-pressed="true"] { background: var(--on-rust); color: var(--rust-700); }
-.lang button:not([aria-pressed="true"]):hover { color: var(--gold); }
+.lang button:not([aria-pressed="true"]):hover { background: rgba(42, 19, 14, .6); color: var(--gold); }
 
 .icon-btn {
   display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 999px; flex: none;

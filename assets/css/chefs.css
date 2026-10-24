@@ -318,7 +318,7 @@
 .ch-phone-cap { position: relative; margin-top: 18px; color: var(--ink); font-family: var(--display); font-weight: 600; font-size: .8125rem; letter-spacing: .02em; }
 
 /* 5 honest money + planner */
-.ch-money { z-index: 4; overflow: hidden; background: radial-gradient(60% 55% at 88% 22%, rgba(235, 167, 67, .13), rgba(235, 167, 67, 0) 70%), radial-gradient(70% 60% at 0% 100%, rgba(235, 167, 67, .3), rgba(235, 167, 67, 0) 70%), var(--char); }
+.ch-money { z-index: 4; overflow: hidden; background: radial-gradient(60% 55% at 88% 22%, rgba(235, 167, 67, .13), rgba(235, 167, 67, 0) 70%), radial-gradient(70% 60% at 0% 100%, rgba(185, 61, 34, .3), rgba(185, 61, 34, 0) 70%), var(--char); }
 .ch-money-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(32px, 5vw, 80px); align-items: start; margin-top: clamp(32px, 4vw, 52px); }
 .ch-flow { position: relative; display: grid; gap: 22px; list-style: none; }
 .ch-flow::before { content: ""; position: absolute; left: 27px; top: 28px; bottom: 28px; width: 2px; background: linear-gradient(var(--gold), var(--rust-400)); transform-origin: 50% 0; transition: transform 1.4s .2s var(--ease); }
