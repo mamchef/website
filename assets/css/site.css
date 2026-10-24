@@ -4,6 +4,7 @@
    ONLY inside the app mock-ups (they show the real apps) and the hidden BizzChef block. rgba() uses the same triplets:
    ink 43,25,18 | ember 42,19,14 | ember-card 59,28,20 | blush 243,217,205 | peach 244,184,162 | rust-300 232,160,142
    rust-400 217,103,76 | rust-500 185,61,34 | rust-600 159,49,25 | rust-700 127,38,19 | white 255,255,255
+   char 35,28,25 | char-card 47,39,35 (T-20261024-02: calm warm-charcoal bands; rust walls only hero + closing band)
    app zone only: forest 21,57,47 | sage 82,124,112 | mint 194,225,215 | gold 235,167,67 | night 15,42,34 */
 
 :root {
@@ -18,7 +19,7 @@
   --rust-50: #fbf0ec; --rust-100: #f7e4df; --rust-200: #efc6ba; --rust-300: #e8a08e; --rust-400: #d9674c;
   --rust-500: #b93d22; --rust-600: #9f3119; --rust-700: #7f2613; --rust-800: #5c1b0e; --peach: #f4b8a2;
   --cream: #fbf6f0; --sand: #f3e9df; --line: #e6d6c8; --ink: #2b1912; --umber: #5c4338; --taupe: #7a6154;
-  --ember: #2a130e; --ember-card: #3b1c14; --on-dark: #ffffff; --on-rust: #fff1e8; --blush: #f3d9cd; --blush-dim: #c9a89a;
+  --ember: #2a130e; --ember-card: #3b1c14; --char: #231c19; --char-card: #2f2723; --on-dark: #ffffff; --on-rust: #fff1e8; --blush: #f3d9cd; --blush-dim: #c9a89a;
   --ok: #2e7d4f; --err: #b3173e; --warn: #eba743; --warn-text: #8a5a00; --info: #2f6f8f;
 
   --ease: cubic-bezier(.22, 1, .36, 1);
@@ -276,10 +277,10 @@ body.sheet-open { overflow: hidden; }
 .divider svg { width: 30px; }
 
 /* ---------- Footer ---------- */
-.site-footer { position: relative; overflow: hidden; background: var(--ember); color: var(--blush); padding: clamp(64px, 8vw, 112px) 0 28px; }
+.site-footer { position: relative; overflow: hidden; background: var(--char); color: var(--blush); padding: clamp(64px, 8vw, 112px) 0 28px; }
 .site-footer::before {
   content: ""; position: absolute; inset: -40% -10% auto; height: 80%; pointer-events: none;
-  background: radial-gradient(50% 50% at 50% 50%, rgba(159, 49, 25, .55), transparent 70%);
+  background: radial-gradient(50% 50% at 50% 50%, rgba(185, 61, 34, .28), transparent 70%);
 }
 .ft-grid { position: relative; display: grid; gap: 40px; grid-template-columns: 1.4fr repeat(3, 1fr); }
 .ft-brand .wm { width: 168px; color: var(--white); }
@@ -293,8 +294,8 @@ body.sheet-open { overflow: hidden; }
 .ft-col a { display: inline-flex; align-items: center; min-height: 40px; color: var(--white); text-decoration: none; transition: color .25s; }
 .ft-col a:hover { color: var(--peach); text-decoration: underline; text-underline-offset: 4px; }
 .ft-col .muted { display: inline-flex; align-items: center; min-height: 40px; color: var(--blush); }
-.ft-giant { position: relative; margin: clamp(48px, 7vw, 96px) auto 0; color: var(--ember-card); }
-.ft-giant .wm { fill: var(--ember-card); stroke: rgba(243, 217, 205, .16); stroke-width: 1; }
+.ft-giant { position: relative; margin: clamp(48px, 7vw, 96px) auto 0; color: var(--char-card); }
+.ft-giant .wm { fill: var(--char-card); stroke: rgba(243, 217, 205, .16); stroke-width: 1; }
 .ft-bottom {
   position: relative; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px;
   margin-top: 28px; padding-top: 22px; border-top: 1px solid var(--hair-dark); font-size: .9375rem; color: var(--blush);
