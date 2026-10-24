@@ -190,7 +190,7 @@
 }
 .ch-tile { transform: perspective(800px) rotateX(var(--ry)) rotateY(var(--rx)); }
 .ch-tile:hover { border-color: rgba(244, 184, 162, .55); }
-.ch-tic { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 14px; background: rgba(185, 61, 34, .22); border: 1px solid rgba(217, 103, 76, .4); color: var(--peach); }
+.ch-tic { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 14px; background: var(--rust-600); border: 1px solid var(--rust-400); color: var(--peach); }
 .ch-tic svg { width: 22px; height: 22px; }
 .ch-tile h3 { margin-top: 18px; color: var(--white); font-size: clamp(1.125rem, 1.05rem + .3vw, 1.3125rem); font-weight: 750; line-height: 1.15; }
 .ch-tile p { margin-top: 8px; color: var(--blush); font-size: .96875rem; line-height: 1.5; }
