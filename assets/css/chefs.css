@@ -11,14 +11,14 @@
 .ch-hero {
   position: relative; isolation: isolate; overflow: hidden; z-index: 0;
   padding: calc(var(--hdr-h) + clamp(44px, 6vw, 80px)) 0 calc(var(--chap) + clamp(36px, 5vw, 64px));
-  background: radial-gradient(55% 65% at 80% 38%, rgba(159, 49, 25, .7), rgba(159, 49, 25, 0) 70%), var(--ember);
+  background: radial-gradient(70% 60% at 78% 28%, var(--rust-500) 0%, var(--rust-700) 46%, var(--ember) 100%);
 }
 .ch-hero-bg { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
 .ch-hero-hat { position: absolute; left: -7vw; bottom: -6%; width: min(44vw, 620px); color: rgba(243, 217, 205, .08); --sw: 2.2; }
 .js .ch-hero-hat use { transition-duration: 2.6s; }
 .ch-hero-in { display: grid; grid-template-columns: minmax(0, 5.2fr) minmax(0, 6.8fr); gap: clamp(28px, 4vw, 64px); align-items: center; }
 .ch-hero h1 { margin-top: 0; font-size: clamp(2.5rem, 1.3rem + 3.3vw, 4.5rem); line-height: .98; letter-spacing: -.035em; color: var(--white); }
-.ch-sub { margin-top: 22px; max-width: 34em; color: var(--blush); font-size: clamp(1.0625rem, 1rem + .35vw, 1.1875rem); }
+.ch-sub { margin-top: 22px; max-width: 34em; color: var(--on-rust); font-size: clamp(1.0625rem, 1rem + .35vw, 1.1875rem); }
 .ch-hero .chips { margin-top: 26px; }
 .ch-get { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 18px; margin-top: 30px; }
 .ch-get .store-row { flex-direction: column; gap: 10px; }
@@ -31,7 +31,7 @@
 .ch-qr .qr-cap { font-size: .9375rem; }
 .ch-qr .qr-txt small { font-size: .8125rem; }
 .os-ios .ch-qr, .os-android .ch-qr { display: none; }
-.ch-under { display: flex; align-items: center; gap: 10px; margin-top: 24px; color: var(--blush); font-size: .9375rem; }
+.ch-under { display: flex; align-items: center; gap: 10px; margin-top: 24px; color: var(--on-rust); font-size: .9375rem; }
 .ch-under svg { width: 20px; height: 20px; flex: none; color: var(--peach); }
 .ch-ghost { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; margin-top: 6px; color: var(--peach); font-family: var(--display); font-weight: 600; text-underline-offset: 4px; }
 .ch-ghost svg { width: 18px; height: 18px; transform: rotate(90deg); transition: transform .4s var(--ease); }
@@ -122,7 +122,7 @@
 [data-state="acc"] .ch-stamp { color: var(--forest); opacity: 1; scale: 1; }
 [data-state="dec"] .ch-stamp { color: var(--deep); opacity: 1; scale: 1; }
 .ch-hang[data-state="acc"] { translate: 20px 0; }
-.ch-try { position: absolute; z-index: 3; right: 0; bottom: 74px; translate: calc(100% + 14px) 0; display: flex; align-items: center; gap: 6px; padding: 7px 14px 7px 10px; border-radius: 999px; background: var(--gold); color: var(--forest); font-family: var(--display); font-weight: 700; font-size: .875rem; white-space: nowrap; box-shadow: 0 10px 24px rgba(42, 19, 14, .4); transition: opacity .4s; }
+.ch-try { position: absolute; z-index: 3; right: 0; bottom: 74px; translate: calc(100% + 14px) 0; display: flex; align-items: center; gap: 6px; padding: 7px 14px 7px 10px; border-radius: 999px; background: var(--peach); color: var(--ink); font-family: var(--display); font-weight: 700; font-size: .875rem; white-space: nowrap; box-shadow: 0 10px 24px rgba(42, 19, 14, .4); transition: opacity .4s; }
 .ch-try::before { content: ""; width: 8px; height: 8px; border-left: 2.5px solid currentColor; border-bottom: 2.5px solid currentColor; rotate: 45deg; }
 .ch-used .ch-try { opacity: 0; }
 
@@ -146,8 +146,8 @@
 .ch-proof .trust { margin-top: 0; border: 0; background: transparent; }
 
 /* 3 you run the kitchen */
-.ch-kitchen { z-index: 2; overflow: hidden; background: var(--rust-700); }
-.ch-kitchen::before { content: ""; position: absolute; left: -25%; top: -20%; width: 75%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(closest-side, rgba(159, 49, 25, .95), rgba(159, 49, 25, 0)); pointer-events: none; }
+.ch-kitchen { z-index: 2; overflow: hidden; background: var(--rust-800); }
+.ch-kitchen::before { content: ""; position: absolute; left: -25%; top: -20%; width: 75%; aspect-ratio: 1; border-radius: 50%; background: radial-gradient(closest-side, rgba(127, 38, 19, .9), rgba(127, 38, 19, 0)); pointer-events: none; }
 .ch-kitchen .wrap { position: relative; }
 .ch-kit-grid { display: grid; grid-template-columns: minmax(0, 4.6fr) minmax(0, 7.4fr); gap: clamp(28px, 4vw, 64px); align-items: center; margin-top: clamp(32px, 4vw, 52px); }
 .ch-kcard-wrap { width: 100%; max-width: 430px; margin: 0 auto; }

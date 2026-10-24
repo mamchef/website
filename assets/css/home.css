@@ -212,7 +212,7 @@
 .float small { display: block; color: var(--umber); font-size: .8125rem; }
 .float-ic { display: grid; place-items: center; width: 36px; height: 36px; border-radius: 11px; background: var(--rust-100); color: var(--rust-700); flex: none; }
 .float-ic svg { width: 19px; height: 19px; }
-.float-ic.ok { background: var(--rust-500); color: var(--white); }
+.float-ic.ok { background: var(--ok); color: var(--white); }
 .float-a { left: 40%; top: 20%; transform: translateZ(130px); }
 .float-b { left: -12%; top: 75%; transform: translateZ(140px); animation-duration: 9.5s; animation-delay: -3s; }
 .float-c { right: 4%; bottom: 3%; transform: translateZ(100px); padding: 10px 16px; background: rgba(42, 19, 14, .8); color: var(--white); border-color: var(--hair-dark); animation-duration: 10s; animation-delay: -5s; }
@@ -448,6 +448,7 @@
 .pin-card { display: grid; gap: 6px; padding: 10px 14px; border-radius: 14px; background: var(--white); box-shadow: 0 16px 30px rgba(42, 19, 14, .35); white-space: nowrap; }
 .pin-card b { font-family: var(--display); font-weight: 700; font-size: .875rem; color: var(--ink); }
 .pin-card .app-tags { font-size: 11px; }
+.pin-card .app-tags i { background: var(--rust-100); color: var(--rust-700); } /* map callouts are chrome; the phone's own .app-tags stay app zone */
 .pc-1 { left: 24%; top: 16%; }
 .pc-2 { left: 66%; top: 54%; }
 
