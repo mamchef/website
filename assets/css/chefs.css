@@ -140,6 +140,7 @@
 .ch-f1 { right: 3%; top: 3%; }
 .ch-f2 { left: 2%; top: 9%; animation-delay: -3s; animation-duration: 9.5s; }
 .ch-f3 { right: 0; bottom: 0; animation-delay: -5s; animation-duration: 10s; }
+.ch-f1 .float-ic.ok, .ch-f3 .float-ic.ok { background: var(--rust-500); color: var(--white); }
 
 /* 2 proof strip */
 .ch-proof { z-index: 1; padding: 4px 0 var(--chap); background: var(--ember-card); }
@@ -219,6 +220,7 @@
 .ch-blob picture, .ch-blob img { width: 100%; height: 100%; object-fit: cover; object-position: 22% 62%; opacity: .26; }
 .ch-phone.phone { position: relative; width: min(286px, 74vw); transform: perspective(1200px) rotateY(-9deg) rotateZ(1.5deg); transform-style: flat; }
 .ch-phone .phone-body { transform-style: flat; }
+.ch-phone .phone-body { box-shadow: inset 0 0 0 1.5px rgba(243, 217, 205, .4), inset 0 0 0 4px var(--ember), 0 40px 70px rgba(42, 19, 14, .3), -24px 30px 50px rgba(42, 19, 14, .18); }
 .ch-phone .phone-body::before { display: none; }
 .ch-phone.is-swap { animation: ch-tilt .6s var(--ease); }
 @keyframes ch-tilt { from { transform: perspective(1200px) rotateY(-15deg) rotateZ(1.5deg); } }
@@ -310,7 +312,7 @@
 .ch-atiles b { display: flex; align-items: center; gap: .25em; font-size: 1.9em; line-height: 1.05; }
 .ch-atiles small { color: var(--deep); font-size: .9em; line-height: 1.2; }
 .scr .ch-atiles svg { width: .8em; height: .8em; color: var(--gold); fill: var(--gold); }
-.ch-phone-cap { position: relative; margin-top: 18px; color: var(--umber); font-family: var(--display); font-weight: 600; font-size: .8125rem; letter-spacing: .02em; }
+.ch-phone-cap { position: relative; margin-top: 18px; color: var(--ink); font-family: var(--display); font-weight: 600; font-size: .8125rem; letter-spacing: .02em; }
 
 /* 5 honest money + planner */
 .ch-money { z-index: 4; overflow: hidden; background: radial-gradient(60% 55% at 88% 22%, rgba(217, 103, 76, .13), rgba(217, 103, 76, 0) 70%), radial-gradient(70% 60% at 0% 100%, rgba(159, 49, 25, .6), rgba(159, 49, 25, 0) 70%), var(--ember); }
@@ -522,6 +524,7 @@
 /* T-20261023-07 r5: phones (≤ 899 px or touch) get every shadow and drop-shadow at 70% (offset, blur, spread × 0.7,
    whole px; em sizes × 0.7 to 2 decimals); colours unchanged, desktop untouched. var(--shadow-1/2) users scale via site.css. */
 @media (max-width: 899px), (pointer: coarse) {
+  .ch-phone .phone-body { box-shadow: inset 0 0 0 1px rgba(243, 217, 205, .4), inset 0 0 0 3px var(--ember), 0 28px 49px rgba(42, 19, 14, .3), -17px 21px 35px rgba(42, 19, 14, .18); }
   .ch-page .site-footer { box-shadow: 0 -1px 0 var(--hair-dark); }
   .ch-embers i { box-shadow: 0 0 6px rgba(235, 167, 67, .9); }
   .ch-rail { box-shadow: 0 0 11px rgba(235, 167, 67, .6); }

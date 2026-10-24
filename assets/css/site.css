@@ -173,7 +173,7 @@ strong { font-weight: 700; }
   color: var(--white); text-decoration: none; font-family: var(--display); font-weight: 600; font-size: .9375rem;
   transition: background-color .25s, color .25s;
 }
-.hdr-nav a:hover { background: rgba(243, 217, 205, .12); color: var(--peach); }
+.hdr-nav a:hover { background: rgba(185, 61, 34, .3); color: var(--peach); }
 .hdr-tools { display: flex; align-items: center; gap: 8px; margin-left: auto; }
 .hdr-nav + .hdr-tools { margin-left: 8px; }
 
