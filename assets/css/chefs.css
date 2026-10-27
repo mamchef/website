@@ -103,7 +103,7 @@
 /* Pulse ring = a gold copy of the button behind it that grows ~12px each side and fades (transform + opacity only,
    runs on the compositor; was an animated box-shadow, repainted every frame). Parents isolate so it sits right under the button. */
 .ch-t-btns, .ch-app-btns { isolation: isolate; }
-.ch-acc::after, .ch-app-btns .ok::after {
+.ch-acc::after, .js .ch-cue::after {
   content: ""; position: absolute; z-index: -1; inset: 0; border-radius: inherit; pointer-events: none;
   background: var(--gold); opacity: 0; animation: ch-pulse 2.6s var(--ease) infinite;
 }
@@ -112,6 +112,8 @@
    A static copy of the background (inherited, so hover/transition follow) sits above the ring in both cases. */
 .ch-acc::before { content: ""; position: absolute; z-index: -1; inset: 0; border-radius: inherit; background: inherit; pointer-events: none; }
 .ch-app-btns .ok::after { inset: -1px; --sx: 1.24; --sy: 1.75; } /* border box ~91-104 x 29-37 px */
+.ch-app-btn.ch-cue::after { --sx: 1.08; --sy: 1.6; } /* ~10px each side on the ~200 x 35 px button */
+.ch-oc-b { isolation: isolate; }
 @keyframes ch-pulse { 0% { transform: scale(1); opacity: .65; } 70%, 100% { transform: scale(var(--sx), var(--sy)); opacity: 0; } }
 .ch-used .ch-acc::after { animation: none; }
 .ch-dec { border: 1.5px solid rgba(21, 57, 47, .3); color: var(--forest); }
@@ -227,8 +229,8 @@
 .ch-phone .phone-body::before { display: none; }
 .ch-phone.is-swap { animation: ch-tilt .6s var(--ease); }
 @keyframes ch-tilt { from { transform: perspective(1200px) rotateY(-15deg) rotateZ(1.5deg); } }
-.ch-phone .scr { transition-duration: .4s; }
-.ch-day[data-step="1"] .ch-scr-1, .ch-day[data-step="2"] .ch-scr-2, .ch-day[data-step="3"] .ch-scr-3, .ch-day[data-step="4"] .ch-scr-4 { opacity: 1; }
+.ch-phone .scr { transition-duration: .4s; pointer-events: none; } /* all 4 screens are stacked: only the shown one may take taps */
+.ch-day[data-step="1"] .ch-scr-1, .ch-day[data-step="2"] .ch-scr-2, .ch-day[data-step="3"] .ch-scr-3, .ch-day[data-step="4"] .ch-scr-4 { opacity: 1; pointer-events: auto; }
 .ch-app-top { display: flex; align-items: center; gap: .8em; padding: 4.3em 1.4em 1.3em; border-radius: 0 0 1.8em 1.8em; background: var(--forest); color: var(--white); }
 .ch-app-top::before { content: ""; flex: none; width: 1.3em; height: 1em; background: linear-gradient(currentColor, currentColor) top / 100% 2px no-repeat, linear-gradient(currentColor, currentColor) center / 100% 2px no-repeat, linear-gradient(currentColor, currentColor) bottom / 100% 2px no-repeat; }
 .ch-app-top b { font-family: var(--display); font-weight: 800; font-size: 1.5em; }
@@ -279,12 +281,11 @@
 .ch-app-pill.ok { background: var(--sage); }
 .ch-app-pill.ok svg { color: var(--white); }
 .ch-app-btns { display: grid; grid-template-columns: 1fr 1fr; gap: .6em; }
-.ch-app-btns > span { display: flex; align-items: center; justify-content: center; gap: .35em; padding: .7em .3em; border-radius: .9em; border: 1px solid var(--mint); text-align: center; font-family: var(--display); font-weight: 700; font-size: .92em; }
+.ch-app-btns > span, .ch-app-btns > button { display: flex; align-items: center; justify-content: center; gap: .35em; padding: .7em .3em; border-radius: .9em; border: 1px solid var(--mint); text-align: center; font-family: var(--display); font-weight: 700; font-size: .92em; }
 .ch-app-btns .no { border-color: rgba(185, 61, 34, .45); color: var(--rust); }
 .ch-app-btns .ok { position: relative; background: var(--forest); border-color: var(--forest); color: var(--white); }
-.ch-oc-next .ch-app-btns .ok::after { animation: none; } /* one pulsing ACCEPT per screen */
 .scr .ch-app-btns .hat { width: 1.15em; height: 1.15em; color: var(--gold); }
-.ch-app-btn { display: flex; align-items: center; justify-content: center; gap: .4em; padding: .8em; border-radius: .9em; background: var(--forest); color: var(--white); text-align: center; font-family: var(--display); font-weight: 800; }
+.ch-app-btn { position: relative; width: 100%; border: 0; font-size: inherit; display: flex; align-items: center; justify-content: center; gap: .4em; padding: .8em; border-radius: .9em; background: var(--forest); color: var(--white); text-align: center; font-family: var(--display); font-weight: 800; }
 .scr .ch-app-btn svg { width: 1.2em; height: 1.2em; color: var(--gold); }
 .ch-oc.ch-pay { --c: var(--mint); display: flex; align-items: center; justify-content: space-between; gap: .6em; padding: .9em; color: var(--deep); }
 .ch-pay b { font-family: var(--display); font-weight: 700; }
@@ -315,7 +316,19 @@
 .ch-atiles b { display: flex; align-items: center; gap: .25em; font-size: 1.9em; line-height: 1.05; }
 .ch-atiles small { color: var(--deep); font-size: .9em; line-height: 1.2; }
 .scr .ch-atiles svg { width: .8em; height: .8em; color: var(--gold); fill: var(--gold); }
-.ch-phone-cap { position: relative; margin-top: 18px; color: var(--ink); font-family: var(--display); font-weight: 600; font-size: .8125rem; letter-spacing: .02em; }
+/* tappable phone actions (pointer shortcut; the tablist is the keyboard / screen-reader path). One cue (.ch-cue) per screen pulses. */
+.js [data-ch-go] { cursor: pointer; }
+.js [data-ch-go]::before { content: ""; position: absolute; inset: -6px 0; } /* >= 44 px tall hit area; REFUSE beside it is not overlapped */
+@media (hover: hover) { .js [data-ch-go]:hover { background: var(--deep); } }
+.js [data-ch-go]:active { background: var(--deep); }
+@media (prefers-reduced-motion: no-preference) { .js [data-ch-go]:active { transform: scale(.97); } }
+.ch-phone-foot { position: relative; display: flex; flex-direction: column; align-items: center; gap: 8px; margin-top: 16px; text-align: center; }
+.ch-phone-hint { min-height: 44px; display: flex; align-items: center; gap: 6px; max-width: 30ch; color: var(--rust-600); font-family: var(--display); font-weight: 650; font-size: .875rem; text-wrap: balance; }
+.ch-phone-hint::before { content: ""; flex: none; width: 8px; height: 8px; border-left: 2.5px solid currentColor; border-bottom: 2.5px solid currentColor; rotate: 135deg; }
+.ch-phone-hint[hidden], .ch-replay[hidden] { display: none; }
+.ch-replay { min-height: 44px; }
+html:not(.js) .ch-phone-hint { display: none; }
+.ch-phone-cap { position: relative; color: var(--ink); font-family: var(--display); font-weight: 600; font-size: .8125rem; letter-spacing: .02em; }
 
 /* 5 honest money + planner */
 .ch-money { z-index: 4; overflow: hidden; background: radial-gradient(60% 55% at 88% 22%, rgba(235, 167, 67, .13), rgba(235, 167, 67, 0) 70%), radial-gradient(70% 60% at 0% 100%, rgba(185, 61, 34, .3), rgba(185, 61, 34, 0) 70%), var(--char); }
@@ -518,7 +531,8 @@
 }
 
 /* reduced motion */
-.motion-off .ch-hang, .motion-off .ch-glow, .motion-off .ch-acc::after, .motion-off .ch-app-btns .ok::after, .motion-off .ch-dot::after { animation: none; }
+.motion-off .ch-hang, .motion-off .ch-glow, .motion-off .ch-acc::after, .motion-off .ch-cue::after, .motion-off .ch-dot::after { animation: none; }
+.motion-off .ch-cue { box-shadow: 0 0 0 3px var(--gold); } /* static cue instead of the pulse */
 .motion-off .ch-embers, .motion-off .ch-video { display: none; }
 .motion-off .ch-glow { opacity: .85; }
 .motion-off .ch-phone.is-swap, .motion-off .ch-pan:not([hidden]), .motion-off .ch-receipt.is-print .ch-rc-row { animation: none; }
