@@ -1,4 +1,4 @@
-/* MamChef /chefs page: order-ticket demo, tabbed chef-app phone, week planner, drawing sign-up line, sticky phone CTA,
+/* MamChef /chefs page: order-ticket demo, tabbed chef-app phone (tabs + tappable phone actions), week planner, drawing sign-up line, sticky phone CTA,
    "Start cooking" store link on phones, idle hero video, pointer parallax/tilt. No libraries. Nothing is stored or sent:
    the demo and the planner only change this page. transform/opacity only; motion off (OS setting) = final static state. */
 (function () {
@@ -79,8 +79,9 @@
     t.addEventListener('pointerleave', function () { r = null; t.style.setProperty('--rx', '0deg'); t.style.setProperty('--ry', '0deg'); });
   });
 
-  /* ---------- A day in your kitchen: APG tabs (arrows, Home/End), no auto-advance ---------- */
-  var day = $('#day'), tabs = $$('[role="tab"]', $('[data-ch-tabs]') || d), phone = $('.ch-phone');
+  /* ---------- A day in your kitchen: APG tabs (arrows, Home/End) + tappable phone actions (ACCEPT -> 2, Mark as Ready -> 3, Complete Order -> 4), no auto-advance ---------- */
+  var day = $('#day'), tabs = $$('[role="tab"]', $('[data-ch-tabs]') || d), phone = $('.ch-phone'), hint = $('[data-ch-hint]'), replay = $('[data-ch-replay]'), cur = 0;
+  var HINTS = [['Try it: press ACCEPT', 'Išbandykite: paspauskite PRIIMTI'], ['Next: press Mark as Ready', 'Toliau: paspauskite „Pažymėti kaip paruoštą“'], ['Next: press Complete Order', 'Toliau: paspauskite „Užbaigti užsakymą“']];
   function select(i, focus) {
     tabs.forEach(function (t, j) {
       var on = j === i;
@@ -91,8 +92,21 @@
       day.setAttribute('data-step', String(i + 1));
       if (phone && !off()) { phone.classList.remove('is-swap'); void phone.offsetWidth; phone.classList.add('is-swap'); }
     }
+    cur = i;
+    if (hint && i < 3) say(hint, HINTS[i][0], HINTS[i][1]);
+    if (hint) hint.hidden = i === 3;
+    if (replay) replay.hidden = i !== 3;
     if (focus) tabs[i].focus();
   }
+  $$('[data-ch-go]', phone || d).forEach(function (b) {
+    b.addEventListener('mousedown', function (e) { e.preventDefault(); }); // the phone is aria-hidden: its buttons never take focus
+    b.addEventListener('click', function () {
+      var scr = b.closest('.scr');
+      if (!scr || !scr.classList.contains('ch-scr-' + (cur + 1))) return; // only the shown screen acts
+      select(+b.getAttribute('data-ch-go') - 1, false);
+    });
+  });
+  if (replay) replay.addEventListener('click', function () { select(0, false); tabs[0].focus({ preventScroll: true }); });
   tabs.forEach(function (t, i) {
     t.addEventListener('click', function () { select(i); });
     t.addEventListener('keydown', function (e) {
