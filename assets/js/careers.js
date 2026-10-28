@@ -126,6 +126,29 @@
   });
   rm.addEventListener('click', function () { F.cv.value = ''; syncRm(); showErr('cv', null); F.cv.focus(); });
 
+  // "How we use it": opens the privacy notice right under the consent line (no jump away from the form, checkbox untouched).
+  // The text is cloned from the notice below the form, so it stays single-sourced and follows the EN/LT switch. Without JS the link is still the #privacy anchor.
+  var pop = null, popOpen = false;
+  function syncPriv() {
+    var a = $('.cr-check a[href="#privacy"]', form);
+    if (!a) return;
+    a.setAttribute('aria-expanded', String(popOpen)); a.setAttribute('aria-controls', 'cr-priv-pop');
+  }
+  form.addEventListener('click', function (ev) {
+    var a = ev.target.closest ? ev.target.closest('.cr-check a[href="#privacy"]') : null;
+    if (!a) return;
+    var src = $('#privacy'); src = src && src.parentNode && $('p', src.parentNode);
+    if (!src) return;
+    ev.preventDefault();
+    if (!pop) {
+      pop = d.createElement('div'); pop.id = 'cr-priv-pop'; pop.className = 'cr-priv-pop'; pop.hidden = true;
+      pop.appendChild(src.cloneNode(true));
+      a.closest('.cr-field').insertBefore(pop, $('#cr-ok-err'));
+    }
+    popOpen = !popOpen; pop.hidden = !popOpen; syncPriv();
+  });
+  d.addEventListener('mc:lang', syncPriv);
+
   function firstInvalid(errs) {
     var order = ['name', 'email', 'phone', 'link', 'role', 'message', 'cv', 'consent'];
     for (var i = 0; i < order.length; i++) if (errs[order[i]]) return F[order[i]];
