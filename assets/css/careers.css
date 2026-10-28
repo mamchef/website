@@ -74,6 +74,10 @@ html:not(.js) .cr-form { display: none; }
 .cr-check { display: flex; gap: 12px; align-items: flex-start; min-height: 44px; padding: 4px 0; cursor: pointer; color: var(--ink); font-size: 1rem; line-height: 1.45; }
 .cr-check input { flex: none; width: 22px; height: 22px; margin-top: 2px; accent-color: var(--rust-500); cursor: pointer; }
 .cr-check input[aria-invalid="true"] { outline: 2px solid var(--err); outline-offset: 2px; }
+.cr-priv-pop { padding: 12px 14px; border-radius: 12px; border-left: 4px solid var(--rust-600); background: var(--cream); }
+.cr-priv-pop[hidden] { display: none; }
+.cr-priv-pop p { margin: 0; color: var(--umber); font-size: 1rem; line-height: 1.45; }
+.cr-priv-pop a { color: var(--rust-600); text-underline-offset: 3px; }
 .cr-hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
 .cr-banner { padding: 14px 16px; border-radius: 12px; border-left: 4px solid var(--err); background: var(--rust-50); color: var(--ink); font-size: 1rem; line-height: 1.45; }
 .cr-banner[hidden] { display: none; }
