@@ -554,8 +554,6 @@
 .sister-card .btn-secondary:hover { background: var(--forest); color: var(--white); }
 .sister-card .ext { width: 16px; height: 16px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
-/* BizzChef not launched yet: remove this rule at BizzChef launch to show the block */
-.sister-section { display: none; }
 
 .site-footer { z-index: 8; }
 
